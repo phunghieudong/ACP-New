@@ -4,4 +4,6 @@
 type Routers = {
   HomeScreeen: any; // Có thể tạo type và param cho màn hình ở đây
   ExampleScreen: any;
+  Auth: any;
+  Home: any;
 };

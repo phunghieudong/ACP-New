@@ -1,8 +1,8 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import HeaderRoot from "../../../../components/HeaderRoot/index";
 const HomeScreen = ({ navigation }) => {
 
   const [leftNumber, setLeftNumber] = useState<number>();
@@ -44,30 +44,118 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <Text
-        onPress={getUser}
-        style={[
-          styles.text,
-          {
+      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
+        <Image
 
-            backgroundColor: leftNumber == 69 ? 'green' : 'red',
-          },
-        ]}>
-        Phùng Hiểu Đông cuteadsdád
-      </Text>
+          source={require('../../../../assets/images/logo.png')}
+          style={{ width: 110, height: 50 }}
+        />
+      </View>
+      <Image
+
+        source={require('../../../../assets/images/home.png')}
+        style={{ width: "100%", height: 180 }}
+      />
+
+      <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20 , marginBottom:20}}>
+        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
+        <Text style={{ fontSize: 14, color: '#000000', }}>Lorem Ipsum has been the industry's standard dummy
+          text ever since the 1500s</Text>
+      </View>
+      <ScrollView>
+        <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
+          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image1.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image2.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image3.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image4.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image1.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={{ flexDirection: 'column' }}>
+                <Image
+
+                  source={require('../../../../assets/images/image4.png')}
+                  style={{ width: 164, height: 100 }}
+                />
+                <Text>Chào thầu dự án dừa</Text>
+                <Text>Bến Tre</Text>
+                <Text>11/08/2022</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
-export default HomeScreen;
+
 
 const styles = StyleSheet.create({
 
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
   text: {
     fontSize: 22,
@@ -77,3 +165,4 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
 });
+export default HomeScreen; 

@@ -1,3 +1,1 @@
-
-export { default as HeaderRoot } from "./HeaderRoot";
-
+export { default as CustomHeader } from "./HeaderRoot/index";

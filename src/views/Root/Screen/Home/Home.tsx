@@ -74,7 +74,15 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
+
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
@@ -86,7 +94,14 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
               </View>
             </TouchableOpacity>
           </View>
@@ -100,7 +115,14 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
@@ -112,7 +134,14 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
               </View>
             </TouchableOpacity>
           </View>
@@ -126,7 +155,14 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
@@ -138,7 +174,14 @@ const HomeScreen = ({ navigation }) => {
                 />
                 <Text>Chào thầu dự án dừa</Text>
                 <Text>Bến Tre</Text>
-                <Text>11/08/2022</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+
+                    source={require('../../../../assets/images/clock.png')}
+                    style={{ width: 14, height: 14, marginRight: 5 }}
+                  />
+                  <Text>11/08/2022</Text>
+                </View>
               </View>
             </TouchableOpacity>
           </View>

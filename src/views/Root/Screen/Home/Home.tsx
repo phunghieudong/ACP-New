@@ -1,10 +1,10 @@
 // Mẫu view, component viết bằng function component
 // Có ví dụ và giải thích cách sử dụng hooks cơ bản và typescript cơ bản
 
-import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
-const ExampleScreen = () => {
+const HomeScreen = ({ navigation }) => {
   // Khởi tạo biến leftNumber với type là number
   const [leftNumber, setLeftNumber] = useState<number>();
 
@@ -48,6 +48,7 @@ const ExampleScreen = () => {
 
   return (
     <View style={styles.container}>
+
       <Text
         onPress={getUser} // Khi nhấn vô chữ nó sẽ gọi cái hàm "getUser"
         style={[
@@ -57,13 +58,13 @@ const ExampleScreen = () => {
             backgroundColor: leftNumber == 69 ? 'green' : 'red', // Nếu leftNumber == 69 thì màu xanh, ngược lại là đỏ
           },
         ]}>
-        Bảo Châu mãi đỉnh
+        Phùng Hiểu Đông cuteadsdád
       </Text>
     </View>
   );
 };
 
-export default ExampleScreen;
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   // Mấy cái style này coi trên tài liệu của react-native nhe

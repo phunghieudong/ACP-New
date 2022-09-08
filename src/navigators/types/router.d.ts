@@ -2,8 +2,8 @@
 // Xem thêm: https://reactnavigation.org/docs/typescript
 
 type Routers = {
-  HomeScreeen: any; // Có thể tạo type và param cho màn hình ở đây
-  ExampleScreen: any;
+  SigninScreeen: any; // Có thể tạo type và param cho màn hình ở đây
+  HomeScreen: any;
   Auth: any;
   Home: any;
 };

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../views/home';
+import SigninScreeen from '../views/Auth/Screen/Signin';
 const Stack = createNativeStackNavigator<Routers>();
 
 function AuthNavigator() {
@@ -14,7 +14,7 @@ function AuthNavigator() {
       }}
 
     >
-      <Stack.Screen name="HomeScreeen" component={HomeScreen} />
+      <Stack.Screen name="SigninScreeen" component={SigninScreeen} />
 
     </Stack.Navigator>
   );

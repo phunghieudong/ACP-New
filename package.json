@@ -14,6 +14,7 @@
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
+    "native-base": "^3.4.13",
     "react": "18.0.0",
     "react-native": "0.69.5",
     "react-redux": "^8.0.2",

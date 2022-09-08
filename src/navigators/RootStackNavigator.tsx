@@ -6,7 +6,7 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ExampleScreen from '../views/example';
+import HomeScreen from "../views/Root/Screen/Home/Home";
 const Stack = createNativeStackNavigator<Routers>();
 const Tab = createNativeStackNavigator<Routers>();
 function RootStackNavigator() {
@@ -17,7 +17,7 @@ function RootStackNavigator() {
       }}
 
     >
-      <Tab.Screen name="ExampleScreen" component={ExampleScreen} />
+      <Tab.Screen name="HomeScreen" component={HomeScreen} />
 
     </Stack.Navigator>
   );

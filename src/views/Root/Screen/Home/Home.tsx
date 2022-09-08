@@ -57,15 +57,15 @@ const HomeScreen = ({ navigation }) => {
         style={{ width: "100%", height: 180 }}
       />
 
-      <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20 , marginBottom:20}}>
+      <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
         <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
-        <Text style={{ fontSize: 14, color: '#000000', }}>Lorem Ipsum has been the industry's standard dummy
+        <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
           text ever since the 1500s</Text>
       </View>
       <ScrollView>
         <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -77,7 +77,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text>11/08/2022</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -91,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -103,7 +103,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text>11/08/2022</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -117,7 +117,7 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -129,7 +129,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text>11/08/2022</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 

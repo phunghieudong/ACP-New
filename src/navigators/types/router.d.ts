@@ -6,4 +6,7 @@ type Routers = {
   HomeScreen: any;
   Auth: any;
   Home: any;
+  BiddingList: any;
+  SignUpBiding: any;
+  Confirm: any;
 };

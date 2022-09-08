@@ -17,11 +17,8 @@ function RootNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="HomeScreeen" component={HomeScreen} />
         <Stack.Screen name="ExampleScreen" component={ExampleScreen} /> */}
-        
         <Stack.Screen name="Home" component={AuthNavigator} />
         <Stack.Screen name="Auth" component={RootStackNavigator} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );

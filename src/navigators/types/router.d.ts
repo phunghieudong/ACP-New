@@ -9,4 +9,5 @@ type Routers = {
   BiddingList: any;
   SignUpBiding: any;
   Confirm: any;
+  AllHome: any;
 };

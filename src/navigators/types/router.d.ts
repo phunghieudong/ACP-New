@@ -10,4 +10,9 @@ type Routers = {
   SignUpBiding: any;
   Confirm: any;
   AllHome: any;
+  HistoryScreen: any;
+  InformationScreen: any;
+  AccountScreen: any;
+  ChangePassword:any;
+  UpdateAccount:any;
 };

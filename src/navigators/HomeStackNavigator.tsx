@@ -7,6 +7,8 @@ import HomeScreen from "../views/Root/Screen/Home/Home";
 import BiddingList from "../views/Root/Screen/Profile/BiddingList";
 import SignUpBiding from "../views/Root/Screen/Profile/SignUpBiding";
 import Confirm from "../views/Root/Screen/Profile/Confirm";
+import ChangePassword from "../views/Root/Screen/Home/ChangePassword";
+import UpdateAccount from "../views/Root/Screen/Home/UpdateAccount";
 // chổ này là cái tab
 const Stack = createNativeStackNavigator<Routers>();
 // const Tab = createNativeStackNavigator<Routers>();
@@ -22,6 +24,8 @@ function RootStackNavigator() {
             <Stack.Screen name="BiddingList" component={BiddingList} />
             <Stack.Screen name="SignUpBiding" component={SignUpBiding} />
             <Stack.Screen name="Confirm" component={Confirm} />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
+            <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
         </Stack.Navigator>
     );
 }

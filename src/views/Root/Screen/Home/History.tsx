@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
-import Swiper from "react-native-swiper";
-const HomeScreen = ({ navigation }) => {
+import { Toast } from "native-base";
+const HistoryScreen = ({ navigation }) => {
 
   const [leftNumber, setLeftNumber] = useState<number>();
 
@@ -46,62 +46,15 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
 
       <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Image
-
-          source={require('../../../../assets/images/logo.png')}
-          style={{ width: 110, height: 50 }}
-        />
+        <Text style={{ color: '#ffffff', fontSize: 20 }}> Lịch sử đấu thầu</Text>
       </View>
 
 
-      <Swiper
-        showsButtons={false}
-        height={160}
-        containerStyle={{ flex: 0 }}
-        activeDotColor={"#A5C63F"}
-        dotColor="rgba(0, 0, 0, .2)"
-        paginationStyle={{
-          bottom: 8,
-        }}
-      >
 
-
-
-        <Image
-
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-
-
-        <Image
-
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-
-
-
-        <Image
-
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-
-
-
-      </Swiper>
-
-
-      <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
-        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
-        <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
-          text ever since the 1500s</Text>
-      </View>
-      <ScrollView>
+      <ScrollView style={{ marginTop: 32 }}>
         <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -121,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
 
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -142,7 +95,7 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -161,7 +114,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -182,7 +135,7 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -201,7 +154,7 @@ const HomeScreen = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <TouchableOpacity>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -244,4 +197,4 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
 });
-export default HomeScreen; 
+export default HistoryScreen; 

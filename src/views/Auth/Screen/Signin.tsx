@@ -48,7 +48,7 @@ function SigninScreen() {
           value={text1}
         />
       </View>
-      <View style={{ marginTop: 16, width: 343, }}>
+      <View style={{ marginTop: 16, width: 343, flexDirection: "row-reverse" }}>
         <TouchableOpacity >
           <Text style={{ color: 'red' }}>Quên mật khẩu</Text>
 

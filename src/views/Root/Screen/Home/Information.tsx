@@ -3,15 +3,26 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
-const InformationScreen = ({ navigation }) => {
-
-
-
+import { useNavigation } from "@react-navigation/native";
+const InformationScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20 }}>Thông báo</Text>
+      <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+
+            source={require('../../../../assets/images/goback.png')}
+            style={{ width: 7.17, height: 14 }}
+          />
+        </TouchableOpacity>
+        <Text style={{ fontSize: 20, color: '#ffffff' }}>Thông báo</Text>
+        <Image
+
+          source={require('../../../../assets/images/bell.png')}
+          style={{ width: 24, height: 17.63 }}
+        />
       </View>
 
 
@@ -44,7 +55,7 @@ const InformationScreen = ({ navigation }) => {
 
                 source={require('../../../../assets/images/Information4.png')}
                 style={{ width: 74, height: 59 }}
-              />d
+              />
             </View>
             <View style={{ flexDirection: 'column', width: '100%', marginHorizontal: 8 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>

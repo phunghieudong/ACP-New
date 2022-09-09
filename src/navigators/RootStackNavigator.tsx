@@ -11,6 +11,8 @@ import SignUpBiding from "../views/Root/Screen/Profile/SignUpBiding";
 import Confirm from "../views/Root/Screen/Profile/Confirm";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 // chổ này là cái tab
 // const Stack = createNativeStackNavigator<Routers>();
 const Tab = createBottomTabNavigator();
@@ -40,7 +42,7 @@ function RootStackNavigator() {
           headerShown: false,
           tabBarLabel: 'Lịch sử',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="notebook" color={color} size={size} />
+            <MaterialIcons name="library-books" color={color} size={size} />
           ),
         }}
       />
@@ -51,18 +53,18 @@ function RootStackNavigator() {
           headerShown: false,
           tabBarLabel: 'Thông báo',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
+            <MaterialCommunityIcons name="bell-ring-outline" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="account"
         component={Account}
         options={{
           headerShown: false,
           tabBarLabel: 'Tài khoản',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <FontAwesome5 name="user" color={color} size={size} />
           ),
         }}
       />

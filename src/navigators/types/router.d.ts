@@ -13,6 +13,7 @@ type Routers = {
   HistoryScreen: any;
   InformationScreen: any;
   AccountScreen: any;
-  ChangePassword:any;
-  UpdateAccount:any;
+  ChangePassword: any;
+  UpdateAccount: any;
+  ForgotPassword: any;
 };

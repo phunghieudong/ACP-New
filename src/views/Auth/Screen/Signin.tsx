@@ -49,7 +49,7 @@ function SigninScreen() {
         />
       </View>
       <View style={{ marginTop: 16, width: 343, flexDirection: "row-reverse" }}>
-        <TouchableOpacity >
+        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={{ color: 'red' }}>Quên mật khẩu</Text>
 
         </TouchableOpacity>

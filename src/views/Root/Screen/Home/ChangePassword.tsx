@@ -1,21 +1,31 @@
-
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
-const UpdateAccountScreen = ({ navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+const UpdateAccountScreen = () => {
 
-
+  const navigation = useNavigation();
 
   const [text, onChangeText] = React.useState("");
   const [text1, onChangeText1] = React.useState("");
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: "600" }}>Đổi mật khẩu</Text>
-      </View>
+      <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
 
+            source={require('../../../../assets/images/goback.png')}
+            style={{ width: 7.17, height: 14 }}
+          />
+        </TouchableOpacity>
+        <Text style={{ fontSize: 20, color: '#ffffff' }}>Đổi mật khẩu</Text>
+        <View style={{ backgroundColor: '#9CBD44', height: 30, width: 30 }}>
+
+        </View>
+      </View>
 
       <View style={styles.container}>
 

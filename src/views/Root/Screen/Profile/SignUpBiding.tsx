@@ -1,18 +1,29 @@
-
-
-
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
-const SignUpBidingScreen = ({ navigation }) => {
-
+import { useNavigation } from "@react-navigation/native";
+const SignUpBidingScreen = () => {
+    const navigation = useNavigation();
     const [text, onChangeText] = React.useState("");
     const [text1, onChangeText1] = React.useState("");
 
     return (
         <View style={styles.container}>
-            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "center", alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center' , paddingHorizontal:20 }}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image
+
+                        source={require('../../../../assets/images/goback.png')}
+                        style={{ width: 7.17, height: 14 }}
+                    />
+                </TouchableOpacity>
                 <Text style={{ fontSize: 20, color: '#ffffff' }}>Đăng ký dự thầu</Text>
+                <Image
+
+                    source={require('../../../../assets/images/bell.png')}
+                    style={{ width: 24, height: 25 }}
+                />
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32 }}>
                 <Text>Số lượng</Text>

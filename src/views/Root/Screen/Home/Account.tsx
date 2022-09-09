@@ -13,109 +13,109 @@ const AccountScreen = ({ navigation }) => {
       <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ color: '#ffffff', fontSize: 20 }}>Tài khoản</Text>
       </View>
-
-
       <View style={styles.container}>
-        <TouchableOpacity>
-          <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 32 }}>
-            <Image
-
-              source={require('../../../../assets/images/camera.png')}
-              style={{ width: 90, height: 90 }}
-            />
-          </View>
-        </TouchableOpacity >
-        <View style={{ marginHorizontal: 32, marginTop: 38 }}>
-          <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>
-            Phùng Hiểu Đông
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('UpdateAccount')}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <ScrollView style={{height:1000 }}>
+          <TouchableOpacity>
+            <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
 
-                source={require('../../../../assets/images/pen.png')}
-                style={{ width: 13.13, height: 13.13, marginRight: 9 }}
+                source={require('../../../../assets/images/camera.png')}
+                style={{ width: 90, height: 90 }}
               />
-              <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>Cập nhật thông tin</Text>
             </View>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity >
+          <View style={{ marginHorizontal: 32, marginTop: 18 }}>
+            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>
+              Phùng Hiểu Đông
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('UpdateAccount')}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Image
 
-        <View>
-          <View style={{ flexDirection: 'row', marginTop: 48, marginLeft: 16 }}>
+                  source={require('../../../../assets/images/pen.png')}
+                  style={{ width: 13.13, height: 13.13, marginRight: 9 }}
+                />
+                <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>Cập nhật thông tin</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
 
+          <View>
+            <View style={{ flexDirection: 'row', marginTop: 48, marginLeft: 16 }}>
+
+              <Image
+
+                source={require('../../../../assets/images/user.png')}
+                style={{ width: 16, height: 16, marginRight: 9 }}
+              />
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Thông tin liên lạc</Text>
+            </View>
+          </View>
+          <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
 
-              source={require('../../../../assets/images/user.png')}
+              source={require('../../../../assets/images/calender.png')}
+              style={{ width: 13.48, height: 14, marginRight: 9 }}
+            />
+            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>23 tháng 09, 1991</Text>
+          </View>
+          <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
+            <Image
+
+              source={require('../../../../assets/images/phone.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Thông tin liên lạc</Text>
+            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>+84 902 345 678</Text>
           </View>
-        </View>
-        <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
-          <Image
+          <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
+            <Image
 
-            source={require('../../../../assets/images/calender.png')}
-            style={{ width: 13.48, height: 14, marginRight: 9 }}
-          />
-          <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>23 tháng 09, 1991</Text>
-        </View>
-        <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
-          <Image
+              source={require('../../../../assets/images/now.png')}
+              style={{ width: 16, height: 16, marginRight: 9 }}
+            />
+            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>1073/23 CMT8, phường7, quận Tân Bình, TP.HCM</Text>
 
-            source={require('../../../../assets/images/phone.png')}
-            style={{ width: 16, height: 16, marginRight: 9 }}
-          />
-          <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>+84 902 345 678</Text>
-        </View>
-        <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
-          <Image
-
-            source={require('../../../../assets/images/now.png')}
-            style={{ width: 16, height: 16, marginRight: 9 }}
-          />
-          <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>1073/23 CMT8, phường7, quận Tân Bình, TP.HCM</Text>
-
-        </View>
-        <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
-          <Image
-
-            source={require('../../../../assets/images/balo.png')}
-            style={{ width: 16, height: 14.06, marginRight: 9 }}
-          />
-          <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Danh sách gói thầu của bạn</Text>
-        </View>
-        <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-        <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
+          </View>
+          <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
             <Image
+
+              source={require('../../../../assets/images/balo.png')}
+              style={{ width: 16, height: 14.06, marginRight: 9 }}
+            />
+            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Danh sách gói thầu của bạn</Text>
+          </View>
+          <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
+          <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
+              <Image
+                source={require('../../../../assets/images/key.png')}
+                style={{ width: 11.29, height: 15.06, marginRight: 9 }}
+              />
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Đổi mật khẩu</Text>
+            </View>
+          </TouchableOpacity>
+          <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
+            <Image
+
               source={require('../../../../assets/images/key.png')}
               style={{ width: 11.29, height: 15.06, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Đổi mật khẩu</Text>
+            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Nhận thông báo  dự thầu</Text>
           </View>
-        </TouchableOpacity>
-        <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
-          <Image
+          <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
+          <TouchableOpacity>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 , marginBottom:20 }}>
+              <Image
 
-            source={require('../../../../assets/images/key.png')}
-            style={{ width: 11.29, height: 15.06, marginRight: 9 }}
-          />
-          <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Nhận thông báo  dự thầu</Text>
-        </View>
-        <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-        <TouchableOpacity>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
-            <Image
-
-              source={require('../../../../assets/images/lognout.png')}
-              style={{ width: 16, height: 16, marginRight: 9 }}
-            />
-            <Text style={{ fontSize: 16, color: '#E7312F', fontWeight: "600" }}>Đăng xuất</Text>
-          </View>
-        </TouchableOpacity>
+                source={require('../../../../assets/images/lognout.png')}
+                style={{ width: 16, height: 16, marginRight: 9 }}
+              />
+              <Text style={{ fontSize: 16, color: '#E7312F', fontWeight: "600" }}>Đăng xuất</Text>
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
 
     </View>

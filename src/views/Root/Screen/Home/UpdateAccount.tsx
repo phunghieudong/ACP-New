@@ -1,19 +1,32 @@
-
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
-const ChangePasswordScreen = ({ navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+const ChangePasswordScreen = () => {
 
-
+  const navigation = useNavigation();
 
   const [text, onChangeText] = React.useState("");
   const [text1, onChangeText1] = React.useState("");
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: "600" }}>Cập nhật thông tin</Text>
+      <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+
+            source={require('../../../../assets/images/goback.png')}
+            style={{ width: 7.17, height: 14 }}
+          />
+        </TouchableOpacity>
+        <Text style={{ fontSize: 20, color: '#ffffff' }}>Cập nhật thông tin</Text>
+        <Image
+
+          source={require('../../../../assets/images/check.png')}
+          style={{ width: 24, height: 17.63 }}
+        />
       </View>
 
 

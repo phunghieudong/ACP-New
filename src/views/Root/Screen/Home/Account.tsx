@@ -1,20 +1,28 @@
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 const AccountScreen = ({ navigation }) => {
+  const [enabled, setEnabled] = useState(false);
+  const toggleSwitch = () => {
+    setEnabled((oldValue) => !oldValue);
+  };
 
 
+  // const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
+  // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
+  // const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
+  // const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
 
   return (
     <View style={styles.container}>
 
       <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight:'600' }}>Tài khoản</Text>
+        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600' }}>Tài khoản</Text>
       </View>
       <View style={styles.container}>
-        <ScrollView style={{height:1000 }}>
+        <ScrollView style={{ height: 1000 }}>
           <TouchableOpacity>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
@@ -96,17 +104,30 @@ const AccountScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
-            <Image
+          <View style={{ justifyContent: "space-between", flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, }}>
 
-              source={require('../../../../assets/images/key.png')}
-              style={{ width: 11.29, height: 15.06, marginRight: 9 }}
-            />
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Nhận thông báo  dự thầu</Text>
+            <View style={{ flexDirection: 'row' , justifyContent:'center' , alignItems:'center'}}>
+              <Image
+
+                source={require('../../../../assets/images/key.png')}
+                style={{ width: 11.29, height: 15.06, marginRight: 9 }}
+              />
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Nhận thông báo  dự thầu</Text>
+            </View>
+            <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
+              {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+              <Switch
+                onValueChange={toggleSwitch}
+                value={enabled}
+                thumbColor={enabled ? "red" : "red"}
+                trackColor={{ false: "#666666", true: "#666666" }}
+                ios_backgroundColor={"yellow"}
+              />
+            </View>
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 , marginBottom:20 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, marginBottom: 20 }}>
               <Image
 
                 source={require('../../../../assets/images/lognout.png')}

@@ -1,6 +1,6 @@
 // File này coi cho vui thôi, config axios.
 // Không hiểu đâu
-
+//@ts-nocheck
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {appConfig} from '~/configs';
 

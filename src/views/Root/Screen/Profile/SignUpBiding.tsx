@@ -10,7 +10,7 @@ const SignUpBidingScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center' , paddingHorizontal:20 }}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, alignItems: 'center', paddingHorizontal: 20, justifyContent: "space-between" }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image
 
@@ -18,12 +18,20 @@ const SignUpBidingScreen = () => {
                         style={{ width: 7.17, height: 14 }}
                     />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>Đăng ký dự thầu</Text>
-                <Image
+                <View >
+                    <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký dự thầu</Text>
+                </View>
 
-                    source={require('../../../../assets/images/bell.png')}
-                    style={{ width: 24, height: 25 }}
-                />
+                <View style={{ flexDirection: 'row', }}>
+
+                    <Image
+
+                        source={require('../../../../assets/images/bell.png')}
+                        style={{ width: 24, height: 25, ma: 10 }}
+                    />
+
+                </View>
+
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32 }}>
                 <Text>Số lượng</Text>
@@ -54,9 +62,9 @@ const SignUpBidingScreen = () => {
                 />
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
-                <TouchableOpacity onPress={() => navigation.navigate('Confirm')}>
-                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 16, color: "#ffffff" }}>XÁC NHẬN</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 390, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
+                        <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
                     </View>
                 </TouchableOpacity>
             </View>

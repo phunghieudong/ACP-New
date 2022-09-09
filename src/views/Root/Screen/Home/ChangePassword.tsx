@@ -21,7 +21,7 @@ const UpdateAccountScreen = () => {
             style={{ width: 7.17, height: 14 }}
           />
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, color: '#ffffff' }}>Đổi mật khẩu</Text>
+        <Text style={{ fontSize: 20, color: '#ffffff', fontWeight:'600' }}>Đổi mật khẩu</Text>
         <View style={{ backgroundColor: '#9CBD44', height: 30, width: 30 }}>
 
         </View>

@@ -45,12 +45,21 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>
+        <View style={{ backgroundColor: '#A5C63F', width: 30, height: 30 }}>
+
+        </View>
         <Image
 
           source={require('../../../../assets/images/logo.png')}
           style={{ width: 110, height: 50 }}
         />
+        <Image
+
+          source={require('../../../../assets/images/find.png')}
+          style={{ width: 24, height: 24, marginRight: 16 }}
+        />
+
       </View>
 
 

@@ -11,7 +11,7 @@ const AccountScreen = ({ navigation }) => {
     <View style={styles.container}>
 
       <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20 }}>Tài khoản</Text>
+        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight:'600' }}>Tài khoản</Text>
       </View>
       <View style={styles.container}>
         <ScrollView style={{height:1000 }}>

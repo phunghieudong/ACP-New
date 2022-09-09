@@ -5,32 +5,43 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
+import Swiper from "react-native-swiper";
 const BiddingListScreen = () => {
 
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-
-            <Image
-
-                source={require('../../../../assets/images/BiddingList.png')}
-                style={{ width: "100%", height: 180 }}
-            />
-
-
+            <Swiper
+                showsButtons={false}
+                height={180}
+                containerStyle={{ flex: 0 }}
+                activeDotColor={"#A5C63F"}
+                dotColor="rgba(0, 0, 0, .2)"
+                paginationStyle={{
+                    bottom: 8,
+                }}
+            >
+                <Image
+                    source={require('../../../../assets/images/BiddingList.png')}
+                    style={{ width: "100%", height: 180 }}
+                />
+                <Image
+                    source={require('../../../../assets/images/BiddingList.png')}
+                    style={{ width: "100%", height: 180 }}
+                />
+                <Image
+                    source={require('../../../../assets/images/BiddingList.png')}
+                    style={{ width: "100%", height: 180 }}
+                />
+            </Swiper>
             <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#A5C63F', height: 32, width: 32, marginTop: 30, marginLeft: 16, borderRadius: 6, position: 'absolute' }}>
-
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image
-
                         source={require('../../../../assets/images/goback.png')}
                         style={{ width: 7.17, height: 14 }}
                     />
                 </TouchableOpacity>
             </View>
-
-
-
             <View style={{ marginTop: 46, marginHorizontal: 20 }}>
                 <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án dừa Bến Tre</Text>
                 <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy

@@ -16,4 +16,5 @@ type Routers = {
   ChangePassword: any;
   UpdateAccount: any;
   ForgotPassword: any;
+  SplashScreen:any;
 };

@@ -12,7 +12,7 @@ const ConfirmScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "center", alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>Đăng ký dự thầu</Text>
+                <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký thành công</Text>
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
                 <Image

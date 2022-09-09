@@ -17,11 +17,11 @@ const InformationScreen = () => {
             style={{ width: 7.17, height: 14 }}
           />
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, color: '#ffffff' }}>Thông báo</Text>
+        <Text style={{ fontSize: 20, color: '#ffffff', fontWeight:'600' }}>Thông báo</Text>
         <Image
 
           source={require('../../../../assets/images/bell.png')}
-          style={{ width: 24, height: 17.63 }}
+          style={{ width: 18.88, height: 21 }}
         />
       </View>
 

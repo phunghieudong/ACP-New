@@ -21,7 +21,7 @@ const ChangePasswordScreen = () => {
             style={{ width: 7.17, height: 14 }}
           />
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, color: '#ffffff' }}>Cập nhật thông tin</Text>
+        <Text style={{ fontSize: 20, color: '#ffffff', fontWeight:'600' }}>Cập nhật thông tin</Text>
         <Image
 
           source={require('../../../../assets/images/check.png')}

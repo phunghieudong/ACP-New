@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator<Routers>();
 function RootNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: false, gestureEnabled: true }}>
         {/* <Stack.Screen name="HomeScreeen" component={HomeScreen} />
         <Stack.Screen name="ExampleScreen" component={ExampleScreen} /> */}
         <Stack.Screen name="Home" component={AuthNavigator} />

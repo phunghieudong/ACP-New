@@ -15,7 +15,7 @@ const BiddingListScreen = () => {
                 showsButtons={false}
                 height={180}
                 containerStyle={{ flex: 0 }}
-                activeDotColor={"#A5C63F"}
+                activeDotColor={"#E7312F"}
                 dotColor="rgba(0, 0, 0, .2)"
                 paginationStyle={{
                     bottom: 8,

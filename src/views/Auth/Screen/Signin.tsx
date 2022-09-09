@@ -54,7 +54,8 @@ function SigninScreen() {
 
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Auth')}>
+      <TouchableOpacity onPress={() => navigation.replace('Auth')}>
+        {/* Chổ này mà xài replace là đá thẳng ra luôn */}
         <View style={{ marginTop: 16, borderWidth: 1, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 16, color: "#ffffff" }}>ĐĂNG NHẬP</Text>
         </View>

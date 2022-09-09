@@ -62,7 +62,7 @@ const SignUpBidingScreen = () => {
                 />
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
-                <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Confirm')}>
                     <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 390, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
                     </View>

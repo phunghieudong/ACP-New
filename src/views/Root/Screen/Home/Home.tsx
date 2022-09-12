@@ -1,23 +1,53 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, SafeAreaView, Button, Pressable, TextInput } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import Swiper from "react-native-swiper";
+import { BottomSheet } from 'react-native-btr';
+import { FontAwesome } from '@expo/vector-icons';
+export const useTogglePasswordVisibility = () => {
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+      setRightIcon('eye');
+      setPasswordVisibility(!passwordVisibility);
+    }
+  };
+
+  return {
+    passwordVisibility,
+    rightIcon,
+    handlePasswordVisibility
+  };
+};
 const HomeScreen = ({ navigation }) => {
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const [visible, setVisible] = useState(false);
+  const toggleBottomNavigationView = () => {
+    //Toggling the visibility state of the bottom sheet
+    setVisible(!visible);
+  };
+  const { passwordVisibility, rightIcon, handlePasswordVisibility } =
+    useTogglePasswordVisibility();
+  const [password, setPassword] = useState('');
+
   const [leftNumber, setLeftNumber] = useState<number>();
-
   const [user, setUser] = useState<IUser>();
-
   useEffect(() => {
-
     setLeftNumber(69);
   }, []);
-
   const callApi = () => {
-
-
     const newUser: IUser = {
       ID: '1',
       Phone: '1',
@@ -25,10 +55,8 @@ const HomeScreen = ({ navigation }) => {
       Role: 'dev',
       Status: 'active',
     };
-
     return newUser;
   };
-
   const getUser = async () => {
     try {
       const response = await callApi();
@@ -38,31 +66,24 @@ const HomeScreen = ({ navigation }) => {
     } catch (error) {
       console.log('getUser: ', error);
     }
-
-
   };
 
   return (
     <View style={styles.container}>
-
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>
         <View style={{ backgroundColor: '#A5C63F', width: 30, height: 30 }}>
-
         </View>
         <Image
-
           source={require('../../../../assets/images/logo.png')}
           style={{ width: 110, height: 50 }}
         />
-        <Image
-
-          source={require('../../../../assets/images/find.png')}
-          style={{ width: 24, height: 24, marginRight: 16 }}
-        />
-
+        <TouchableOpacity onPress={toggleModal}>
+          <Image
+            source={require('../../../../assets/images/find.png')}
+            style={{ width: 24, height: 24, marginRight: 16 }}
+          />
+        </TouchableOpacity>
       </View>
-
-
       <Swiper
         showsButtons={false}
         height={160}
@@ -73,35 +94,20 @@ const HomeScreen = ({ navigation }) => {
           bottom: 8,
         }}
       >
-
-
-
         <Image
 
           source={require('../../../../assets/images/home.png')}
           style={{ width: "100%", height: 180 }}
         />
-
-
         <Image
-
           source={require('../../../../assets/images/home.png')}
           style={{ width: "100%", height: 180 }}
         />
-
-
-
         <Image
-
           source={require('../../../../assets/images/home.png')}
           style={{ width: "100%", height: 180 }}
         />
-
-
-
       </Swiper>
-
-
       <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
         <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
         <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
@@ -232,6 +238,118 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
+      <BottomSheet
+        visible={isModalVisible}
+        onBackButtonPress={toggleBottomNavigationView}
+        onBackdropPress={toggleBottomNavigationView}
+
+      >
+        <View style={{
+          backgroundColor: '#fff',
+          width: '100%',
+          height: 250,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+          flexDirection: 'column'
+        }}>
+          <View style={{
+            backgroundColor: "#9CBD44", width: '100%', height: 50, borderTopLeftRadius: 10,
+            borderTopRightRadius: 10, alignItems: "flex-start", justifyContent: 'center',
+          }}>
+            <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
+          </View>
+          <View style={{ backgroundColor: "#fff", width: '90%', height: 180, alignItems: 'center', marginVertical: 20 }}>
+            <View style={{ borderWidth: 1, padding: 20, borderColor: '#999999' }}>
+              <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 80 }}>
+                <View style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  elevation: 10,
+                  marginTop: 16,
+                  borderRadius: 6,
+                }}>
+                  <TextInput
+                    placeholder='Tên phiên đấu thầu'
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    textContentType='username'
+                    style={{
+                      width: '90%',
+                      height: 40,
+                      borderRadius: 6,
+                      paddingHorizontal: 16,
+
+                    }}
+
+                  // onChangeText={onChangeText1}
+                  // value={text1}
+                  />
+                  <TouchableOpacity style={{ marginRight: 10 }}>
+                    <Pressable onPress={handlePasswordVisibility}>
+                      <FontAwesome name='search' size={22} color="#232323" />
+                    </Pressable>
+                  </TouchableOpacity>
+                </View>
+                <View style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  elevation: 10,
+                  marginTop: 16,
+                  borderRadius: 6,
+                }}>
+                  <TextInput
+                    placeholder='Ngày đấu thầu'
+                    autoCorrect={false}
+                    secureTextEntry={false}
+                    textContentType='username'
+                    style={{
+                      width: '90%',
+                      height: 40,
+                      borderRadius: 6,
+                      paddingHorizontal: 16,
+
+                    }}
+
+                  // onChangeText={onChangeText1}
+                  // value={text1}
+                  />
+                  <TouchableOpacity style={{ marginRight: 10 }}>
+                    <Pressable onPress={handlePasswordVisibility}>
+                      <FontAwesome name='search' size={22} color="#232323" />
+                    </Pressable>
+                  </TouchableOpacity>
+                </View>
+                {/* <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 20, flexDirection:"row", borderRadius:6 , alignItems:"flex-start"}}>
+                <Text>XÁC NHẬN</Text>
+              </View> */}
+                <View style={{
+                  backgroundColor: '#9CBD44',
+                  width: '90%',
+                  flexDirection: 'row',
+                  justifyContent:'center',
+                  alignItems: 'center',
+                  elevation: 10,
+                  marginTop: 16,
+                  borderRadius: 6,
+                }}>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 40, flexDirection: "row", borderRadius: 6, alignItems: "center", justifyContent: 'center' }}>
+                      <Text style={{ color: '#fff', fontWeight: '600', }}>XÁC NHẬN</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+
+        </View>
+      </BottomSheet>
     </View>
   );
 };

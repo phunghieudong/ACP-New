@@ -87,9 +87,9 @@ function OTPScreen() {
           </View>
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Auth')}>
+        <TouchableOpacity onPress={() => navigation.navigate("SigninScreeen")}>
           {/* Chổ này mà xài replace là đá thẳng ra luôn */}
-          <View style={{ marginTop: 50, elevation: 10, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ marginTop: 50,  borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
 
           </View>

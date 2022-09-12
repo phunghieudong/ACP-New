@@ -11,8 +11,34 @@ const ConfirmScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "center", alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký thành công</Text>
+            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
+
+                <View style={{ flexDirection: 'row', width: 50 }}>
+
+
+                </View>
+
+                <View >
+                    <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký thành công</Text>
+                </View>
+
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity>
+                        <Image
+
+                            source={require('../../../../assets/images/find.png')}
+                            style={{ width: 24, height: 24, marginRight: 5 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image
+
+                            source={require('../../../../assets/images/bell.png')}
+                            style={{ width: 24, height: 25, }}
+                        />
+                    </TouchableOpacity>
+                </View>
+
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
                 <Image
@@ -21,7 +47,7 @@ const ConfirmScreen = ({ navigation }) => {
                     style={{ width: 87.69, height: 78.85 }}
                 />
 
-                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34 }}>Chúc mừng bạn đã đăng ký thành công</Text>
+                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600" }}>Chúc mừng bạn đã đăng ký thành công</Text>
                 <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}>Lorem Ipsum has been the industry's standard dummy </Text>
                 <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}>text ever since the 1500s</Text>
 

@@ -10,26 +10,38 @@ const SignUpBidingScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, alignItems: 'center', paddingHorizontal: 20, justifyContent: "space-between" }}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image
+            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
 
-                        source={require('../../../../assets/images/goback.png')}
-                        style={{ width: 7.17, height: 14 }}
-                    />
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', width: 50 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image
+
+                            source={require('../../../../assets/images/goback.png')}
+                            style={{ width: 7.17, height: 14 }}
+                        />
+
+                    </TouchableOpacity>
+
+                </View>
+
                 <View >
                     <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký dự thầu</Text>
                 </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <TouchableOpacity>
+                        <Image
 
-                <View style={{ flexDirection: 'row', }}>
+                            source={require('../../../../assets/images/find.png')}
+                            style={{ width: 24, height: 24, marginRight: 5 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image
 
-                    <Image
-
-                        source={require('../../../../assets/images/bell.png')}
-                        style={{ width: 24, height: 25, ma: 10 }}
-                    />
-
+                            source={require('../../../../assets/images/bell.png')}
+                            style={{ width: 24, height: 25, }}
+                        />
+                    </TouchableOpacity>
                 </View>
 
             </View>

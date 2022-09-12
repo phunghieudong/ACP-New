@@ -45,10 +45,35 @@ const HistoryScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#ffffff', fontSize: 20, fontWeight:'600' }}> Lịch sử đấu thầu</Text>
-      </View>
+      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
 
+        <View style={{ flexDirection: 'row', width: 50 }}>
+
+
+        </View>
+
+        <View >
+          <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Lịch sử đấu thầu</Text>
+        </View>
+
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity>
+            <Image
+
+              source={require('../../../../assets/images/find.png')}
+              style={{ width: 24, height: 24, marginRight: 5 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+
+              source={require('../../../../assets/images/bell.png')}
+              style={{ width: 24, height: 25, }}
+            />
+          </TouchableOpacity>
+        </View>
+
+      </View>
 
 
       <ScrollView style={{ marginTop: 32 }}>

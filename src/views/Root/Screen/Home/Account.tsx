@@ -18,7 +18,7 @@ const AccountScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 64, justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600' }}>Tài khoản</Text>
       </View>
       <View style={styles.container}>
@@ -33,7 +33,7 @@ const AccountScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity >
           <View style={{ marginHorizontal: 32, marginTop: 18 }}>
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>
+            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>
               Phùng Hiểu Đông
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('UpdateAccount')}>
@@ -43,7 +43,7 @@ const AccountScreen = ({ navigation }) => {
                   source={require('../../../../assets/images/pen.png')}
                   style={{ width: 13.13, height: 13.13, marginRight: 9 }}
                 />
-                <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>Cập nhật thông tin</Text>
+                <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>Cập nhật thông tin</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -56,7 +56,7 @@ const AccountScreen = ({ navigation }) => {
                 source={require('../../../../assets/images/user.png')}
                 style={{ width: 16, height: 16, marginRight: 9 }}
               />
-              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Thông tin liên lạc</Text>
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>Thông tin liên lạc</Text>
             </View>
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
@@ -65,7 +65,7 @@ const AccountScreen = ({ navigation }) => {
               source={require('../../../../assets/images/calender.png')}
               style={{ width: 13.48, height: 14, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>23 tháng 09, 1991</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>23 tháng 09, 1991</Text>
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
@@ -73,7 +73,7 @@ const AccountScreen = ({ navigation }) => {
               source={require('../../../../assets/images/phone.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>+84 902 345 678</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>+84 902 345 678</Text>
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
@@ -81,7 +81,7 @@ const AccountScreen = ({ navigation }) => {
               source={require('../../../../assets/images/now.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#666666', fontWeight: "400" }}>1073/23 CMT8, phường7, quận Tân Bình, TP.HCM</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>1073/23 CMT8, phường7, quận Tân Bình, TP.HCM</Text>
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
@@ -91,7 +91,7 @@ const AccountScreen = ({ navigation }) => {
               source={require('../../../../assets/images/balo.png')}
               style={{ width: 16, height: 14.06, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Danh sách gói thầu của bạn</Text>
+            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>Danh sách gói thầu của bạn</Text>
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
@@ -100,19 +100,15 @@ const AccountScreen = ({ navigation }) => {
                 source={require('../../../../assets/images/key.png')}
                 style={{ width: 11.29, height: 15.06, marginRight: 9 }}
               />
-              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Đổi mật khẩu</Text>
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>Đổi mật khẩu</Text>
             </View>
           </TouchableOpacity>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <View style={{ justifyContent: "space-between", flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, }}>
 
-            <View style={{ flexDirection: 'row' , justifyContent:'center' , alignItems:'center'}}>
-              <Image
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
-                source={require('../../../../assets/images/key.png')}
-                style={{ width: 11.29, height: 15.06, marginRight: 9 }}
-              />
-              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "400" }}>Nhận thông báo  dự thầu</Text>
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600", }}>Nhận thông báo  dự thầu</Text>
             </View>
             <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
               {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}

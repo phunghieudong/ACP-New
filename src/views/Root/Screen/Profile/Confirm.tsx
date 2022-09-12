@@ -26,7 +26,7 @@ const ConfirmScreen = ({ navigation }) => {
                     <TouchableOpacity>
                         <Image
 
-                            source={require('../../../../assets ages/find.png')}
+                            source={require('../../../../assets/images/find.png')}
                             style={{ width: 24, height: 24, marginRight: 5 }}
                         />
                     </TouchableOpacity>

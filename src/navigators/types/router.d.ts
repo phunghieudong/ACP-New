@@ -17,4 +17,5 @@ type Routers = {
   UpdateAccount: any;
   ForgotPassword: any;
   SplashScreen:any;
+  OTP:any;
 };

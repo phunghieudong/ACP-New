@@ -26,11 +26,11 @@ const ConfirmScreen = ({ navigation }) => {
                     <TouchableOpacity>
                         <Image
 
-                            source={require('../../../../assets/images/find.png')}
+                            source={require('../../../../assets ages/find.png')}
                             style={{ width: 24, height: 24, marginRight: 5 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Information")}>
                         <Image
 
                             source={require('../../../../assets/images/bell.png')}
@@ -55,7 +55,7 @@ const ConfirmScreen = ({ navigation }) => {
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
                 <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
                     <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 16, color: "#ffffff" }}>QUAY LẠI TRANG CHỦ</Text>
+                        <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>QUAY LẠI TRANG CHỦ</Text>
                     </View>
                 </TouchableOpacity>
             </View>

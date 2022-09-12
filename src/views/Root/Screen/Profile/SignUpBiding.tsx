@@ -10,7 +10,7 @@ const SignUpBidingScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
+            <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems:'center'}}>
 
                 <View style={{ flexDirection: 'row', width: 50 }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -35,7 +35,7 @@ const SignUpBidingScreen = () => {
                             style={{ width: 24, height: 24, marginRight: 5 }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Information")}>
                         <Image
 
                             source={require('../../../../assets/images/bell.png')}
@@ -46,7 +46,7 @@ const SignUpBidingScreen = () => {
 
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32 }}>
-                <Text>Số lượng</Text>
+                <Text style={{ fontWeight: '600' }}>Số lượng</Text>
                 <TextInput
                     style={{
                         height: 40,
@@ -59,7 +59,7 @@ const SignUpBidingScreen = () => {
                     onChangeText={onChangeText}
                     value={text}
                 />
-                <Text style={{ marginTop: 16 }}>Giá</Text>
+                <Text style={{ marginTop: 16, fontWeight: '600' }}>Giá</Text>
                 <TextInput
                     style={{
                         height: 40,

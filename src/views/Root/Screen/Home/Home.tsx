@@ -242,7 +242,6 @@ const HomeScreen = ({ navigation }) => {
         visible={isModalVisible}
         onBackButtonPress={toggleBottomNavigationView}
         onBackdropPress={toggleBottomNavigationView}
-
       >
         <View style={{
           backgroundColor: '#fff',
@@ -284,7 +283,6 @@ const HomeScreen = ({ navigation }) => {
                       paddingHorizontal: 16,
 
                     }}
-
                   // onChangeText={onChangeText1}
                   // value={text1}
                   />
@@ -313,9 +311,7 @@ const HomeScreen = ({ navigation }) => {
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
-
                     }}
-
                   // onChangeText={onChangeText1}
                   // value={text1}
                   />
@@ -332,7 +328,7 @@ const HomeScreen = ({ navigation }) => {
                   backgroundColor: '#9CBD44',
                   width: '90%',
                   flexDirection: 'row',
-                  justifyContent:'center',
+                  justifyContent: 'center',
                   alignItems: 'center',
                   elevation: 10,
                   marginTop: 16,

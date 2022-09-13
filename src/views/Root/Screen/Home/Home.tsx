@@ -295,6 +295,7 @@ const HomeScreen = ({ navigation }) => {
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
+                    
 
                     }}
                   // onChangeText={onChangeText1}

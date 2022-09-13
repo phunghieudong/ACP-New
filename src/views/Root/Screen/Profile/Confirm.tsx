@@ -35,8 +35,8 @@ const ConfirmScreen = ({ navigation }) => {
                 />
 
                 <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600" }}>Chúc mừng bạn đã đăng ký thành công</Text>
-                <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}>Lorem Ipsum has been the industry's standard dummy </Text>
-                <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}>text ever since the 1500s</Text>
+                <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 , textAlign:'center' }}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Text>
+                {/* <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}></Text> */}
 
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>

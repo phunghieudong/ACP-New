@@ -20,10 +20,11 @@ const Tab = createBottomTabNavigator();
 function RootStackNavigator() {
   return (
     <Tab.Navigator
-    
+      
       initialRouteName="Feed"
       screenOptions={{
         tabBarActiveTintColor: '#A5C63F',
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: '#FFFFFF',
           height: 84,
@@ -38,6 +39,7 @@ function RootStackNavigator() {
     >
       <Tab.Screen
         name="AllHome"
+        
         component={HomeStackNavigator}
         options={{
           headerShown: false,
@@ -51,7 +53,7 @@ function RootStackNavigator() {
           ),
           tabBarLabel: ({ }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "400", color: '#000000' }}>Đấu thầu</Text>
+              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
             </View>
           ),
         }}
@@ -72,7 +74,7 @@ function RootStackNavigator() {
           ),
           tabBarLabel: ({ }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "400", color: '#000000' }}>Lịch sử</Text>
+              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Lịch sử</Text>
             </View>
           ),
         }}
@@ -92,7 +94,7 @@ function RootStackNavigator() {
           ),
           tabBarLabel: ({ }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "400", color: '#000000' }}>Thông báo</Text>
+              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Thông báo</Text>
             </View>
           ),
         }}
@@ -112,7 +114,7 @@ function RootStackNavigator() {
           ),
           tabBarLabel: ({ }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "400", color: '#000000' }}>Tài khoản</Text>
+              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Tài khoản</Text>
             </View>
           ),
         }}

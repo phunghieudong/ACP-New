@@ -5,6 +5,7 @@ import { View, Text, Button, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeStackNavigator from "./HomeStackNavigator";
+import AccountStackNavigator from "./AccountStackNavigator";
 import History from "../views/Root/Screen/Home/History";
 import Information from "../views/Root/Screen/Home/Information";
 import Account from "../views/Root/Screen/Home/Account";
@@ -28,13 +29,11 @@ function RootStackNavigator() {
           alignItems: 'center',
           elevation: 30,
           paddingHorizontal: 60,
-
         }
       }}
     >
       <Tab.Screen
         name="AllHome"
-
         component={HomeStackNavigator}
         options={{
           headerShown: false,
@@ -47,18 +46,11 @@ function RootStackNavigator() {
             </View>
           ),
           tabBarLabel: ({ }) => (
-
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
               <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
             </View>
           ),
         }}
-
-      // tabBarIcon: ({ color, size }) => (
-
-      //   <MaterialCommunityIcons name="home" color={color} size={size} />
-      // ),
-
       />
       <Tab.Screen
         name="History"
@@ -102,7 +94,7 @@ function RootStackNavigator() {
       />
       <Tab.Screen
         name="account"
-        component={Account}
+        component={AccountStackNavigator}
         options={{
 
           headerShown: false,
@@ -121,12 +113,7 @@ function RootStackNavigator() {
           ),
         }}
       />
-
-
     </Tab.Navigator>
-
-
-
   );
 }
 

@@ -1,4 +1,5 @@
 // Có nhiều cách viết lắm, cách này dễ thì sài thôi
+import AccountScreen from './../../views/Root/Screen/Home/Account';
 // Xem thêm: https://reactnavigation.org/docs/typescript
 
 type Routers = {
@@ -18,4 +19,5 @@ type Routers = {
   ForgotPassword: any;
   SplashScreen:any;
   OTP:any;
+  Account:any;
 };

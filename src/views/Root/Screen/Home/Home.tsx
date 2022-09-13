@@ -109,7 +109,7 @@ const HomeScreen = ({ navigation }) => {
             style={{ width: "100%", height: 180 }}
           />
         </Swiper>
-        <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
+        <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
           <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
           <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
             text ever since the 1500s</Text>

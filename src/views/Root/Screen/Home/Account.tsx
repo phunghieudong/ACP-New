@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, ToastAndroid } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 const AccountScreen = ({ navigation }) => {
@@ -9,7 +9,9 @@ const AccountScreen = ({ navigation }) => {
     setEnabled((oldValue) => !oldValue);
   };
 
-
+  function showToast() {
+    ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
+  }
   // const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
   // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
@@ -23,7 +25,7 @@ const AccountScreen = ({ navigation }) => {
       </View>
       <View style={styles.container}>
         <ScrollView style={{ height: 1000 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showToast}>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
 
@@ -85,14 +87,16 @@ const AccountScreen = ({ navigation }) => {
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
-            <Image
+          <TouchableOpacity onPress={showToast}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
+              <Image
 
-              source={require('../../../../assets/images/balo.png')}
-              style={{ width: 16, height: 14.06, marginRight: 9 }}
-            />
-            <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>Danh sách gói thầu của bạn</Text>
-          </View>
+                source={require('../../../../assets/images/balo.png')}
+                style={{ width: 16, height: 14.06, marginRight: 9 }}
+              />
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>Danh sách gói thầu của bạn</Text>
+            </View>
+          </TouchableOpacity>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>

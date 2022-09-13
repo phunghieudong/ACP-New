@@ -1,10 +1,13 @@
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput, ToastAndroid } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 const ChangePasswordScreen = () => {
+  function showToast() {
+    ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
+  }
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
   const [text1, onChangeText1] = React.useState("");
@@ -23,7 +26,7 @@ const ChangePasswordScreen = () => {
         <View style={{ height: 30, width: 30 }}></View>
       </View>
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={showToast}>
           <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 15 }}>
             <Image
               source={require('../../../../assets/images/camera.png')}

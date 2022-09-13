@@ -1,10 +1,36 @@
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from '@expo/vector-icons';
+
+export const useTogglePasswordVisibility = () => {
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+      setRightIcon('eye');
+      setPasswordVisibility(!passwordVisibility);
+    }
+  };
+
+  return {
+    passwordVisibility,
+    rightIcon,
+    handlePasswordVisibility
+  };
+};
+
 const UpdateAccountScreen = () => {
+  const { passwordVisibility, rightIcon, handlePasswordVisibility } =
+    useTogglePasswordVisibility();
+  const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
 
@@ -23,7 +49,7 @@ const UpdateAccountScreen = () => {
         </TouchableOpacity>
         <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đổi mật khẩu</Text>
         <View style={{ backgroundColor: '#9CBD44', height: 30, width: 30 }}>
-          
+
         </View>
       </View>
 
@@ -31,48 +57,108 @@ const UpdateAccountScreen = () => {
 
         <View style={{ marginHorizontal: 20, marginTop: 32 }}>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mật khẩu cũ</Text>
-          <TextInput
-            style={{
-              height: 40,
-              borderWidth: 0.5,
-              borderRadius: 6,
-              borderColor: "#666666",
-              paddingHorizontal: 16,
-              marginTop: 8
+          <View style={{
+            backgroundColor: 'white',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 16,
+            borderRadius: 6,
+            borderWidth: 1,
+            borderColor: '#999999'
+          }}>
+            <TextInput
+              placeholder='Mật khẩu'
+              autoCorrect={false}
+              secureTextEntry={false}
+              textContentType='username'
+              style={{
+                width: '90%',
+                height: 40,
+                borderRadius: 6,
+                paddingHorizontal: 16,
 
-            }}
-            onChangeText={onChangeText}
-            value={text}
-          />
+              }}
+
+            // onChangeText={onChangeText1}
+            // value={text1}
+            />
+            <TouchableOpacity>
+              <Pressable onPress={handlePasswordVisibility}>
+                <FontAwesome name='eye-slash' size={22} color="#232323" />
+              </Pressable>
+            </TouchableOpacity>
+          </View>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mật khẩu mới</Text>
-          <TextInput
-            style={{
-              height: 40,
-              borderWidth: 0.5,
-              borderRadius: 6,
-              borderColor: "#666666",
-              paddingHorizontal: 16,
-              marginTop: 8
+          <View style={{
+            backgroundColor: 'white',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 16,
+            borderRadius: 6,
+            borderWidth: 1,
+            borderColor: '#999999'
+          }}>
+            <TextInput
+              placeholder='Mật khẩu'
+              autoCorrect={false}
+              secureTextEntry={false}
+              textContentType='username'
+              style={{
+                width: '90%',
+                height: 40,
+                borderRadius: 6,
+                paddingHorizontal: 16,
 
-            }}
-            onChangeText={onChangeText1}
-            value={text1}
-          />
+              }}
+
+            // onChangeText={onChangeText1}
+            // value={text1}
+            />
+            <TouchableOpacity>
+              <Pressable onPress={handlePasswordVisibility}>
+                <FontAwesome name='eye-slash' size={22} color="#232323" />
+              </Pressable>
+            </TouchableOpacity>
+          </View>
 
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Nhập lại mật khẩu mới</Text>
-          <TextInput
-            style={{
-              height: 40,
-              borderWidth: 0.5,
-              borderRadius: 6,
-              borderColor: "#666666",
-              paddingHorizontal: 16,
-              marginTop: 8
 
-            }}
-            onChangeText={onChangeText1}
-            value={text1}
-          />
+
+
+          <View style={{
+            backgroundColor: 'white',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 16,
+            borderRadius: 6,
+            borderWidth: 1,
+            borderColor: '#999999'
+          }}>
+            <TextInput
+              placeholder='Mật khẩu'
+              autoCorrect={false}
+              secureTextEntry={false}
+              textContentType='username'
+              style={{
+                width: '90%',
+                height: 40,
+                borderRadius: 6,
+                paddingHorizontal: 16,
+
+              }}
+
+            // onChangeText={onChangeText1}
+            // value={text1}
+            />
+            <TouchableOpacity>
+              <Pressable onPress={handlePasswordVisibility}>
+                <FontAwesome name='eye-slash' size={22} color="#232323" />
+              </Pressable>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>

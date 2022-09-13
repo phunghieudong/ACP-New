@@ -254,10 +254,23 @@ const HomeScreen = ({ navigation }) => {
           flexDirection: 'column'
         }}>
           <View style={{
-            backgroundColor: "#9CBD44", width: '100%', height: 50, borderTopLeftRadius: 10,
-            borderTopRightRadius: 10, alignItems: "flex-start", justifyContent: 'center',
+            backgroundColor: "#9CBD44",
+            width: '100%',
+            height: 50,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexDirection: "row"
           }}>
             <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
+            <TouchableOpacity onPress={toggleModal}>
+
+
+              <Text style={{ fontSize: 20, fontWeight: '900', color: '#fff', marginRight: 20 }}>x</Text>
+
+            </TouchableOpacity>
+
           </View>
           <View style={{ backgroundColor: "#fff", width: '90%', height: 180, alignItems: 'center', marginVertical: 20 }}>
             <View style={{ borderWidth: 1, padding: 20, borderColor: '#999999' }}>
@@ -336,7 +349,7 @@ const HomeScreen = ({ navigation }) => {
                 }}>
                   <TouchableOpacity onPress={toggleModal}>
                     <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 40, flexDirection: "row", borderRadius: 6, alignItems: "center", justifyContent: 'center' }}>
-                      <Text style={{ color: '#fff', fontWeight: '600', }}>XÁC NHẬN</Text>
+                      <Text style={{ color: '#fff', fontWeight: '600', }}>ÁP DỤNG</Text>
                     </View>
                   </TouchableOpacity>
                 </View>

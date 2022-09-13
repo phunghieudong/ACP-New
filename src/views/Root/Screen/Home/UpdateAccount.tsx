@@ -5,36 +5,27 @@ import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 const ChangePasswordScreen = () => {
-
   const navigation = useNavigation();
-
   const [text, onChangeText] = React.useState("");
   const [text1, onChangeText1] = React.useState("");
   return (
     <View style={styles.container}>
-
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
-
-            source={require('../../../../assets/images/goback.png')}
-            style={{ width: 7.17, height: 14 }}
-          />
+          <View style={{ justifyContent: "center", alignItems: 'center', height: 30, width: 30, }}>
+            <Image
+              source={require('../../../../assets/images/goback.png')}
+              style={{ width: 7.17, height: 14 }}
+            />
+          </View>
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, color: '#ffffff', fontWeight:'600' }}>Cập nhật thông tin</Text>
-        <Image
-
-          source={require('../../../../assets/images/check.png')}
-          style={{ width: 24, height: 17.63 }}
-        />
+        <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Cập nhật thông tin</Text>
+        <View style={{ height: 30, width: 30 }}></View>
       </View>
-
-
       <View style={styles.container}>
         <TouchableOpacity>
           <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 15 }}>
             <Image
-
               source={require('../../../../assets/images/camera.png')}
               style={{ width: 90, height: 90 }}
             />
@@ -51,10 +42,7 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText}
-              value={text}
             />
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Số điện thoại</Text>
             <TextInput
@@ -65,12 +53,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Email</Text>
             <TextInput
               style={{
@@ -80,12 +64,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mã số thuế</Text>
             <TextInput
               style={{
@@ -95,12 +75,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tình / Thành phố</Text>
             <TextInput
               style={{
@@ -110,12 +86,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Quận / Huyện</Text>
             <TextInput
               style={{
@@ -125,12 +97,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Phường / Xã</Text>
             <TextInput
               style={{
@@ -140,12 +108,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Địa chỉ</Text>
             <TextInput
               style={{
@@ -155,12 +119,8 @@ const ChangePasswordScreen = () => {
                 borderColor: "#666666",
                 paddingHorizontal: 16,
                 marginTop: 8
-
               }}
-              onChangeText={onChangeText1}
-              value={text1}
             />
-
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
             <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>

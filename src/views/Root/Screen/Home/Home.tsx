@@ -110,7 +110,7 @@ const HomeScreen = ({ navigation }) => {
           />
         </Swiper>
         <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
-          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
+          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
           <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
             text ever since the 1500s</Text>
         </View>
@@ -267,9 +267,9 @@ const HomeScreen = ({ navigation }) => {
             <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
             <TouchableOpacity onPress={toggleModal}>
 
-
-              <Text style={{ fontSize: 20, fontWeight: '900', color: '#fff', marginRight: 20 }}>x</Text>
-
+              <View style={{ height:30 , width:30, marginRight: 20 , justifyContent:'center' , alignItems:'center', borderWidth:1 , borderColor:'#ffffff'}}>
+                <Text style={{ fontSize: 20, fontWeight: '900', color: '#fff', }}>x</Text>
+              </View>
             </TouchableOpacity>
 
           </View>

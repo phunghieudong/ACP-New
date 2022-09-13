@@ -41,11 +41,15 @@ const UpdateAccountScreen = () => {
 
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
+          <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}>
 
-            source={require('../../../../assets/images/goback.png')}
-            style={{ width: 7.17, height: 14 }}
-          />
+            <Image
+
+              source={require('../../../../assets/images/goback.png')}
+              style={{ width: 7.17, height: 14 }}
+            />
+          </View>
+
         </TouchableOpacity>
         <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đổi mật khẩu</Text>
         <View style={{ backgroundColor: '#9CBD44', height: 30, width: 30 }}>

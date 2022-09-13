@@ -36,10 +36,13 @@ const BiddingListScreen = () => {
             </Swiper>
             <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#A5C63F', height: 32, width: 32, marginTop: 30, marginLeft: 16, borderRadius: 6, position: 'absolute' }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image
-                        source={require('../../../../assets/images/goback.png')}
-                        style={{ width: 7.17, height: 14 }}
-                    />
+
+                    <View style={{ height: 30, width: 30 , justifyContent:'center' , alignItems:'center'}}>
+                        <Image
+                            source={require('../../../../assets/images/goback.png')}
+                            style={{ width: 7.17, height: 14 }}
+                        />
+                    </View>
                 </TouchableOpacity>
             </View>
             <View style={{ marginTop: 46, marginHorizontal: 20 }}>

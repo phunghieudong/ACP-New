@@ -13,10 +13,10 @@ const InformationScreen = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <View style={{ flexDirection: 'row', width: 50 , }}>
 
-            <Image
+            {/* <Image
               source={require('../../../../assets/images/goback.png')}
               style={{ width: 7.17, height: 14 }}
-            />
+            /> */}
 
 
           </View>

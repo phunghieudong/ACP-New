@@ -31,24 +31,24 @@ const SignUpBidingScreen = () => {
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <View style={{ flexDirection: 'row', width: 30, height: 30,  justifyContent: 'center', alignItems: 'center' }}>
 
-                <View style={{ flexDirection: 'row', width: 50 }}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image
 
                             source={require('../../../../assets/images/goback.png')}
                             style={{ width: 7.17, height: 14 }}
                         />
 
-                    </TouchableOpacity>
 
-                </View>
 
+                    </View>
+                </TouchableOpacity>
                 <View >
                     <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký dự thầu</Text>
                 </View>
-                <View style={{ flexDirection: 'row' , height:10 , width:50}}>
-               
+                <View style={{ flexDirection: 'row', height: 10, width: 50 }}>
+
                 </View>
 
             </View>

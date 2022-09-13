@@ -22,22 +22,9 @@ const ConfirmScreen = ({ navigation }) => {
                     <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký thành công</Text>
                 </View>
 
-                <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity>
-                        <Image
-
-                            source={require('../../../../assets/images/find.png')}
-                            style={{ width: 24, height: 24, marginRight: 5 }}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("Information")}>
-                        <Image
-
-                            source={require('../../../../assets/images/bell.png')}
-                            style={{ width: 24, height: 25, }}
-                        />
-                    </TouchableOpacity>
-                </View>
+                <View style={{ flexDirection: 'row' , height:10 , width:50}}>
+               
+               </View>
 
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>

@@ -84,36 +84,37 @@ const HomeScreen = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-      <Swiper
-        showsButtons={false}
-        height={160}
-        containerStyle={{ flex: 0 }}
-        activeDotColor={"#E7312F"}
-        dotColor="rgba(0, 0, 0, .2)"
-        paginationStyle={{
-          bottom: 8,
-        }}
-      >
-        <Image
-
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-        <Image
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-        <Image
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-      </Swiper>
-      <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
-        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
-        <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
-          text ever since the 1500s</Text>
-      </View>
       <ScrollView>
+        <Swiper
+          showsButtons={false}
+          height={160}
+          containerStyle={{ flex: 0 }}
+          activeDotColor={"#E7312F"}
+          dotColor="rgba(0, 0, 0, .2)"
+          paginationStyle={{
+            bottom: 8,
+          }}
+        >
+          <Image
+
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+        </Swiper>
+        <View style={{ flexDirection: 'column', marginTop: 30, marginHorizontal: 20, marginBottom: 20 }}>
+          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Danh sách phiên đấu thầu</Text>
+          <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
+            text ever since the 1500s</Text>
+        </View>
+
         <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
             <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
@@ -272,8 +273,8 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
 
           </View>
-          <View style={{ backgroundColor: "#fff", width: '90%', height: 180, alignItems: 'center', marginVertical: 20 }}>
-            <View style={{ borderWidth: 1, padding: 20, borderColor: '#999999' }}>
+          <View style={{ backgroundColor: "#fff", width: '100%', height: 180, alignItems: 'center', marginVertical: 20 }}>
+            <View>
               <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 80 }}>
                 <View style={{
                   backgroundColor: 'white',
@@ -301,7 +302,7 @@ const HomeScreen = ({ navigation }) => {
                   />
                   <TouchableOpacity style={{ marginRight: 10 }}>
                     <Pressable onPress={handlePasswordVisibility}>
-                      <FontAwesome name='search' size={22} color="#232323" />
+                      <FontAwesome name='search' size={18} color="#232323" />
                     </Pressable>
                   </TouchableOpacity>
                 </View>
@@ -330,7 +331,7 @@ const HomeScreen = ({ navigation }) => {
                   />
                   <TouchableOpacity style={{ marginRight: 10 }}>
                     <Pressable onPress={handlePasswordVisibility}>
-                      <FontAwesome name='search' size={22} color="#232323" />
+                      <FontAwesome name='calendar' size={18} color="#232323" />
                     </Pressable>
                   </TouchableOpacity>
                 </View>

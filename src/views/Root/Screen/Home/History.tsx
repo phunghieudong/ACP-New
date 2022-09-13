@@ -61,16 +61,10 @@ const HistoryScreen = ({ navigation }) => {
             <Image
 
               source={require('../../../../assets/images/find.png')}
-              style={{ width: 24, height: 24, marginRight: 5 }}
+              style={{ width: 24, height: 24,  }}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
 
-              source={require('../../../../assets/images/bell.png')}
-              style={{ width: 24, height: 25, }}
-            />
-          </TouchableOpacity>
         </View>
 
       </View>

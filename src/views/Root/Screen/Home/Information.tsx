@@ -25,21 +25,8 @@ const InformationScreen = () => {
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Thông báo</Text>
         </View>
 
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity>
-            <Image
-
-              source={require('../../../../assets/images/find.png')}
-              style={{ width: 24, height: 24, marginRight: 5 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-
-              source={require('../../../../assets/images/bell.png')}
-              style={{ width: 24, height: 25, }}
-            />
-          </TouchableOpacity>
+        <View style={{ flexDirection: 'row', width:50 }}>
+      
         </View>
 
       </View>

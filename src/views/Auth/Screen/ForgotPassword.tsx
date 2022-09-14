@@ -46,12 +46,13 @@ function ForgotPasswordScreen() {
 
         <View style={{ flexDirection: 'row', width: 50 }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image
+            <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}>
+              <Image
 
-              source={require('../../../assets/images/goback.png')}
-              style={{ width: 7.17, height: 14 }}
-            />
-
+                source={require('../../../assets/images/goback.png')}
+                style={{ width: 7.17, height: 14 }}
+              />
+            </View>
           </TouchableOpacity>
 
         </View>

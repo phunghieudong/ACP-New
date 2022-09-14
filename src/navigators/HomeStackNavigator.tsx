@@ -10,6 +10,7 @@ import SignUpBiding from "../views/Root/Screen/Profile/SignUpBiding";
 import Confirm from "../views/Root/Screen/Profile/Confirm";
 import ChangePassword from "../views/Root/Screen/Home/ChangePassword";
 import UpdateAccount from "../views/Root/Screen/Home/UpdateAccount";
+import SigninScreeen from "../views/Auth/Screen/Signin";
 // chổ này là cái tab
 const Stack = createNativeStackNavigator<Routers>();
 // const Tab = createNativeStackNavigator<Routers>();
@@ -27,6 +28,8 @@ function RootStackNavigator() {
             <Stack.Screen name="Confirm" component={Confirm} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
+            <Stack.Screen name="SigninScreeen" component={SigninScreeen} />
+
         </Stack.Navigator>
     );
 }

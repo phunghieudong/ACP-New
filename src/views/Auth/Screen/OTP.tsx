@@ -44,17 +44,15 @@ function OTPScreen() {
     }}>
       <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
 
-        <View style={{ flexDirection: 'row', width: 50 }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center', }}>
             <Image
 
               source={require('../../../assets/images/goback.png')}
               style={{ width: 7.17, height: 14 }}
             />
-
-          </TouchableOpacity>
-
-        </View>
+          </View>
+        </TouchableOpacity>
 
         <View >
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>OTP</Text>
@@ -71,7 +69,7 @@ function OTPScreen() {
 
           <Text style={{ color: '#000000', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập mã OTP được gửi qua số</Text>
           <Text style={{ color: '#2EA0B8', fontSize: 15, width: 400, textAlign: 'center', }}>+0368055154</Text>
-          <View style={{ flexDirection: 'row', width: 150, justifyContent: 'space-between', marginTop:30 }}>
+          <View style={{ flexDirection: 'row', width: 150, justifyContent: 'space-between', marginTop: 30 }}>
             <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
             <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
             <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
@@ -89,7 +87,7 @@ function OTPScreen() {
 
         <TouchableOpacity onPress={() => navigation.navigate("SigninScreeen")}>
           {/* Chổ này mà xài replace là đá thẳng ra luôn */}
-          <View style={{ marginTop: 50,  borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ marginTop: 50, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
 
           </View>

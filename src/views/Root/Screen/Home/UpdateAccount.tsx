@@ -124,14 +124,13 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-          </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
             <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-              <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 390, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
+              <View style={{ marginTop: 32,marginBottom:32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>CẬP NHẬT</Text>
               </View>
             </TouchableOpacity>
           </View>
+
         </ScrollView>
 
       </View>

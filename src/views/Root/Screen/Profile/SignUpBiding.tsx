@@ -32,7 +32,7 @@ const SignUpBidingScreen = () => {
         <View style={styles.container}>
             <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <View style={{ flexDirection: 'row', width: 30, height: 30,  justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', width: 30, height: 30, justifyContent: 'center', alignItems: 'center' }}>
 
                         <Image
 
@@ -79,14 +79,15 @@ const SignUpBidingScreen = () => {
                     onChangeText={onChangeText1}
                     value={text1}
                 />
-            </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Confirm')}>
-                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 390, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ marginTop: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
                     </View>
                 </TouchableOpacity>
+
             </View>
+
 
         </View>
     );

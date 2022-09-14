@@ -72,7 +72,7 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder='Mật khẩu'
+              placeholder=''
               autoCorrect={false}
               secureTextEntry={false}
               textContentType='username'
@@ -105,7 +105,7 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder='Mật khẩu'
+              placeholder=''
               autoCorrect={false}
               secureTextEntry={false}
               textContentType='username'
@@ -142,7 +142,7 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder='Mật khẩu'
+              placeholder=''
               autoCorrect={false}
               secureTextEntry={false}
               textContentType='username'
@@ -163,14 +163,13 @@ const UpdateAccountScreen = () => {
               </Pressable>
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-            <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 390, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
+            <View style={{ marginTop: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
               <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>ĐỔI MẬT KHẨU</Text>
             </View>
           </TouchableOpacity>
         </View>
+
       </View>
     </View>
   );

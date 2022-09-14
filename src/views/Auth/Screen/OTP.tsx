@@ -38,68 +38,116 @@ function OTPScreen() {
   const [password, setPassword] = useState('');
 
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#fff',
-    }}>
-      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
+    // <View style={{
+    //   flex: 1,
+    //   backgroundColor: '#fff',
+    // }}>
+    //   <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
 
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center', }}>
-            <Image
+    //     <TouchableOpacity onPress={() => navigation.goBack()}>
+    //       <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center', }}>
+    //         <Image
 
-              source={require('../../../assets/images/goback.png')}
-              style={{ width: 7.17, height: 14 }}
-            />
-          </View>
-        </TouchableOpacity>
+    //           source={require('../../../assets/images/goback.png')}
+    //           style={{ width: 7.17, height: 14 }}
+    //         />
+    //       </View>
+    //     </TouchableOpacity>
 
-        <View >
-          <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>OTP</Text>
-        </View>
+    //     <View >
+    //       <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>OTP</Text>
+    //     </View>
+    //     <View style={{ flexDirection: 'row', width: 50 }}>
+
+    //     </View>
+
+    //   </View>
+
+
+    //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
+    //     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+
+    //       <Text style={{ color: '#000000', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập mã OTP được gửi qua số</Text>
+    //       <Text style={{ color: '#2EA0B8', fontSize: 15, width: 400, textAlign: 'center', }}>+0368055154</Text>
+    //       <View style={{ flexDirection: 'row', width: 150, justifyContent: 'space-between', marginTop: 30 }}>
+    //         <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
+    //         <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
+    //         <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
+    //         <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
+    //         <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
+    //       </View>
+    //       <Text style={{ color: '#FB8500', fontSize: 20, width: 400, textAlign: 'center', fontWeight: "600", marginTop: 70 }}>XÁC NHẬN TÀI KHOẢN</Text>
+    //     </View>
+    //     <View>
+    //       <View>
+    //         <Text style={{ color: '#000000', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Bạn không nhận được OTP?</Text>
+    //         <Text style={{ color: '#2EA0B8', fontSize: 20, width: 400, textAlign: 'center', fontWeight: '500' }}>GỬI LẠI NGAY 30s</Text>
+    //       </View>
+    //     </View>
+
+    //     <TouchableOpacity onPress={() => navigation.navigate("SigninScreeen")}>
+    //       {/* Chổ này mà xài replace là đá thẳng ra luôn */}
+    //       <View style={{ marginTop: 50, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+    //         <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
+
+    //       </View>
+    //     </TouchableOpacity>
+    //   </View>
+
+    // </View>
+    <View style={styles.container}>
+      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
+
         <View style={{ flexDirection: 'row', width: 50 }}>
 
+
+        </View>
+
+        <View >
+          <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Quên mật khẩu</Text>
+        </View>
+
+        <View style={{ flexDirection: 'row', height: 10, width: 50 }}>
+
         </View>
 
       </View>
+      <View style={{ marginHorizontal: 20, marginTop: 32, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
+        <Image
 
+          source={require('../../../assets/images/Confirm1.png')}
+          style={{ width: 87.69, height: 78.85 }}
+        />
 
-      <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600", textAlign: 'center' }}>Chúc mừng bạn đã lấy lại mật khẩu thành công !</Text>
+        <Text style={{ fontSize: 14, color: '#999999', marginTop: 8, textAlign: 'center' }}> Mật khẩu mới đã được gửi tới Email của bạn , vui lòng kiểm tra !</Text>
+        {/* <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}></Text> */}
 
-          <Text style={{ color: '#000000', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập mã OTP được gửi qua số</Text>
-          <Text style={{ color: '#2EA0B8', fontSize: 15, width: 400, textAlign: 'center', }}>+0368055154</Text>
-          <View style={{ flexDirection: 'row', width: 150, justifyContent: 'space-between', marginTop: 30 }}>
-            <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
-            <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
-            <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
-            <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
-            <View style={{ width: 20, height: 35, backgroundColor: '#999999' }}></View>
-          </View>
-          <Text style={{ color: '#FB8500', fontSize: 20, width: 400, textAlign: 'center', fontWeight: "600", marginTop: 70 }}>XÁC NHẬN TÀI KHOẢN</Text>
-        </View>
-        <View>
-          <View>
-            <Text style={{ color: '#000000', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Bạn không nhận được OTP?</Text>
-            <Text style={{ color: '#2EA0B8', fontSize: 20, width: 400, textAlign: 'center', fontWeight: '500' }}>GỬI LẠI NGAY 30s</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity onPress={() => navigation.navigate("SigninScreeen")}>
-          {/* Chổ này mà xài replace là đá thẳng ra luôn */}
-          <View style={{ marginTop: 50, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
-
+      </View>
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
+        <TouchableOpacity onPress={() => navigation.navigate('SigninScreeen')}>
+          <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>QUAY LẠI TRANG CHỦ</Text>
           </View>
         </TouchableOpacity>
       </View>
-
     </View>
   );
 }
 const styles = StyleSheet.create({
 
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
 
+  },
+  text: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    padding: 20,
+    color: '#fff',
+    borderRadius: 12,
+  },
   inputContainer: {
     backgroundColor: 'red',
     width: '100%',

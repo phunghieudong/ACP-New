@@ -70,8 +70,7 @@ function ForgotPasswordScreen() {
       <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 36, fontWeight: '600', marginTop: 15 }}>Quên mật khẩu</Text>
-          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập mã email hoặc số điện thoại. Chúng
-            tôi sẽ gửi bạn thông tin để tạo lại mật khẩu</Text>
+          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập UserName của bạn. Chúng tôi sẽ gửi bạn mật khẩu thông qua Email !</Text>
         </View>
         <View style={{
           width: 343,
@@ -105,33 +104,7 @@ function ForgotPasswordScreen() {
             />
 
           </View>
-          <View style={{
-            backgroundColor: 'white',
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            elevation: 10,
-            marginTop: 16,
-            borderRadius: 6,
-          }}>
-            <TextInput
-              placeholder='Số điện thoại'
-              autoCorrect={false}
-              secureTextEntry={false}
-              textContentType='username'
-              style={{
-                width: '90%',
-                height: 40,
-                borderRadius: 6,
-                paddingHorizontal: 16,
 
-              }}
-
-            // onChangeText={onChangeText1}
-            // value={text1}
-            />
-
-          </View>
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('OTP')}>

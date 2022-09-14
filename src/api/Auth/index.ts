@@ -6,6 +6,7 @@ export const signIn = async (data: SignInData) => {
     const res = await instance.post("/authenticate/login", data);
     return res.data;
   } catch (error) {
+    console.log("phunghiee=udong", data);
     return Promise.reject(error);
   }
 };

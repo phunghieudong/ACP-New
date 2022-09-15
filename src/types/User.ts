@@ -1,0 +1,92 @@
+// file
+export type UserFile = {
+  UserId: number;
+  FileType: number;
+  MedicalRecordId: number;
+  MedicalRecordDetailId: number;
+  FolderId: number;
+  FileName: string;
+  ContentType: string;
+  FileExtension: string;
+  Description: string | null;
+  FileRandomName: string | null;
+  FileUrl: string;
+  RowNumber: number;
+  Id: number;
+  Created: Date;
+  CreatedBy: string;
+  Updated: Date | null;
+  UpdatedBy: string | null;
+  Deleted: boolean;
+  Active: boolean;
+};
+
+// user data
+export type UserData = {
+  Active: boolean;
+  Address: string;
+  AllergyInformation: string;
+  BirthDate: Date;
+  BloodType: string;
+  CertificateNo: string;
+  CityId: number;
+  CityName: string;
+  Code: string;
+  CountryId: number;
+  CountryName: string;
+  Created: Date;
+  Deleted: boolean;
+  DistrictId: number;
+  DistrictName: string;
+  Email: string;
+  Gender: number;
+  Height: number | null;
+  HospitalId: number;
+  HospitalName: string;
+  Id: number;
+  JobId: number;
+  JobName: string;
+  MedicalHistory: string;
+  MedicalRecordAdditions: Array<any>;
+  MedicalRecordDetails: Array<any>;
+  NationId: number;
+  NationName: string;
+  Phone: string;
+  RowNumber: number;
+  CreatedBy: string;
+  Updated: Date | null;
+  UpdatedBy: string | null;
+  UserFiles: Array<UserFile>;
+  UserFullName: string;
+  UserId: number;
+  WardId: number;
+  WardName: string;
+  Weight: number | null;
+};
+
+// edit user data
+export type EditUserData = {
+  userFullName: string;
+  phone: string;
+  email: string;
+  certificateNo: string;
+  gender: number;
+  jobId: number;
+  jobName: string;
+  birthDate: Date;
+  countryId: number | null;
+  countryName: string | null;
+  nationId: number | null;
+  nationName: string | null;
+  cityId: number | null;
+  cityName: string | null;
+  districtId: number | null;
+  districtName: string | null;
+  wardId: number | null;
+  wardName: string | null;
+  address: string;
+  avatar?: string;
+  height: number;
+  weight: number;
+  bloodType: string;
+};

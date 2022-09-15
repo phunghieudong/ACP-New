@@ -1,30 +1,53 @@
-import {Dimensions} from 'react-native';
+import { Platform } from "react-native";
+import { Easing } from "react-native-reanimated";
 
-const {width, height} = Dimensions.get('window'); // Chiều dài và chiều rộng của màn hình (dpi)
-
-// Ở đây khỏi tạo những cái gì hay dùng nhất
-// VD: Domain API, màu chính, màu phụ...
-
-const appConfig = {
-  hostURL: '', // Link domain api, vd: https://baochau.com. Lưu ý: link "http" sẽ không thể gọi api trên production
-  colors: {
-    // Các mã màu hay dùng, mã ở dưới là ví dụ thôi
-    primary: '#007AFF',
-    primaryLight: '#007AFF',
-    primaryDark: '#007AFF',
-    second: '#007AFF',
-    secondLight: '#007AFF',
-    secondDark: '#007AFF',
-  },
-  sizes: {
-    dW: width,
-    dH: height,
-  },
-  fonts: {
-    Bold: 'SVN-Biennale-Bold', // Tên font chữ (tên file)
+const openAnimation = {
+  animation: "spring",
+  config: {
+    stiffness: 1000,
+    damping: 100,
+    mass: 5,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
   },
 };
 
-// Export cái tụi vừa tạo ra ngoài
-export default appConfig;
-export {width, height, appConfig};
+const closeAnimation = {
+  animation: "timing",
+  config: {
+    duration: 200,
+    easing: Easing.linear,
+  },
+};
+
+export const settings = {
+  hostURL: "https://api-acp.monamedia.net",
+  android: Platform.OS === "android" ? 1 : 0,
+  styles: {
+    mainColor: "#142977",
+    mainColorLight: "#E8F5F8",
+    mainColorText: "#000",
+    dangerColor: "#DC233C",
+    dangerColorLight: "rgba(220, 35, 60, 0.1)",
+    blueColor: "#219EBC",
+    blueColorLight: "rgba(33, 158, 188, 0.1)",
+    orangeColor: "#FB8500",
+    orangeColorLight: "rgba(251, 133, 0, 0.1)",
+    labelColor: "#808080",
+    borderColor: "#CACEE1",
+    placeholderColor: "#adb5bd",
+    noteColor: "rgba(20, 41, 119, .5)",
+    goldColor: "#FFB703",
+    successColor: "#2ecc71",
+    selectColor: "#8A90B6",
+    sectionColor: "#F0F0F0",
+    padding: 20,
+  },
+  animationIOS: {
+    transitionSpec: {
+      open: openAnimation,
+      close: closeAnimation,
+    },
+  },
+};

@@ -1,12 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
-import userReducer from './userReducer'; // Import reducer đã khởi tạo
+import { configureStore } from "@reduxjs/toolkit";
+import RootReducer from "./RootReducer";
 
-// Cái này coi tài liệu của redux toolkit: https://redux-toolkit.js.org/tutorials/quick-start
 const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
+  reducer: RootReducer,
 });
 
-export default store; // Export cái store mới tạo ra
-export type RootState = ReturnType<typeof store.getState>; // Export type của cái store
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof RootReducer>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

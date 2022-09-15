@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Easing } from "react-native-reanimated";
+// import { Easing } from "react-native-reanimated";
 
 const openAnimation = {
   animation: "spring",
@@ -17,7 +17,7 @@ const closeAnimation = {
   animation: "timing",
   config: {
     duration: 200,
-    easing: Easing.linear,
+    // easing: Easing.linear,
   },
 };
 

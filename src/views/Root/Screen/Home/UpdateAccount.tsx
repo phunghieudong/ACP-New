@@ -36,7 +36,11 @@ const ChangePasswordScreen = () => {
         </TouchableOpacity >
         <ScrollView>
           <View style={{ marginHorizontal: 20, marginTop: 15 }}>
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tên công ty</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tên công ty</Text>
+              <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
+            </View>
+
             <TextInput
               style={{
                 height: 40,
@@ -47,7 +51,11 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Số điện thoại</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Số điện thoại</Text>
+              <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
+            </View>
+
             <TextInput
               style={{
                 height: 40,
@@ -58,7 +66,11 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Email</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Email</Text>
+              <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
+            </View>
+
             <TextInput
               style={{
                 height: 40,
@@ -125,7 +137,7 @@ const ChangePasswordScreen = () => {
               }}
             />
             <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-              <View style={{ marginTop: 32,marginBottom:32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
+              <View style={{ marginTop: 32, marginBottom: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>CẬP NHẬT</Text>
               </View>
             </TouchableOpacity>

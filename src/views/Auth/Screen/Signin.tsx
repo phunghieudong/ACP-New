@@ -1,12 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, TextInput, StyleSheet, Pressable } from 'react-native';
 import { ViewProps } from '../../../navigators/types/navigation';
 import { FontAwesome } from '@expo/vector-icons';
 import { SignInProps } from "../../../navigators/types/Auth";
-import { signIn } from "../../../api/Auth/index";
-import { SignInData } from "../../../types/Auth";
 
+import { SignInData } from "../../../types/Auth";
+import { accountApi } from '../../../api/Auth';
+
+import { settings } from './../../../configs';
 //Creat eye
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
@@ -26,45 +28,64 @@ export const useTogglePasswordVisibility = () => {
     handlePasswordVisibility
   };
 };
+
+
 function SigninScreen() {
 
+
+  var formdata = new FormData();
+  formdata.append("Username", "dongcute");
+  formdata.append("Password", "9k1yMd0U");
+
+  var requestOptions: any = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
+  fetch("https://api-acp.monamedia.net/api/authenticate/mobile-login", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+
   const navigation = useNavigation<ViewProps['navigation']>(); // Hooks của navigation
-  
+
   const { handlePasswordVisibility } =
     useTogglePasswordVisibility();
-  //Ràng buộc user
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [emailError, setEmailError] = useState("")
-  const [passwordError, setPasswordError] = useState("")
+  // Ràng buộc user
+  const [email1, setEmail1] = useState("")
+  const [emailError1, setEmailError1] = useState("")
+  const [passwordError1, setPasswordError1] = useState("")
+  const [password1, setPassword1] = useState("")
   const handleSubmit = () => {
     var emailValid = false;
-    if (email.length == 0) {
-      setEmailError("Email không được để trống");
+    if (email1.length == 0) {
+      setEmailError1("Email không được để trống");
     }
-    else if (email.length < 6) {
-      setEmailError("Email phải trên 6 kí tự");
+    else if (email1.length < 6) {
+      setEmailError1("Email phải trên 6 kí tự");
     }
-    else if (email.indexOf(' ') >= 0) {
-      setEmailError('Email không được có khoảng trắng');
+    else if (email1.indexOf(' ') >= 0) {
+      setEmailError1('Email không được có khoảng trắng');
     }
     else {
-      setEmailError("")
+      setEmailError1("")
       emailValid = true
     }
 
     var passwordValid = false;
-    if (password.length == 0) {
-      setPasswordError("Mật khẩu không được để trống");
+    if (password1.length == 0) {
+      setPasswordError1("Mật khẩu không được để trống");
     }
-    else if (password.length < 6) {
-      setPasswordError("Password phải trên 6 kí tự");
+    else if (password1.length < 6) {
+      setPasswordError1("Password phải trên 6 kí tự");
     }
-    else if (password.indexOf(' ') >= 0) {
-      setPasswordError('Password không được có khoảng trắng');
+    else if (password1.indexOf(' ') >= 0) {
+      setPasswordError1('Password không được có khoảng trắng');
     }
     else {
-      setPasswordError("")
+      setPasswordError1("")
       passwordValid = true
     }
 
@@ -72,8 +93,8 @@ function SigninScreen() {
       // alert('Email: ' + email + '\nPassword: ' + password);
       {/* onPress={() => navigation.replace('Auth')} */ }
       navigation.replace('Auth')
-      setEmail("");
-      setPassword("");
+      setEmail1("");
+      setPassword1("");
     }
 
   }
@@ -102,7 +123,7 @@ function SigninScreen() {
             autoCorrect={false}
             secureTextEntry={false}
             textContentType='emailAddress'
-            onChangeText={text => setEmail(text)} value={email}
+            onChangeText={text => setEmail1(text)} value={email1}
             style={{
               width: '90%',
               height: 40,
@@ -111,8 +132,8 @@ function SigninScreen() {
             }}
           />
         </View>
-        {emailError.length > 0 &&
-          <Text style={{ color: 'red', marginTop: 6 }}>{emailError}</Text>
+        {emailError1.length > 0 &&
+          <Text style={{ color: 'red', marginTop: 6 }}>{emailError1}</Text>
         }
         <View style={{
           backgroundColor: 'white',
@@ -128,7 +149,7 @@ function SigninScreen() {
             autoCorrect={false}
             secureTextEntry={true}
             textContentType='username'
-            onChangeText={text => setPassword(text)} value={password}
+            onChangeText={text => setPassword1(text)} value={password1}
             style={{
               width: '90%',
               height: 40,
@@ -143,8 +164,8 @@ function SigninScreen() {
             </Pressable>
           </TouchableOpacity>
         </View>
-        {passwordError.length > 0 &&
-          <Text style={{ color: 'red', marginTop: 6 }}>{passwordError}</Text>
+        {passwordError1.length > 0 &&
+          <Text style={{ color: 'red', marginTop: 6 }}>{passwordError1}</Text>
         }
       </View>
       <View style={{ marginTop: 16, width: 343, flexDirection: "row-reverse" }}>
@@ -178,3 +199,5 @@ const styles = StyleSheet.create({
   }
 })
 export default SigninScreen;
+
+

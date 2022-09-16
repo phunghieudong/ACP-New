@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeStackNavigator from "./HomeStackNavigator";
 import AccountStackNavigator from "./AccountStackNavigator";
+import HistoryStackNavigator from "./HistoryStackNavigator";
 import History from "../views/Root/Screen/Home/History";
 import Information from "../views/Root/Screen/Home/Information";
 import Account from "../views/Root/Screen/Home/Account";
@@ -54,7 +55,7 @@ function RootStackNavigator() {
       />
       <Tab.Screen
         name="History"
-        component={History}
+        component={HistoryStackNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (

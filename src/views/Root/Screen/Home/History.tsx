@@ -61,7 +61,7 @@ const HistoryScreen = ({ navigation }) => {
             <Image
 
               source={require('../../../../assets/images/find.png')}
-              style={{ width: 24, height: 24,  }}
+              style={{ width: 24, height: 24, }}
             />
           </TouchableOpacity>
 
@@ -73,7 +73,7 @@ const HistoryScreen = ({ navigation }) => {
       <ScrollView style={{ marginTop: 32 }}>
         <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -93,7 +93,7 @@ const HistoryScreen = ({ navigation }) => {
 
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -114,7 +114,7 @@ const HistoryScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -133,7 +133,7 @@ const HistoryScreen = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -154,7 +154,7 @@ const HistoryScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 
@@ -173,7 +173,7 @@ const HistoryScreen = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
               <View style={{ flexDirection: 'column' }}>
                 <Image
 

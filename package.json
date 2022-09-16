@@ -16,6 +16,7 @@
     "@types/react-native": "~0.69.1",
     "axios": "^0.27.2",
     "expo": "~46.0.9",
+    "expo-custom-switch": "^1.0.2",
     "expo-secure-store": "^11.3.0",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
@@ -35,6 +36,7 @@
     "react-native-swiper": "^1.6.0",
     "react-redux": "^8.0.2",
     "rxjs": "^7.5.6",
+    "toggle-switch-react-native": "^3.3.0",
     "typescript": "^4.6.3"
   },
   "devDependencies": {

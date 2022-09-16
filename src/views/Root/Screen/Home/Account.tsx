@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, ToastAndroid } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
+import ToggleSwitch from "toggle-switch-react-native";
 const AccountScreen = ({ navigation }) => {
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () => {
@@ -116,12 +117,13 @@ const AccountScreen = ({ navigation }) => {
             </View>
             <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
               {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
-              <Switch
-                onValueChange={toggleSwitch}
-                value={enabled}
-                thumbColor={enabled ? "red" : "red"}
-                trackColor={{ false: "#666666", true: "#666666" }}
-                ios_backgroundColor={"yellow"}
+              <ToggleSwitch
+                isOn={true}
+                onColor="#CCCCCC"
+                offColor="#CCCCCC"
+                labelStyle={{ color: "black", fontWeight: "900" }}
+                size="small"
+                onToggle={isOn => console.log("changed to : ", isOn)}
               />
             </View>
           </View>

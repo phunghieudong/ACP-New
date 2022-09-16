@@ -13,9 +13,6 @@ import ErrorText from '../../../components/More/error-text';
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 
-
-
-
 const SigninScreen = () => {
   const keyboard: boolean = useKeyboard(); // true, false
   const [loading, setLoading] = useState(false);
@@ -36,7 +33,7 @@ const SigninScreen = () => {
   const _login = async () => {
     setErrorText('');
     if (!!!userName) {
-      setErrorText('Vui lòng nhập email hoặc số điện thoại');
+      setErrorText('Vui lòng nhập email ');
     } else if (!!!password) {
       setErrorText('Vui lòng nhập mật khẩu');
     } else {
@@ -45,6 +42,7 @@ const SigninScreen = () => {
         username: userName,
         password: password,
       });
+      navigation.replace("Auth")
     }
   };
 
@@ -55,6 +53,7 @@ const SigninScreen = () => {
       console.log('_login: ', res);
       if (!!res?.token) {
         console.log('LOGIN');
+       
 
       } else {
         setErrorText(res?.message);

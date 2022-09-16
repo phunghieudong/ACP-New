@@ -12,6 +12,7 @@ type Routers = {
   Confirm: any;
   AllHome: any;
   HistoryScreen: any;
+  HistoryDetailScreen: any;
   InformationScreen: any;
   AccountScreen: any;
   ChangePassword: any;

@@ -79,7 +79,7 @@ const HistoryDetailScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={{ marginTop: 46, marginHorizontal: 20 }}>
-        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chi tiết gói thầu</Text>
+        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chi tiết phiên gói thầu</Text>
         <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
           text ever since the 1500s</Text>
       </View>

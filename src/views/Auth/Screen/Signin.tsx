@@ -1,103 +1,81 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TouchableOpacity, Image, TextInput, StyleSheet, Pressable } from 'react-native';
+import React, { useState, useEffect, useLayoutEffect, useReducer, useRef, FC } from 'react';
+import { View, SafeAreaView, Image, Button, TouchableOpacity, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { appConfig, height, width } from '../../../configs';
+import PrimaryButton from '../../../components/PrimaryButton/index';
+import PrimaryInput from '../../../components/PrimaryInput/index';
+import { accountApi } from '../../../api/Auth/index';
 import { ViewProps } from '../../../navigators/types/navigation';
-import { FontAwesome } from '@expo/vector-icons';
-import { SignInProps } from "../../../navigators/types/Auth";
+import { useKeyboard } from 'green-native-ts';
+import ErrorText from '../../../components/More/error-text';
+// import { LocalStorage, toast } from '~/utils';
+// import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 
-import { SignInData } from "../../../types/Auth";
-import { accountApi } from '../../../api/Auth';
 
-import { settings } from './../../../configs';
-//Creat eye
-export const useTogglePasswordVisibility = () => {
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye');
 
-  const handlePasswordVisibility = () => {
-    if (rightIcon === 'eye') {
-      setRightIcon('eye-off');
-      setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === 'eye-off') {
-      setRightIcon('eye');
-      setPasswordVisibility(!passwordVisibility);
+
+const SigninScreen = () => {
+  const keyboard: boolean = useKeyboard(); // true, false
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation<ViewProps['navigation']>();
+  const insets = useSafeAreaInsets();
+  const backGroundHeight: number = height + insets.top + insets.bottom;
+  const dispatch = useDispatch();
+  const userData = useSelector((state: any) => state.user);
+
+  const [userName, setUserName] = useState<string>('dongcute');
+  const [password, setPassword] = useState<string>('9k1yMd0U');
+
+  const [errorText, setErrorText] = useState<string>('');
+
+
+
+
+  const _login = async () => {
+    setErrorText('');
+    if (!!!userName) {
+      setErrorText('Vui lòng nhập email hoặc số điện thoại');
+    } else if (!!!password) {
+      setErrorText('Vui lòng nhập mật khẩu');
+    } else {
+      setLoading(true);
+      _postData({
+        username: userName,
+        password: password,
+      });
     }
   };
 
-  return {
-    handlePasswordVisibility
+  const _postData = async (param: any) => {
+    console.log('_postData: ', param);
+    try {
+      const res: any = await accountApi.login(param);
+      console.log('_login: ', res);
+      if (!!res?.token) {
+        console.log('LOGIN');
+
+      } else {
+        setErrorText(res?.message);
+      }
+    } catch (error: any) {
+      setErrorText(error?.message);
+    } finally {
+      setLoading(false);
+    }
   };
-};
 
 
-function SigninScreen() {
 
 
-  var formdata = new FormData();
-  formdata.append("Username", "dongcute");
-  formdata.append("Password", "9k1yMd0U");
 
-  var requestOptions: any = {
-    method: 'POST',
-    body: formdata,
-    redirect: 'follow'
-  };
+  // const handleLogged = async (data: any) => {
+  // 	await LocalStorage.setToken(data.token);
+  // 	dispatch(setToken(data.token));
 
-  fetch("https://api-acp.monamedia.net/api/authenticate/mobile-login", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+  // };
 
-
-  const navigation = useNavigation<ViewProps['navigation']>(); // Hooks của navigation
-
-  const { handlePasswordVisibility } =
-    useTogglePasswordVisibility();
-  // Ràng buộc user
-  const [email1, setEmail1] = useState("")
-  const [emailError1, setEmailError1] = useState("")
-  const [passwordError1, setPasswordError1] = useState("")
-  const [password1, setPassword1] = useState("")
-  const handleSubmit = () => {
-    var emailValid = false;
-    if (email1.length == 0) {
-      setEmailError1("Email không được để trống");
-    }
-    else if (email1.length < 6) {
-      setEmailError1("Email phải trên 6 kí tự");
-    }
-    else if (email1.indexOf(' ') >= 0) {
-      setEmailError1('Email không được có khoảng trắng');
-    }
-    else {
-      setEmailError1("")
-      emailValid = true
-    }
-
-    var passwordValid = false;
-    if (password1.length == 0) {
-      setPasswordError1("Mật khẩu không được để trống");
-    }
-    else if (password1.length < 6) {
-      setPasswordError1("Password phải trên 6 kí tự");
-    }
-    else if (password1.indexOf(' ') >= 0) {
-      setPasswordError1('Password không được có khoảng trắng');
-    }
-    else {
-      setPasswordError1("")
-      passwordValid = true
-    }
-
-    if (emailValid && passwordValid) {
-      // alert('Email: ' + email + '\nPassword: ' + password);
-      {/* onPress={() => navigation.replace('Auth')} */ }
-      navigation.replace('Auth')
-      setEmail1("");
-      setPassword1("");
-    }
-
-  }
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View>
@@ -119,11 +97,12 @@ function SigninScreen() {
           borderRadius: 6,
         }}>
           <TextInput
+            value={userName}
             placeholder='Email'
             autoCorrect={false}
             secureTextEntry={false}
             textContentType='emailAddress'
-            onChangeText={text => setEmail1(text)} value={email1}
+            onChangeText={(e: string) => setUserName(e)}
             style={{
               width: '90%',
               height: 40,
@@ -132,9 +111,6 @@ function SigninScreen() {
             }}
           />
         </View>
-        {emailError1.length > 0 &&
-          <Text style={{ color: 'red', marginTop: 6 }}>{emailError1}</Text>
-        }
         <View style={{
           backgroundColor: 'white',
           width: '100%',
@@ -145,11 +121,13 @@ function SigninScreen() {
           borderRadius: 6,
         }}>
           <TextInput
+
             placeholder='Mật khẩu'
             autoCorrect={false}
-            secureTextEntry={true}
-            textContentType='username'
-            onChangeText={text => setPassword1(text)} value={password1}
+            secureTextEntry={false}
+            textContentType="username"
+            value={password}
+            onChangeText={(e: string) => setPassword(e)}
             style={{
               width: '90%',
               height: 40,
@@ -158,31 +136,92 @@ function SigninScreen() {
 
             }}
           />
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Pressable onPress={handlePasswordVisibility}>
               <FontAwesome name='eye-slash' size={22} color="#232323" />
             </Pressable>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
-        {passwordError1.length > 0 &&
-          <Text style={{ color: 'red', marginTop: 6 }}>{passwordError1}</Text>
-        }
+
       </View>
+
+
+      {/* <PrimaryButton onPress={_login} title="Đăng nhập" loading={loading} /> */}
+
       <View style={{ marginTop: 16, width: 343, flexDirection: "row-reverse" }}>
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={{ color: 'red', fontStyle: 'italic' }}>Quên mật khẩu</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={handleSubmit}>
+      <TouchableOpacity onPress={_login}>
         <View style={{ marginTop: 16, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>ĐĂNG NHẬP</Text>
         </View>
       </TouchableOpacity>
+      <ErrorText content={errorText} />
     </View>
   );
-}
-const styles = StyleSheet.create({
+};
 
+export default SigninScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  main: {
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  backMain: {
+
+    width: '100%',
+    paddingHorizontal: 37,
+    borderTopRightRadius: 12,
+    borderTopStartRadius: 12,
+    alignItems: 'center',
+    height: "100%"
+  },
+  text: {
+    fontSize: 16,
+    color: '#000',
+  },
+  title: {
+    color: '#000',
+
+    fontSize: 32,
+  },
+  subTitle: {
+    color: '#959595',
+
+    fontSize: 16,
+    marginTop: 16,
+    marginBottom: 36,
+  },
+  wPassword: {
+    marginTop: 24,
+    marginBottom: 32,
+    width: '100%',
+  },
+  register: {
+
+    fontSize: 16,
+    color: "green",
+    marginVertical: 32,
+  },
+  btnRegister: {
+
+    fontSize: 16,
+    color: "green",
+    marginVertical: 32,
+  },
+  forgot: {
+
+    fontSize: 16,
+    color: "green",
+  },
   inputContainer: {
     backgroundColor: 'red',
     width: '100%',
@@ -197,7 +236,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     width: '90%'
   }
-})
-export default SigninScreen;
+});
 
 

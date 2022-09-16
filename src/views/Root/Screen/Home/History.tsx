@@ -56,14 +56,8 @@ const HistoryScreen = ({ navigation }) => {
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Lịch sử đấu thầu</Text>
         </View>
 
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity>
-            <Image
-
-              source={require('../../../../assets/images/find.png')}
-              style={{ width: 24, height: 24, }}
-            />
-          </TouchableOpacity>
+        <View style={{ flexDirection: 'row', height:30 , width:30 }}>
+         
 
         </View>
 

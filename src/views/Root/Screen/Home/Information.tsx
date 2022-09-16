@@ -9,9 +9,9 @@ const InformationScreen = () => {
   return (
     <View style={styles.container}>
 
-      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', alignItems:"center",paddingHorizontal: 25,  }}>
+      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", paddingHorizontal: 25, }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={{ flexDirection: 'row', width: 50 , }}>
+          <View style={{ flexDirection: 'row', width: 50, }}>
 
             {/* <Image
               source={require('../../../../assets/images/goback.png')}
@@ -25,8 +25,8 @@ const InformationScreen = () => {
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Thông báo</Text>
         </View>
 
-        <View style={{ flexDirection: 'row', width:50 }}>
-      
+        <View style={{ flexDirection: 'row', width: 50 }}>
+
         </View>
 
       </View>
@@ -51,7 +51,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -71,7 +71,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -91,7 +91,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -111,7 +111,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -131,7 +131,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -151,7 +151,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 64 }}>
@@ -171,7 +171,7 @@ const InformationScreen = () => {
                 />
                 <Text>11/08/2022</Text>
               </View>
-              <Text style={{ width: "80%" }}>Lorem Ipsum has been the industry's standard text ever since the 1500s</Text>
+              <Text style={{ width: "80%" }}>Xin chúc mừng ! Bạn đã trúng phiên đấu thầu số 1</Text>
             </View>
           </View>
 

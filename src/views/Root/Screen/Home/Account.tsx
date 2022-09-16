@@ -128,7 +128,7 @@ const AccountScreen = ({ navigation }) => {
             </View>
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={showToast}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, marginBottom: 20 }}>
               <Image
 

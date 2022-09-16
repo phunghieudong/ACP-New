@@ -28,20 +28,16 @@ const SignUpBidingScreen = () => {
         //Toggling the visibility state of the bottom sheet
         setVisible(!visible);
     };
+   
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <View style={{ flexDirection: 'row', width: 30, height: 30, justifyContent: 'center', alignItems: 'center' }}>
-
                         <Image
-
                             source={require('../../../../assets/images/goback.png')}
                             style={{ width: 7.17, height: 14 }}
                         />
-
-
-
                     </View>
                 </TouchableOpacity>
                 <View >
@@ -50,7 +46,6 @@ const SignUpBidingScreen = () => {
                 <View style={{ flexDirection: 'row', height: 10, width: 50 }}>
 
                 </View>
-
             </View>
             <View style={{ marginHorizontal: 20, marginTop: 32 }}>
                 <Text style={{ fontWeight: '600' }}>Số lượng</Text>
@@ -60,11 +55,13 @@ const SignUpBidingScreen = () => {
                         borderWidth: 0.5,
                         borderRadius: 6,
                         paddingHorizontal: 16,
-                        marginTop: 8
+                        marginTop: 8,
+
 
                     }}
-                    onChangeText={onChangeText}
-                    value={text}
+                onChangeText={onChangeText}
+                value={text}
+
                 />
                 <Text style={{ marginTop: 16, fontWeight: '600' }}>Giá</Text>
                 <TextInput

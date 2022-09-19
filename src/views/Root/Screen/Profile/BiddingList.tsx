@@ -43,6 +43,7 @@ const BiddingListScreen = () => {
                     style={{ width: "100%", height: 180 }}
                 />
             </Swiper>
+
             <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#A5C63F', height: 32, width: 32, marginTop: 30, marginLeft: 16, borderRadius: 6, position: 'absolute' }}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
 
@@ -54,7 +55,7 @@ const BiddingListScreen = () => {
                     </View>
                 </TouchableOpacity>
             </View>
-            <View style={{ marginTop: 16, marginHorizontal: 20 }}>
+            <View style={{ marginTop: 6, marginHorizontal: 20 }}>
                 <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án dừa Bến Tre</Text>
                 <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
                     text ever since the 1500s</Text>
@@ -89,7 +90,7 @@ const BiddingListScreen = () => {
 
 
             <TouchableOpacity >
-                <View style={{ marginTop: 26, marginHorizontal: 20 }}>
+                <View style={{ marginTop: 16, marginHorizontal: 20 }}>
                     <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
 
                 </View>
@@ -112,7 +113,7 @@ const BiddingListScreen = () => {
             </View>
 
 
-            <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
+            <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 10 }}>
 
                 <Swiper
                     showsButtons={true}
@@ -139,9 +140,9 @@ const BiddingListScreen = () => {
                     />
                 </Swiper>
             </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32 }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 3 }}>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding')}>
-                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
                     </View>
                 </TouchableOpacity>

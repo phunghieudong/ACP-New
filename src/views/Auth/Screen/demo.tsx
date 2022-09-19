@@ -8,26 +8,15 @@ import { async } from 'rxjs';
 import { isFulfilled } from '@reduxjs/toolkit';
 
 import { ViewProps } from '../../../navigators/types/navigation';
+import { LocalStorage } from '../../../utils/LocalStorage';
+import { useDispatch } from 'react-redux';
+
 
 const Demo = () => {
- 
   const [userName, setUserName] = useState<string>('monaprovider');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
 
-  const FromData = async(data:any) =>{
-    console.log('_postData: ', data);
-    try {
-      const res: any = await accountApi.login(data);
-      if (!!res?.token) {
-        console.log('LOGIN');
-      } else {
-        setErrorText(res?.message);
-      }
-    } catch (error: any) {
-      setErrorText(error?.message);
-    } 
-  }
 
   const login = () =>{
     setErrorText('');
@@ -39,9 +28,33 @@ const Demo = () => {
       FromData({
         username: userName,
         password: password,
-      });      
+      }); 
+       
   }
 }
+
+const FromData = async(data:any) =>{
+  console.log('postData: ', data);
+  try {
+    const res: any = await accountApi.login(data);
+    console.log(res);
+    if (!!res?.token) {
+      console.log('LOGIN');
+      // handleLogged(res);
+    } else {
+      setErrorText(res?.message);
+    }
+  } catch (error: any) {
+    setErrorText(error?.message);
+  } 
+}
+
+
+const handleLogged = async (data: any) => {
+  await LocalStorage.setToken(data.token);
+  console.log();
+};
+
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

@@ -20,60 +20,43 @@ const SigninScreen = () => {
   const insets = useSafeAreaInsets();
   const backGroundHeight: number = height + insets.top + insets.bottom;
   const dispatch = useDispatch();
-  const userData = useSelector((state: any) => state.user);
+  const userData = useSelector((state: any) => state.user); 
 
   const [userName, setUserName] = useState<string>('monaprovider');
   const [password, setPassword] = useState<string>('mona@123');
-
   const [errorText, setErrorText] = useState<string>('');
 
 
-
-
-  const _login = async () => {
+  const login = () =>{
     setErrorText('');
     if (!!!userName) {
       setErrorText('Vui lòng nhập email ');
     } else if (!!!password) {
       setErrorText('Vui lòng nhập mật khẩu');
     } else {
-      setLoading(true);
-      _postData({
+      FromData({
         username: userName,
         password: password,
-      });
-      navigation.replace("Auth")
+      }); 
+      navigation.navigate("Auth")
+  }
+}
+
+const FromData = async(data:any) =>{
+  console.log('postData: ', data);
+  try {
+    const res: any = await accountApi.login(data);
+    console.log(res);
+    if (!!res?.token) {
+      console.log('LOGIN');
+      // handleLogged(res);
+    } else {
+      setErrorText(res?.message);
     }
-  };
-
-  const _postData = async (param: any) => {
-    console.log('_postData: ', param);
-    try {
-      const res: any = await accountApi.login(param);
-      console.log('_login: ', res);
-      if (!!res?.token) {
-        console.log('LOGIN');
-       
-
-      } else {
-        setErrorText(res?.message);
-      }
-    } catch (error: any) {
-      setErrorText(error?.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
-
-
-
-  // const handleLogged = async (data: any) => {
-  // 	await LocalStorage.setToken(data.token);
-  // 	dispatch(setToken(data.token));
-
-  // };
+  } catch (error: any) {
+    setErrorText(error?.message);
+  } 
+}
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -152,7 +135,7 @@ const SigninScreen = () => {
           <Text style={{ color: 'red', fontStyle: 'italic' }}>Quên mật khẩu</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={_login}>
+      <TouchableOpacity onPress={login}>
         <View style={{ marginTop: 16, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>ĐĂNG NHẬP</Text>
         </View>

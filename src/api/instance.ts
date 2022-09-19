@@ -25,7 +25,7 @@ function getUrl(config: any) {
 export const instance = axios.create({
 	baseURL: appConfig.hostURL,
 	headers: {
-		Accept: 'application/json',
+		Accept: 'applic+ation/json',
 	},
 });
 

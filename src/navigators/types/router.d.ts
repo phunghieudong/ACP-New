@@ -21,4 +21,5 @@ type Routers = {
   SplashScreen:any;
   OTP:any;
   Account:any;
+  Demo:any;
 };

@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useLayoutEffect, useReducer, useRef, FC } from 'react';
-import { View, SafeAreaView, Image, Button, TouchableOpacity, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, SafeAreaView, Image, Button, TouchableOpacity, Text, StyleSheet, ScrollView, TextInput, Pressable } from 'react-native';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { appConfig, height, width } from '../../../configs';
-import PrimaryButton from '../../../components/PrimaryButton/index';
-import PrimaryInput from '../../../components/PrimaryInput/index';
 import { accountApi } from '../../../api/Auth/index';
 import { ViewProps } from '../../../navigators/types/navigation';
 import { useKeyboard } from 'green-native-ts';
 import ErrorText from '../../../components/More/error-text';
+
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 
@@ -20,14 +19,14 @@ const SigninScreen = () => {
   const insets = useSafeAreaInsets();
   const backGroundHeight: number = height + insets.top + insets.bottom;
   const dispatch = useDispatch();
-  const userData = useSelector((state: any) => state.user); 
+  const userData = useSelector((state: any) => state.user);
 
   const [userName, setUserName] = useState<string>('monaprovider');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
 
 
-  const login = () =>{
+  const login = () => {
     setErrorText('');
     if (!!!userName) {
       setErrorText('Vui lòng nhập email ');
@@ -37,26 +36,26 @@ const SigninScreen = () => {
       FromData({
         username: userName,
         password: password,
-      }); 
+      });
       navigation.navigate("Auth")
-  }
-}
-
-const FromData = async(data:any) =>{
-  console.log('postData: ', data);
-  try {
-    const res: any = await accountApi.login(data);
-    console.log(res);
-    if (!!res?.token) {
-      console.log('LOGIN');
-      // handleLogged(res);
-    } else {
-      setErrorText(res?.message);
     }
-  } catch (error: any) {
-    setErrorText(error?.message);
-  } 
-}
+  }
+
+  const FromData = async (data: any) => {
+    console.log('postData: ', data);
+    try {
+      const res: any = await accountApi.login(data);
+      console.log(res);
+      if (!!res?.token) {
+        console.log('LOGIN');
+        // handleLogged(res);
+      } else {
+        setErrorText(res?.message);
+      }
+    } catch (error: any) {
+      setErrorText(error?.message);
+    }
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

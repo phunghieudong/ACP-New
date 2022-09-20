@@ -8,6 +8,7 @@ import { accountApi } from '../../../api/Auth/index';
 import { ViewProps } from '../../../navigators/types/navigation';
 import { useKeyboard } from 'green-native-ts';
 import ErrorText from '../../../components/More/error-text';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
@@ -24,8 +25,27 @@ const SigninScreen = () => {
   const [userName, setUserName] = useState<string>('monaprovider');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
+  const [data, setData] = useState(null)
 
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value)
+    } catch (e) {
+      // saving error
+    }
+  }
 
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_Key')
+      if (value !== null) {
+        // value previously stored
+        setData(value)
+      }
+    } catch (e) {
+      // error reading value
+    }
+  }
   const login = () => {
     setErrorText('');
     if (!!!userName) {
@@ -37,17 +57,20 @@ const SigninScreen = () => {
         username: userName,
         password: password,
       });
-      navigation.navigate("Auth")
+      navigation.replace("Auth")
     }
   }
 
   const FromData = async (data: any) => {
-    console.log('postData: ', data);
     try {
       const res: any = await accountApi.login(data);
-      console.log(res);
-      if (!!res?.token) {
-        console.log('LOGIN');
+
+      console.log("res", res.Data.token);
+      console.log("Pass vs Accout", data);
+
+      if (!!res?.result) {
+        console.log('LOGINddddddddddddddddddddddddddddddddd', res);
+
         // handleLogged(res);
       } else {
         setErrorText(res?.message);
@@ -56,6 +79,9 @@ const SigninScreen = () => {
       setErrorText(error?.message);
     }
   }
+
+
+
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -140,6 +166,21 @@ const SigninScreen = () => {
         </View>
       </TouchableOpacity>
       <ErrorText content={errorText} />
+
+
+
+      <View style={{ backgroundColor: 'green', height: 300, width: 300, justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity onPress={() => {
+          storeData( "sieunhancamap" )
+          alert("Luu thanh cong")
+        }} style={{ backgroundColor: "yellow", height: 100, width: 100 }} >
+          <Text style={{ color: '#000000' }}>Luu data</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => getData()} style={{ backgroundColor: "yellow", height: 100, width: 100 }}>
+          <Text style={{ color: '#000000' }}>lay data</Text>
+        </TouchableOpacity>
+        {data != null ? <Text> {data}</Text> : null}
+      </View>
     </View>
   );
 };

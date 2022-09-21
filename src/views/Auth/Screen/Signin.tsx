@@ -27,21 +27,14 @@ const SigninScreen = () => {
   const [userName, setUserName] = useState<string>('dongph');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
-  const [data, setData] = useState(null)
+
+
+  const [tokendemo , setTokenDemo] = useState<any>('');
+
   // AsyncStorage luu 
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem('@storage_Key', value)
-    } catch (e) {
-      // saving error
-    }
-  }
+
   // AsyncStorage lay data
 
-
-
-
-  //
   const login = () => {
     setErrorText('');
     if (!!!userName) {
@@ -64,7 +57,8 @@ const SigninScreen = () => {
       console.log("res", res);
       console.log("Pass vs Accout", data);
 
-      storeData(res.Data.token)
+      // storeData(res.Data.token)
+      setTokenDemo(res.Data.token);
 
       if (res.ResultCode === 200) {
         navigation.replace("Auth")
@@ -75,15 +69,41 @@ const SigninScreen = () => {
     } catch (error: any) {
       setErrorText(error?.message);
       console.log(error);
-
     }
   }
 
-  const getData = AsyncStorage.getItem('@storage_Key')
-  console.log(getData);
+
+  // const setToken = AsyncStorage.setItem("TOKEN", tokendemo);
+  async function setTToken() {
+    try {
+      const jsonValue = JSON.stringify(tokendemo); // chuyen dổi
+      await AsyncStorage.setItem("TOKEN", jsonValue); // luu token 
+      console.log('jsonValudsadadadae===============', jsonValue);
+    } catch (error) {}
+  }
+  setTToken();
+
+const getIteamStorage = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("TOKEN"); // lây nhung gì trong cai bo 
+      console.log("============================",jsonValue);
+    } catch (error) {}
+  };
+  getIteamStorage();
+
+  const datamuonlu = "dâdsadasda"
+
+  let data = null;
+  const dete = () => {
+      data(datamuonlu)
+  }
+  dete()
 
 
-
+  
+  
+  // const getData = AsyncStorage.getItem('@storage_Key')
+  // console.log(getData);
 
 
   return (

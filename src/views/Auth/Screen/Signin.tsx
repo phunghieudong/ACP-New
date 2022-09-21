@@ -9,7 +9,7 @@ import { ViewProps } from '../../../navigators/types/navigation';
 import { useKeyboard } from 'green-native-ts';
 import ErrorText from '../../../components/More/error-text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { LocalStorage } from "../../../utils/LocalStorage/index"
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 
@@ -26,7 +26,7 @@ const SigninScreen = () => {
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
   const [data, setData] = useState(null)
-
+  // AsyncStorage luu 
   const storeData = async (value) => {
     try {
       await AsyncStorage.setItem('@storage_Key', value)
@@ -34,18 +34,12 @@ const SigninScreen = () => {
       // saving error
     }
   }
+  // AsyncStorage lay data
 
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@storage_Key')
-      if (value !== null) {
-        // value previously stored
-        setData(value)
-      }
-    } catch (e) {
-      // error reading value
-    }
-  }
+
+
+
+  //
   const login = () => {
     setErrorText('');
     if (!!!userName) {
@@ -57,7 +51,7 @@ const SigninScreen = () => {
         username: userName,
         password: password,
       });
-      navigation.replace("Auth")
+
     }
   }
 
@@ -65,20 +59,27 @@ const SigninScreen = () => {
     try {
       const res: any = await accountApi.login(data);
 
-      console.log("res", res.Data.token);
+      console.log("res", res);
       console.log("Pass vs Accout", data);
 
-      if (!!res?.result) {
-        console.log('LOGINddddddddddddddddddddddddddddddddd', res);
+      storeData(res.Data.token)
 
+      if (res.ResultCode === 200) {
+        navigation.replace("Auth")
         // handleLogged(res);
       } else {
-        setErrorText(res?.message);
+        setErrorText(res?.ResultMessage);
       }
     } catch (error: any) {
       setErrorText(error?.message);
+      console.log(error);
+
     }
   }
+
+  const getData = AsyncStorage.getItem('@storage_Key')
+  console.log(getData);
+
 
 
 
@@ -169,18 +170,18 @@ const SigninScreen = () => {
 
 
 
-      <View style={{ backgroundColor: 'green', height: 300, width: 300, justifyContent: 'center', alignItems: 'center' }}>
+      {/* <View style={{ backgroundColor: 'green', height: 300, width: 300, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={() => {
-          storeData( "sieunhancamap" )
+          // storeData("sieunhancamap")
           alert("Luu thanh cong")
         }} style={{ backgroundColor: "yellow", height: 100, width: 100 }} >
           <Text style={{ color: '#000000' }}>Luu data</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => getData()} style={{ backgroundColor: "yellow", height: 100, width: 100 }}>
+        <TouchableOpacity  style={{ backgroundColor: "yellow", height: 100, width: 100 }}>
           <Text style={{ color: '#000000' }}>lay data</Text>
         </TouchableOpacity>
         {data != null ? <Text> {data}</Text> : null}
-      </View>
+      </View> */}
     </View>
   );
 };

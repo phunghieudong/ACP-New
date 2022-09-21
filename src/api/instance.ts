@@ -1,4 +1,4 @@
-// import {LocalStorage} from '~/utils';
+import {LocalStorage} from '../utils/LocalStorage/index';
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {appConfig} from '../configs';
 
@@ -11,15 +11,15 @@ function getUrl(config: any) {
 }
 
 // ADD TOKEN TO HEADER
-// export const getAuthHeader = async () => {
-// 	// const accessToken = await getAccessToken();
-// 	const accessToken = await LocalStorage.getToken();
-// 	if (accessToken !== null) {
-// 		return {token: accessToken};
-// 	} else {
-// 		return '';
-// 	}
-// };
+export const getAuthHeader = async () => {
+	// const accessToken = await getAccessToken();
+	const accessToken = await LocalStorage.getToken();
+	if (accessToken !== null) {
+		return {token: accessToken};
+	} else {
+		return '';
+	}
+};
 
 // API INSTANCE
 export const instance = axios.create({
@@ -30,25 +30,25 @@ export const instance = axios.create({
 });
 
 // SENT REQUEST
-// instance.interceptors.request.use(
-// 	async (config: AxiosRequestConfig) => {
-// 		const url = getUrl(config);
-// 		if (!url.toString().includes('/auth/')) {
-// 			const authHeader = await getAuthHeader();
-// 			config.headers = {
-// 				...config.headers,
-// 				...authHeader,
-// 			};
-// 		}
-// 		// CONSOLE LOG CALL API
-// 		console.log(`%c ${config.method?.toString().toUpperCase()} - ${url}:`, 'color: #0086b3; font-weight: bold', config);
-// 		return config;
-// 	},
-// 	error => {
-// 		console.log(`%c ${error.response.status}  :`, 'color: red; font-weight: bold', error.response.data);
-// 		return Promise.reject(error);
-// 	},
-// );
+instance.interceptors.request.use(
+	async (config: AxiosRequestConfig) => {
+		const url = getUrl(config);
+		if (!url.toString().includes('/auth/')) {
+			const authHeader = await getAuthHeader();
+			config.headers = {
+				...config.headers,
+				...authHeader,
+			};
+		}
+		// CONSOLE LOG CALL API
+		console.log(`%c ${config.method?.toString().toUpperCase()} - ${url}:`, 'color: #0086b3; font-weight: bold', config);
+		return config;
+	},
+	error => {
+		console.log(`%c ${error.response.status}  :`, 'color: red; font-weight: bold', error.response.data);
+		return Promise.reject(error);
+	},
+);
 
 // CHECK RESPONSE STATUS
 const checkResponse = (error: any): void => {

@@ -1,11 +1,15 @@
 
 
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, SafeAreaView, Button, Pressable, TextInput } from 'react-native';
+import React, { useEffect, useState, FC } from 'react';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Button, Pressable, TextInput, FlatList, } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import Swiper from "react-native-swiper";
 import { BottomSheet } from 'react-native-btr';
 import { FontAwesome } from '@expo/vector-icons';
+
+import { getBiddingSession } from "../../../../api/BiddingSession/index";
+import { BiddingSessionProps } from "../../../../navigators/types/Profile";
+import { BiddingSessionData } from "../../../../types/BiddingSession";
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
@@ -26,8 +30,8 @@ export const useTogglePasswordVisibility = () => {
     handlePasswordVisibility
   };
 };
-const HomeScreen = ({ navigation }) => {
 
+const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -47,26 +51,34 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     setLeftNumber(69);
   }, []);
-  const callApi = () => {
-    const newUser: IUser = {
-      ID: '1',
-      Phone: '1',
-      FullName: '1',
-      Role: 'dev',
-      Status: 'active',
-    };
-    return newUser;
-  };
-  const getUser = async () => {
-    try {
-      const response = await callApi();
-      if (!!response) {
-        setUser(response);
+
+  const [data, setData] = useState<BiddingSessionData[]>([]);
+  const [page, setPage] = useState({ current: 1, next: true });
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { current, next } = page;
+        if (next) {
+          const params = { pageIndex: current, pageSize: 20 };
+          const res = await getBiddingSession(params);
+          if (res.ResultCode == 200) {
+            setData([...res.Data.Items]);
+            console.log("res ne ban oi", res);
+          }
+
+
+          // if (current >= res.Data.TotalPage) {
+          //   setPage({ ...page, next: false });
+          // }
+          if (!ready) setReady(true);
+        }
+      } catch (error) {
+        throw new Error("Data méo có , tẹo rồi mầy ạ !");
       }
-    } catch (error) {
-      console.log('getUser: ', error);
-    }
-  };
+    })();
+  }, [page.current]);
 
   return (
     <View style={styles.container}>
@@ -84,161 +96,100 @@ const HomeScreen = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <Swiper
-          showsButtons={false}
-          height={160}
-          containerStyle={{ flex: 0 }}
-          activeDotColor={"#E7312F"}
-          dotColor="rgba(0, 0, 0, .2)"
-          paginationStyle={{
-            bottom: 8,
-          }}
-        >
-          <Image
 
-            source={require('../../../../assets/images/home.png')}
-            style={{ width: "100%", height: 180 }}
-          />
-          <Image
-            source={require('../../../../assets/images/home.png')}
-            style={{ width: "100%", height: 180 }}
-          />
-          <Image
-            source={require('../../../../assets/images/home.png')}
-            style={{ width: "100%", height: 180 }}
-          />
-        </Swiper>
-        <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
-          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-          <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
-            text ever since the 1500s</Text>
+      <Swiper
+        showsButtons={false}
+        height={160}
+        containerStyle={{ flex: 0 }}
+        activeDotColor={"#E7312F"}
+        dotColor="rgba(0, 0, 0, .2)"
+        paginationStyle={{
+          bottom: 8,
+        }}
+      >
+        <Image
+
+          source={require('../../../../assets/images/home.png')}
+          style={{ width: "100%", height: 180 }}
+        />
+        <Image
+          source={require('../../../../assets/images/home.png')}
+          style={{ width: "100%", height: 180 }}
+        />
+        <Image
+          source={require('../../../../assets/images/home.png')}
+          style={{ width: "100%", height: 180 }}
+        />
+      </Swiper>
+      <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
+        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
+        <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
+          text ever since the 1500s</Text>
+      </View>
+      <FlatList
+        data={data}
+        style={styles.body}
+        onEndReached={() => setPage({ ...page, current: page.current + 1 })}
+        onEndReachedThreshold={0.5}
+        keyExtractor={(i) => i.Id.toString()}
+        renderItem={({ item }) => (
+          <TouchableWithoutFeedback >
+            <View style={styles.box}>
+              <View>
+                <Image
+                  source={require("../../../../assets/images/image1.png")}
+                  style={{ height: 150, width: "100%", borderRadius: 6 }}
+                />
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", paddingVertical: 5 }}>
+                <Image
+                  source={require("../../../../assets/images/image1.png")}
+                  style={{ height: 15, width: 15, marginRight: 8 }}
+                />
+                <Image
+                  source={require("../../../../assets/images/image1.png")}
+                  style={{ height: 17, width: 1, marginRight: 8 }}
+                />
+                <Image
+                  source={require("../../../../assets/images/image1.png")}
+                  style={{ height: 15, width: 15 }}
+                />
+                {/* <Text style={{ color: "#666666" }}> {item.CreatedBy}</Text> */}
+              </View>
+
+
+
+            </View>
+          </TouchableWithoutFeedback>
+        )}
+      />
+      <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
+        <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
+          <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
+            <View style={{ flexDirection: 'column' }}>
+              <Image
+
+                source={require('../../../../assets/images/image1.png')}
+                style={{ width: 164, height: 100 }}
+              />
+              <Text>Chào thầu dự án dừa</Text>
+              <Text>Bến tre</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Image
+
+                  source={require('../../../../assets/images/clock.png')}
+                  style={{ width: 14, height: 14, marginRight: 5 }}
+                />
+                <Text>11/08/2022</Text>
+              </View>
+
+            </View>
+          </TouchableOpacity>
+
         </View>
 
-        <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
+      </View>
 
-                  source={require('../../../../assets/images/image1.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image2.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image3.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image4.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image1.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image4.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
       <BottomSheet
         visible={isModalVisible}
         onBackButtonPress={toggleBottomNavigationView}
@@ -267,7 +218,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
             <TouchableOpacity onPress={toggleModal}>
 
-              <View style={{ height:30 , width:30, marginRight: 20 , justifyContent:'center' , alignItems:'center', borderWidth:1 , borderColor:'#ffffff'}}>
+              <View style={{ height: 30, width: 30, marginRight: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ffffff' }}>
                 <Text style={{ fontSize: 20, fontWeight: '900', color: '#fff', }}>x</Text>
               </View>
             </TouchableOpacity>
@@ -295,7 +246,7 @@ const HomeScreen = ({ navigation }) => {
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
-                    
+
 
                     }}
                   // onChangeText={onChangeText1}
@@ -380,6 +331,63 @@ const styles = StyleSheet.create({
     padding: 20,
     color: '#fff',
     borderRadius: 12,
+  },
+  body: {
+    paddingHorizontal: 20,
+    backgroundColor: 'green'
+
+  },
+  logo: {
+    borderRadius: 100,
+    width: 34,
+    height: 34,
+    marginRight: 8,
+    marginTop: 4,
+  },
+  logotext: {
+    textAlign: "center",
+    lineHeight: 34,
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "SFProDisplay-Regular",
+  },
+  box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
+
+  },
+  detail: {
+    flex: 1,
+  },
+  flex: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  content: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: "rgba(0, 0, 0, .5)",
+    fontFamily: "SFProDisplay-Regular",
+  },
+  title: {
+    marginTop: 8,
+    fontSize: 20,
+    lineHeight: 25,
+    fontFamily: "SFProDisplay-Regular",
+
+  },
+  img: {
+    width: 40,
+  },
+
+  icon: {
+    fontSize: 18,
+    padding: 8,
+    left: 8,
+
   },
 });
 export default HomeScreen; 

@@ -10,10 +10,12 @@ import { useKeyboard } from 'green-native-ts';
 import ErrorText from '../../../components/More/error-text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from "../../../utils/LocalStorage/index"
+import Icon from 'react-native-vector-icons/FontAwesome';
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 
 const SigninScreen = () => {
+  const [hidePass, setHidePass] = useState(true);
   const keyboard: boolean = useKeyboard(); // true, false
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<ViewProps['navigation']>();
@@ -22,7 +24,7 @@ const SigninScreen = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state: any) => state.user);
 
-  const [userName, setUserName] = useState<string>('monaprovider');
+  const [userName, setUserName] = useState<string>('dongph');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
   const [data, setData] = useState(null)
@@ -43,7 +45,7 @@ const SigninScreen = () => {
   const login = () => {
     setErrorText('');
     if (!!!userName) {
-      setErrorText('Vui lòng nhập email ');
+      setErrorText('Vui lòng nhập tài khoản ');
     } else if (!!!password) {
       setErrorText('Vui lòng nhập mật khẩu');
     } else {
@@ -106,7 +108,7 @@ const SigninScreen = () => {
         }}>
           <TextInput
             value={userName}
-            placeholder='Email'
+            placeholder='Tài khoản'
             autoCorrect={false}
             secureTextEntry={false}
             textContentType='emailAddress'
@@ -131,9 +133,7 @@ const SigninScreen = () => {
           <TextInput
 
             placeholder='Mật khẩu'
-            autoCorrect={false}
-            secureTextEntry={false}
-            textContentType="username"
+            secureTextEntry={hidePass ? true : false}
             value={password}
             onChangeText={(e: string) => setPassword(e)}
             style={{
@@ -143,6 +143,12 @@ const SigninScreen = () => {
               paddingHorizontal: 16,
 
             }}
+          />
+          <Icon
+            name={hidePass ? 'eye' : 'eye-slash'}
+            size={15}
+            color="grey"
+            onPress={() => setHidePass(!hidePass)}
           />
           {/* <TouchableOpacity>
             <Pressable onPress={handlePasswordVisibility}>

@@ -5,6 +5,8 @@ import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
@@ -30,12 +32,12 @@ export const useTogglePasswordVisibility = () => {
 const UpdateAccountScreen = () => {
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
-  const [password, setPassword] = useState('');
 
+  const [hidePass, setHidePass] = useState(true);
+  const [hidePass1, setHidePass1] = useState(true);
+  const [hidePass2, setHidePass2] = useState(true);
   const navigation = useNavigation();
 
-  const [text, onChangeText] = React.useState("");
-  const [text1, onChangeText1] = React.useState("");
   return (
     <View style={styles.container}>
 
@@ -74,7 +76,7 @@ const UpdateAccountScreen = () => {
             <TextInput
               placeholder=''
               autoCorrect={false}
-              secureTextEntry={false}
+              secureTextEntry={hidePass ? true : false}
               textContentType='username'
               style={{
                 width: '90%',
@@ -87,11 +89,12 @@ const UpdateAccountScreen = () => {
             // onChangeText={onChangeText1}
             // value={text1}
             />
-            <TouchableOpacity>
-              <Pressable onPress={handlePasswordVisibility}>
-                <FontAwesome name='eye-slash' size={22} color="#232323" />
-              </Pressable>
-            </TouchableOpacity>
+            <Icon
+              name={hidePass ? 'eye' : 'eye-slash'}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass(!hidePass)}
+            />
           </View>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mật khẩu mới</Text>
           <View style={{
@@ -107,7 +110,7 @@ const UpdateAccountScreen = () => {
             <TextInput
               placeholder=''
               autoCorrect={false}
-              secureTextEntry={false}
+              secureTextEntry={hidePass1 ? true : false}
               textContentType='username'
               style={{
                 width: '90%',
@@ -120,11 +123,12 @@ const UpdateAccountScreen = () => {
             // onChangeText={onChangeText1}
             // value={text1}
             />
-            <TouchableOpacity>
-              <Pressable onPress={handlePasswordVisibility}>
-                <FontAwesome name='eye-slash' size={22} color="#232323" />
-              </Pressable>
-            </TouchableOpacity>
+            <Icon
+              name={hidePass1 ? 'eye' : 'eye-slash'}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass1(!hidePass1)}
+            />
           </View>
 
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Nhập lại mật khẩu mới</Text>
@@ -144,7 +148,7 @@ const UpdateAccountScreen = () => {
             <TextInput
               placeholder=''
               autoCorrect={false}
-              secureTextEntry={false}
+              secureTextEntry={hidePass2 ? true : false}
               textContentType='username'
               style={{
                 width: '90%',
@@ -157,11 +161,12 @@ const UpdateAccountScreen = () => {
             // onChangeText={onChangeText1}
             // value={text1}
             />
-            <TouchableOpacity>
-              <Pressable onPress={handlePasswordVisibility}>
-                <FontAwesome name='eye-slash' size={22} color="#232323" />
-              </Pressable>
-            </TouchableOpacity>
+            <Icon
+              name={hidePass2 ? 'eye' : 'eye-slash'}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass2(!hidePass2)}
+            />
           </View>
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
             <View style={{ marginTop: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>

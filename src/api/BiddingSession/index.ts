@@ -5,7 +5,7 @@ export const getBiddingSession = async (params: {
   pageSize: number;
 }) => {
   try {
-    const res = await instance.get("/biddingsession", {
+    const res = await instance.get("/api/biddingsession", {
       params: { ...params, orderBy: "Id desc" },
     });
     return res.data;
@@ -16,7 +16,7 @@ export const getBiddingSession = async (params: {
 
 export const getBiddingSessionDetail = async (id: number) => {
   try {
-    const res = await instance.get(`/biddingsession/${id}`);
+    const res = await instance.get(`/api/biddingsession/${id}`);
     return res.data;
   } catch (error) {
     return Promise.reject(error);

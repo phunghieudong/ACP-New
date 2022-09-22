@@ -128,7 +128,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('BiddingList',{BiddingSessionData:item.Id})}
+            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity })}
           >
             <View style={styles.box}>
               <View style={{ width: '100%', flexDirection: 'row' }}>

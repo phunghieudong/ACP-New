@@ -6,18 +6,16 @@ import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
 import Swiper from "react-native-swiper";
-
+import { getBiddingSession } from "../../../../api/BiddingSession/index";
+import { BiddingSessionProps } from "../../../../navigators/types/Profile";
+import { BiddingSessionData } from "../../../../types/BiddingSession";
 import Modal from "react-native-modal";
 
-const BiddingListScreen = () => {
-
-    const navigation = useNavigation();
-
-    const [isModalVisible, setModalVisible] = useState(false);
-
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
+const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
+    route: {
+        params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity },
+    },
+}) => {
     return (
         <View style={styles.container}>
             <Swiper
@@ -56,33 +54,33 @@ const BiddingListScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={{ marginTop: 6, marginHorizontal: 20 }}>
-                <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án dừa Bến Tre</Text>
+                <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án {Name}</Text>
                 <Text style={{ fontSize: 14, color: '#999999', }}>Chi tiết phần phiên đấu thầu mà anh chị quan tâm</Text>
             </View>
             <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Tên phiên</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>SP001</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{Name}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Sẩn phẩm</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa nước</Text>
+                    <Text style={{ fontSize: 14, color: "#999999" }}>Sản phẩm</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{ProductName}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian bắt đầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>10:00</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{StartDate}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian kết thúc</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>13:00</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{EndDate}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu gói thầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>3,000</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MinimumQuantity}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối đa gói thầu </Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>5,000</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MaximumQuantity}</Text>
                 </View>
             </View>
 

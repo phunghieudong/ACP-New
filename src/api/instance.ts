@@ -14,8 +14,9 @@ function getUrl(config: any) {
 export const getAuthHeader = async () => {
   // const accessToken = await getAccessToken();
   const accessToken = await LocalStorage.getToken();
+  console.log("accessToken", accessToken); 
   if (accessToken !== null) {
-    return { Authorization: "Bearer" + accessToken };
+    return { Authorization: "Bearer" +" "+accessToken };
   } else {
     return "";
   }

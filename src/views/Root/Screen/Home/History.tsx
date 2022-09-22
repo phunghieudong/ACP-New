@@ -1,194 +1,91 @@
 
 
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState, FC } from 'react';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, FlatList, TouchableWithoutFeedback } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
-const HistoryScreen = ({ navigation }) => {
+import { getBiddingTicket } from "../../../../api/BiddingTick/index";
+import { BiddingTicketProps } from "../../../../navigators/types/Profile";
+import { BiddingTicketData } from "../../../../types/BiddingTicket";
+import moment from 'moment';
+const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-  const [leftNumber, setLeftNumber] = useState<number>();
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const [visible, setVisible] = useState(false);
 
-  const [user, setUser] = useState<IUser>();
+  const [data, setData] = useState<BiddingTicketData[]>([]);
+  const [page, setPage] = useState({ current: 1, next: true });
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-
-    setLeftNumber(69);
-  }, []);
-
-  const callApi = () => {
-
-
-    const newUser: IUser = {
-      ID: '1',
-      Phone: '1',
-      FullName: '1',
-      Role: 'dev',
-      Status: 'active',
-    };
-
-    return newUser;
-  };
-
-  const getUser = async () => {
-    try {
-      const response = await callApi();
-      if (!!response) {
-        setUser(response);
+    (async () => {
+      try {
+        const { current, next } = page;
+        if (next) {
+          const params = { pageIndex: current, pageSize: 20 };
+          const res = await getBiddingTicket(params);
+          console.log("res ne ban oi", res);
+          if (res.ResultCode == 200) {
+            setData([...res.Data.Items.filter((item) => item.CreatedBy == "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef")]);
+            console.log("res ne ban oi", res);
+          }
+          if (!ready) setReady(true);
+        }
+      } catch (error) {
       }
-    } catch (error) {
-      console.log('getUser: ', error);
-    }
-
-
-  };
+    })();
+  }, [page.current]);
 
   return (
     <View style={styles.container}>
-
-      <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 25 }}>
-
-        <View style={{ flexDirection: 'row', width: 50 }}>
-
-
-        </View>
-
+      <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 64, justifyContent: 'center', alignItems: 'center' }}>
         <View >
-          <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Lịch sử đấu thầu</Text>
+          <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600', textAlign: 'center' }}>Lịch sử đấu thầu</Text>
         </View>
-
-        <View style={{ flexDirection: 'row', height:30 , width:30 }}>
-         
-
-        </View>
-
       </View>
+      <FlatList
+        data={data}
+        style={styles.body}
+        numColumns={2}
+        onEndReachedThreshold={0.5}
+        keyExtractor={(i) => i.Id.toString()}
+        renderItem={({ item }) => (
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('HistoryDetail', { FullName: item.FullName, Price: item.Price, Quantity: item.Quantity, BiddingName: item.BiddingName, BiddingSessionName: item.BiddingSessionName, Thumbnail: item.Thumbnail, Id: item.Id, Created: item.Created })}
+          >
+            <View style={styles.box}>
+              <View style={{ width: '100%', flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row' }}>
 
+                  <View style={{ flexDirection: 'column' }}>
+                    <Image
+                      source={{ uri: item.Thumbnail }}
+                      style={{ width: 164, height: 100, borderRadius: 6 }}
+                    />
+                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.BiddingName}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <Image
+                        source={require('../../../../assets/images/clock.png')}
+                        style={{ width: 14, height: 14, marginRight: 5 }}
+                      />
+                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                      <Text>{moment(item.Created * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
 
-      <ScrollView style={{ marginTop: 32 }}>
-        <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
+                    </View>
+                  </View>
 
-                  source={require('../../../../assets/images/image1.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image2.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
                 </View>
               </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
+            </View>
+          </TouchableWithoutFeedback>
+        )}
+      />
 
-                  source={require('../../../../assets/images/image3.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
 
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
 
-                  source={require('../../../../assets/images/image4.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center', marginTop: 15 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image1.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('HistoryDetail')}>
-              <View style={{ flexDirection: 'column' }}>
-                <Image
-
-                  source={require('../../../../assets/images/image4.png')}
-                  style={{ width: 164, height: 100 }}
-                />
-                <Text>Chào thầu dự án dừa</Text>
-                <Text>Bến Tre</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image
-
-                    source={require('../../../../assets/images/clock.png')}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text>11/08/2022</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
     </View>
   );
 };
@@ -196,10 +93,22 @@ const HistoryScreen = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
+  body: {
+    paddingHorizontal: 20,
+    backgroundColor: '#fff'
 
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
+
+  },
+  box: {
+    backgroundColor: "#fff",
+    borderRadius: 4,
+    padding: 14,
+    marginTop: 5,
+    flexDirection: "column",
 
   },
   text: {

@@ -6,7 +6,7 @@ import HeaderRoot from "../../../../components/HeaderRoot/index";
 import Swiper from "react-native-swiper";
 import { BottomSheet } from 'react-native-btr';
 import { FontAwesome } from '@expo/vector-icons';
-
+import moment from 'moment';
 import { getBiddingSession } from "../../../../api/BiddingSession/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
@@ -65,7 +65,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           const res = await getBiddingSession(params);
           console.log("res ne ban oi", res);
           if (res.ResultCode == 200) {
-            setData([...res.Data.Items]);
+            setData([...res.Data.Items.filter((item) => item.Status == 1)]);
             console.log("res ne ban oi", res);
           }
           if (!ready) setReady(true);
@@ -145,7 +145,9 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                         source={require('../../../../assets/images/clock.png')}
                         style={{ width: 14, height: 14, marginRight: 5 }}
                       />
-                      <Text>{item.BiddingSessionTimeOut}</Text>
+                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                      <Text> {moment(item.BiddingSessionTimeOut * 1000).format('DD/MM/YYYY, HH:mm:ss')}</Text>
+
                     </View>
                   </View>
 

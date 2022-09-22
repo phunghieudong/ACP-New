@@ -10,7 +10,7 @@ import { getBiddingSession } from "../../../../api/BiddingSession/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
 import Modal from "react-native-modal";
-
+import moment from 'moment';
 const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
     route: {
         params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity },
@@ -68,11 +68,11 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian bắt đầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{StartDate}</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(StartDate * 1000).format('DD/MM/YYYY, HH:mm:ss')}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian kết thúc</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{EndDate}</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(EndDate * 1000).format('DD/MM/YYYY, HH:mm:ss')}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu gói thầu</Text>

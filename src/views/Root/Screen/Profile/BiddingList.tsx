@@ -68,11 +68,11 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian bắt đầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(StartDate * 1000).format('DD/MM/YYYY, HH:mm:ss')}</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(StartDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian kết thúc</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(EndDate * 1000).format('DD/MM/YYYY, HH:mm:ss')}</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(EndDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                     <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu gói thầu</Text>

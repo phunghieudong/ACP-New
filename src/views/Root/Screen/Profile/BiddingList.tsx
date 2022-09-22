@@ -57,8 +57,7 @@ const BiddingListScreen = () => {
             </View>
             <View style={{ marginTop: 6, marginHorizontal: 20 }}>
                 <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án dừa Bến Tre</Text>
-                <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
-                    text ever since the 1500s</Text>
+                <Text style={{ fontSize: 14, color: '#999999', }}>Chi tiết phần phiên đấu thầu mà anh chị quan tâm</Text>
             </View>
             <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>

@@ -4,4 +4,8 @@ export type BiddingSessionData = {
   Active: boolean;
   Created: Date;
   Id: number;
+  ProductName: string;
+  Thumbnail:string;
+  BiddingSessionTimeOut:number;
+  Status:number;
 };

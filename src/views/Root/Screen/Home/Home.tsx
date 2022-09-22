@@ -63,15 +63,11 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         if (next) {
           const params = { pageIndex: current, pageSize: 20 };
           const res = await getBiddingSession(params);
-
           console.log("res ne ban oi", res);
-
           if (res.ResultCode == 200) {
             setData([...res.Data.Items]);
             console.log("res ne ban oi", res);
           }
-
-
           if (!ready) setReady(true);
         }
       } catch (error) {
@@ -96,7 +92,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-
       <Swiper
         showsButtons={false}
         height={160}
@@ -123,72 +118,44 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       </Swiper>
       <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
         <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-        <Text style={{ fontSize: 14, color: '#999999', }}>Lorem Ipsum has been the industry's standard dummy
-          text ever since the 1500s</Text>
+        <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text>
       </View>
       <FlatList
         data={data}
         style={styles.body}
-        onEndReached={() => setPage({ ...page, current: page.current + 1 })}
+        numColumns={2}
         onEndReachedThreshold={0.5}
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
-          <TouchableWithoutFeedback >
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('BiddingList',{BiddingSessionData:item.Id})}
+          >
             <View style={styles.box}>
-              <View>
-                <Image
-                  source={require("../../../../assets/images/image1.png")}
-                  style={{ height: 150, width: "100%", borderRadius: 6 }}
-                />
+              <View style={{ width: '100%', flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row' }}>
+
+                  <View style={{ flexDirection: 'column' }}>
+                    <Image
+                      source={{ uri: item.Thumbnail }}
+                      style={{ width: 164, height: 100, borderRadius: 6 }}
+                    />
+                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <Image
+                        source={require('../../../../assets/images/clock.png')}
+                        style={{ width: 14, height: 14, marginRight: 5 }}
+                      />
+                      <Text>{item.BiddingSessionTimeOut}</Text>
+                    </View>
+                  </View>
+
+                </View>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", paddingVertical: 5 }}>
-                <Image
-                  source={require("../../../../assets/images/image1.png")}
-                  style={{ height: 15, width: 15, marginRight: 8 }}
-                />
-                <Image
-                  source={require("../../../../assets/images/image1.png")}
-                  style={{ height: 17, width: 1, marginRight: 8 }}
-                />
-                <Image
-                  source={require("../../../../assets/images/image1.png")}
-                  style={{ height: 15, width: 15 }}
-                />
-                {/* <Text style={{ color: "#666666" }}> {item.CreatedBy}</Text> */}
-              </View>
-
-
-
             </View>
           </TouchableWithoutFeedback>
         )}
       />
-      <View style={{ marginTop: 24, height: 600, width: '100%', flexDirection: 'column' }}>
-        <View style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('BiddingList')}>
-            <View style={{ flexDirection: 'column' }}>
-              <Image
 
-                source={require('../../../../assets/images/image1.png')}
-                style={{ width: 164, height: 100 }}
-              />
-              <Text>Chào thầu dự án dừa</Text>
-              <Text>Bến tre</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-
-                  source={require('../../../../assets/images/clock.png')}
-                  style={{ width: 14, height: 14, marginRight: 5 }}
-                />
-                <Text>11/08/2022</Text>
-              </View>
-
-            </View>
-          </TouchableOpacity>
-
-        </View>
-
-      </View>
 
       <BottomSheet
         visible={isModalVisible}
@@ -334,7 +301,7 @@ const styles = StyleSheet.create({
   },
   body: {
     paddingHorizontal: 20,
-    backgroundColor: 'green'
+    backgroundColor: '#fff'
 
   },
   logo: {

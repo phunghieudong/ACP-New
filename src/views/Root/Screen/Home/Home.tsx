@@ -63,19 +63,19 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         if (next) {
           const params = { pageIndex: current, pageSize: 20 };
           const res = await getBiddingSession(params);
+
+          console.log("res ne ban oi", res);
+
           if (res.ResultCode == 200) {
             setData([...res.Data.Items]);
             console.log("res ne ban oi", res);
           }
 
 
-          // if (current >= res.Data.TotalPage) {
-          //   setPage({ ...page, next: false });
-          // }
           if (!ready) setReady(true);
         }
       } catch (error) {
-        throw new Error("Data méo có , tẹo rồi mầy ạ !");
+
       }
     })();
   }, [page.current]);

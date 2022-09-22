@@ -29,7 +29,7 @@ const SigninScreen = () => {
   const [errorText, setErrorText] = useState<string>('');
 
 
-  const [tokendemo , setTokenDemo] = useState<any>('');
+  const [tokendemo, setTokenDemo] = useState<any>('');
 
   // AsyncStorage luu 
 
@@ -78,30 +78,23 @@ const SigninScreen = () => {
     try {
       const jsonValue = JSON.stringify(tokendemo); // chuyen dổi
       await AsyncStorage.setItem("TOKEN", jsonValue); // luu token 
-      console.log('jsonValudsadadadae===============', jsonValue);
-    } catch (error) {}
+      console.log('jsonValue-> Lưu Token', jsonValue);
+    } catch (error) { }
   }
   setTToken();
 
-const getIteamStorage = async () => {
+  const getIteamStorage = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem("TOKEN"); // lây nhung gì trong cai bo 
-      console.log("============================",jsonValue);
-    } catch (error) {}
+      console.log("Lấy token", jsonValue);
+    } catch (error) { }
   };
   getIteamStorage();
 
-  const datamuonlu = "dâdsadasda"
-
-  let data = null;
-  const dete = () => {
-      data(datamuonlu)
-  }
-  dete()
 
 
-  
-  
+
+
   // const getData = AsyncStorage.getItem('@storage_Key')
   // console.log(getData);
 

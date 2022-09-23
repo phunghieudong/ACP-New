@@ -146,7 +146,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                         style={{ width: 14, height: 14, marginRight: 5 }}
                       />
                       {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{moment(item.BiddingSessionTimeOut * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
+                      <Text>{item.BiddingSessionTimeOut} </Text>
 
                     </View>
                   </View>

@@ -58,13 +58,13 @@ const SigninScreen = () => {
       console.log("Pass vs Accout", data);
 
       // storeData(res.Data.token)
-      setTokenDemo(res.Data.token);
+      LocalStorage.setToken(res.Data.token);
 
       if (res.ResultCode === 200) {
         navigation.replace("Auth")
         // handleLogged(res);
       } else {
-        setErrorText(res?.ResultMessage);
+        setErrorText(res.ResultMessage);
       }
     } catch (error: any) {
       setErrorText(error?.message);

@@ -1,16 +1,33 @@
+import { appConfig } from "../../configs";
 import { instance } from "../instance";
+const FormData = require("form-data");
 
-export const getCreateBiddingTick = async (params: {
-  pageIndex: number;
-  pageSize: number;
-}) => {
-  try {
-    const { pageIndex, pageSize } = params;
-    const res = await instance.get(
-      `/api/biddingticket?PageIndex=${pageIndex}&PageSize=${pageSize}&OrderBy=0`
-    );
-    return res.data;
-  } catch (error) {
-    return Promise.reject(error);
-  }
+const PostBiddingTicket = {
+  async Ticket(data: any) {
+    const formdata = new FormData();
+    formdata.append("quantity", data?.quantity);
+    formdata.append("price", data?.price);
+
+    var requestOptions: any = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    let temp: any = [];
+
+    await fetch(appConfig.hostURL + "/api/biddingticket", requestOptions)
+      .then((response) => response.text())
+      .then((result) => (temp = JSON.parse(result)))
+      .catch((error) => console.log("error", error));
+
+    return temp;
+  },
+
+  register(data: any) {
+    return instance.post("/api/biddingticket", data);
+  },
 };
+
+export { PostBiddingTicket };
+

@@ -11,11 +11,17 @@ import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
 import Modal from "react-native-modal";
 import moment from 'moment';
+
 const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
+
     route: {
         params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity },
     },
+
+
 }) => {
+    const [shouldShow, setShouldShow] = useState(false);
+
     return (
         <View style={styles.container}>
             <Swiper
@@ -86,66 +92,87 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
 
 
 
-            <TouchableOpacity >
-                <View style={{ marginTop: 16, marginHorizontal: 20 }}>
-                    <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
 
-                </View>
-            </TouchableOpacity>
-
-            <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 1</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 2</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 3</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
-                </View>
-
+            <View style={{ marginTop: 16, marginHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
+                <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+                    <Text style={{ fontSize: 20, color: 'blue', fontWeight: "600", fontStyle: 'italic' }}>(Xem thêm)</Text>
+                </TouchableOpacity>
             </View>
 
+            {shouldShow ? (
+                <><View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 1</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 2</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 3</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                    </View>
 
-            <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 10 }}>
+                </View>
+                    <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 10, height: 150, marginTop: 20 }}>
+                        {/* <View style={{ flexDirection: 'row' , justifyContent:"space-around", alignItems:'center'}}>
+                            <Image
+                                source={require('../../../../assets/images/image1.png')}
+                                style={{ width: 75, height: 75 }} />
+                            <Image
+                                source={require('../../../../assets/images/image2.png')}
+                                style={{ width: 75, height: 75 }} />
+                            <Image
+                                source={require('../../../../assets/images/image3.png')}
+                                style={{ width: 75, height: 75 }} />
 
-                <Swiper
-                    showsButtons={true}
-                    endFillColor="green"
-                    height={80}
-                    containerStyle={{ flex: 0 }}
-                    activeDotColor={"#9CBD44"}
-                    dotColor="rgba(0, 0, 0, .2)"
-                    paginationStyle={{
-                        bottom: 8,
-                    }}
-                >
-                    <Image
-                        source={require('../../../../assets/images/image1.png')}
-                        style={{ width: "100%", height: 80 }}
-                    />
-                    <Image
-                        source={require('../../../../assets/images/image2.png')}
-                        style={{ width: "100%", height: 80 }}
-                    />
-                    <Image
-                        source={require('../../../../assets/images/image3.png')}
-                        style={{ width: "100%", height: 80 }}
-                    />
-                </Swiper>
-            </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 3 }}>
+                        </View> */}
+                        {/* <View style={{ flexDirection: 'row' , justifyContent:'space-around', alignItems:'center'}}>
+                            <Image
+                                source={require('../../../../assets/images/image1.png')}
+                                style={{ width: 75, height: 75 }} />
+                            <Image
+                                source={require('../../../../assets/images/image2.png')}
+                                style={{ width: 75, height: 75 }} />
+                            <Image
+                                source={require('../../../../assets/images/image3.png')}
+                                style={{ width: 75, height: 75 }} />
+
+                        </View> */}
+                        <Swiper
+                            showsButtons={true}
+                            endFillColor="green"
+                            height={80}
+                            containerStyle={{ flex: 0 }}
+                            activeDotColor={"#9CBD44"}
+                            dotColor="rgba(0, 0, 0, .2)"
+                            paginationStyle={{
+                                bottom: 8,
+                            }}
+                        >
+                            <Image
+                                source={require('../../../../assets/images/image1.png')}
+                                style={{ width: "100%", height: 80 }} />
+                            <Image
+                                source={require('../../../../assets/images/image2.png')}
+                                style={{ width: "100%", height: 80 }} />
+                            <Image
+                                source={require('../../../../assets/images/image3.png')}
+                                style={{ width: "100%", height: 80 }} />
+                        </Swiper>
+                    </View>
+
+                </>
+            ) : null}
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding')}>
                     <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
                     </View>
                 </TouchableOpacity>
             </View>
-
-
         </View>
     );
 };

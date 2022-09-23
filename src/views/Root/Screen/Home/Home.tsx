@@ -55,7 +55,34 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
+  const handleConvertTime = (data) => {
+    console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
+    let time = Math.round((data * 1000 - new Date().getTime()) / 1000)
 
+    if (time < 0) {
+      time = time * -1
+    }
+
+    let content = ''
+    let days = Math.floor(time / 86400)
+    time = time - days * 86400
+    let hours = Math.floor(time / 3600)
+    time = time - hours * 3600
+    let minutes = Math.floor(time / 60)
+    time = time - minutes * 60
+    if (days) content += days + ' ngày'
+    if (hours || days) {
+      if (days) content += ', '
+      content += hours + ' giờ, '
+    }
+    content += minutes + ' phút'
+    return (
+
+      <>
+        <Text>{content}</Text>
+      </>
+    )
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -146,7 +173,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                         style={{ width: 14, height: 14, marginRight: 5 }}
                       />
                       {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{item.BiddingSessionTimeOut} </Text>
+                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
 
                     </View>
                   </View>
@@ -227,35 +254,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                     </Pressable>
                   </TouchableOpacity>
                 </View>
-                <View style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  elevation: 10,
-                  marginTop: 16,
-                  borderRadius: 6,
-                }}>
-                  <TextInput
-                    placeholder='Ngày đấu thầu'
-                    autoCorrect={false}
-                    secureTextEntry={false}
-                    textContentType='username'
-                    style={{
-                      width: '90%',
-                      height: 40,
-                      borderRadius: 6,
-                      paddingHorizontal: 16,
-                    }}
-                  // onChangeText={onChangeText1}
-                  // value={text1}
-                  />
-                  <TouchableOpacity style={{ marginRight: 10 }}>
-                    <Pressable onPress={handlePasswordVisibility}>
-                      <FontAwesome name='calendar' size={18} color="#232323" />
-                    </Pressable>
-                  </TouchableOpacity>
-                </View>
+
                 {/* <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 20, flexDirection:"row", borderRadius:6 , alignItems:"flex-start"}}>
                 <Text>XÁC NHẬN</Text>
               </View> */}

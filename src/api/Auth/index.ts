@@ -34,26 +34,3 @@ const accountApi = {
 
 export { accountApi };
 
-  // async login(data: any) {
-  //   var formdata = new FormData();
-  //   formdata.append("username", data?.username);
-  //   formdata.append("password", data?.password);
-
-  //   var requestOptions: any = {
-  //     method: "POST",
-  //     body: formdata,
-  //     redirect: "follow",
-  //   };
-
-  //   let temp: any = [];
-
-  //   await fetch(
-  //     appConfig.hostURL + "/api/authenticate/mobile-login",
-  //     requestOptions
-  //   )
-  //     .then((response) => response.text())
-  //     .then((result) => (temp = JSON.parse(result)))
-  //     .catch((error) => console.log("error", error));
-
-  //   return temp;
-  // },

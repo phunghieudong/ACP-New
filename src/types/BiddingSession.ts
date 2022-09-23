@@ -4,12 +4,11 @@ export type BiddingSessionData = {
   Created: Date;
   Id: number;
   ProductName: string;
-  Thumbnail:string;
-  BiddingSessionTimeOut:number;
-  Status:number;
-  StartDate:Date;
-  EndDate:Date;
-  MinimumQuantity:number;
-  MaximumQuantity:number;
-
+  Thumbnail: string;
+  BiddingSessionTimeOut: Date;
+  Status: number;
+  StartDate: Date;
+  EndDate: Date;
+  MinimumQuantity: number;
+  MaximumQuantity: number;
 };

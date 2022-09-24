@@ -7,6 +7,7 @@ const PostBiddingTicket = {
     const formdata = new FormData();
     formdata.append("quantity", data?.quantity);
     formdata.append("price", data?.price);
+    formdata.append("biddingSessionId", data?.biddingSessionId);
 
     var requestOptions: any = {
       method: "POST",
@@ -24,9 +25,7 @@ const PostBiddingTicket = {
     return temp;
   },
 
-  register(data: any) {
-    return instance.post("/api/biddingticket", data);
-  },
+  
 };
 
 export { PostBiddingTicket };

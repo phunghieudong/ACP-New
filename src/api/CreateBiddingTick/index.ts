@@ -18,7 +18,7 @@ const PostBiddingTicket = {
 
     await fetch(appConfig.hostURL + "/api/biddingticket", requestOptions)
       .then((response) => response.text())
-      .then((result) => (temp = JSON.parse(result)))
+      .then((result) => (temp = result))
       .catch((error) => console.log("error", error));
 
     return temp;

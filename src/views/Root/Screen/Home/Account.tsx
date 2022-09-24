@@ -4,20 +4,26 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, To
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import ToggleSwitch from "toggle-switch-react-native";
-const AccountScreen = ({ navigation }) => {
+import { useNavigation } from '@react-navigation/native';
+import { LocalStorage } from '../../../../utils/LocalStorage';
+
+
+const AccountScreen = ({  }) => {
+  const navigation = useNavigation<any>();
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () => {
     setEnabled((oldValue) => !oldValue);
   };
 
-  function showToast() {
-    ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
-  }
+
   // const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
   // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
   // const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
-
+const _logout = ()=> {
+  LocalStorage.logout();
+  navigation.navigate('SigninScreeen')
+}
   return (
     <View style={styles.container}>
 
@@ -26,7 +32,7 @@ const AccountScreen = ({ navigation }) => {
       </View>
       <View style={styles.container}>
         <ScrollView style={{ height: 1000 }}>
-          <TouchableOpacity onPress={showToast}>
+          <TouchableOpacity>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
 
@@ -88,7 +94,7 @@ const AccountScreen = ({ navigation }) => {
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity onPress={showToast}>
+          <TouchableOpacity >
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
               <Image
 
@@ -128,7 +134,7 @@ const AccountScreen = ({ navigation }) => {
             </View>
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity onPress={showToast}>
+          <TouchableOpacity  onPress={_logout}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, marginBottom: 20 }}>
               <Image
 

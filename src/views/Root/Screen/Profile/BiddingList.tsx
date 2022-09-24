@@ -15,7 +15,7 @@ import moment from 'moment';
 const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
 
     route: {
-        params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity },
+        params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity, Id },
     },
 
 

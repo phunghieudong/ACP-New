@@ -155,7 +155,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity })}
+            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity ,Id:item.Id})}
           >
             <View style={styles.box}>
               <View style={{ width: '100%', flexDirection: 'row' }}>
@@ -167,7 +167,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                       style={{ width: 164, height: 100, borderRadius: 6 }}
                     />
                     <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width:"90%" }}>
                       <Image
                         source={require('../../../../assets/images/clock.png')}
                         style={{ width: 14, height: 14, marginRight: 5 }}
@@ -322,9 +322,11 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: "#fff",
     borderRadius: 4,
-    padding: 14,
     marginTop: 5,
     flexDirection: "column",
+    justifyContent:'space-between',
+    alignItems:'center',
+    width:"55%"
 
   },
   detail: {

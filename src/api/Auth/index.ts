@@ -30,6 +30,9 @@ const accountApi = {
   register(data: any) {
     return instance.post("/api/CreateAccount", data);
   },
+  forgotpass(data: any){
+    return instance.put("/api/forgot-password", data);
+  }
 };
 
 export { accountApi };

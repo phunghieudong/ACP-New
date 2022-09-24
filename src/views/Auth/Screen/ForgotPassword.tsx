@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, TextInput, StyleSheet, Pressable } from 'react-native';
 import { ViewProps } from '../../../navigators/types/navigation';
 import { FontAwesome } from '@expo/vector-icons';
+import { accountApi } from '../../../api/Auth';
 
 
 // import { useTogglePasswordVisibility } from './hooks/useTogglePasswordVisibility';
@@ -10,6 +11,30 @@ import { FontAwesome } from '@expo/vector-icons';
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
+  const [username , setUserName] = useState('dongph');
+
+  useEffect(() => {
+    putFprgot()
+  }, []);
+
+
+  const putFprgot = () => {
+    try {
+      const res = accountApi.forgotpass({userName : username});
+      console.log(res);
+      
+    } catch (error) {
+      console.log(error?.message);
+      
+    }
+    
+  }
+
+
+
+
+
+
 
   const handlePasswordVisibility = () => {
     if (rightIcon === 'eye') {
@@ -36,6 +61,8 @@ function ForgotPasswordScreen() {
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
   const [password, setPassword] = useState('');
+
+
 
   return (
     <View style={{

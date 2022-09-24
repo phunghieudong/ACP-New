@@ -18,7 +18,7 @@ const SigninScreen = () => {
   const [hidePass, setHidePass] = useState(true);
   const keyboard: boolean = useKeyboard(); // true, false
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation<ViewProps['navigation']>();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const backGroundHeight: number = height + insets.top + insets.bottom;
   const dispatch = useDispatch();

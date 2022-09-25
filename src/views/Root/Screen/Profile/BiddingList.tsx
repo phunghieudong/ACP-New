@@ -20,6 +20,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
 
 
 }) => {
+   
     const [shouldShow, setShouldShow] = useState(false);
 
     return (
@@ -167,7 +168,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 </>
             ) : null}
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding')}>
+                <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding' , {ID : Id})}>
                     <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
                     </View>

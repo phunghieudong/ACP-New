@@ -10,26 +10,11 @@ import ErrorText from '../../../../components/More/error-text';
 import { ToastAndroid } from 'react-native';
 const SignUpBidingScreen = (props: any) => {
     const ID = props.route.params.ID;
-    const [quantity, setQuantity] = useState<any>('200');
-    const [price, setPrice] = useState<any>('20000');
+    const MinimumQuantity = props.route.params.MinimumQuantity;
+    const MaximumQuantity = props.route.params.MaximumQuantity;
+    const [quantity, setQuantity] = useState<any>('');
+    const [price, setPrice] = useState<any>('');
     const [errorText, setErrorText] = useState<string>('');
-
-
-
-    // useEffect(() => {
-    //      PostBidding ();
-
-    // }, [])
-
-
-    // const BiddingTicket = () => {
-    //     PostBidding({
-    //         quantity: quantity,
-    //         price: price,
-    //         biddingSessionId: ID
-    //     });
-    // }
-
 
     const BiddingTicket = () => {
         console.log("resdddddddddddddđongggggggggggggggg");
@@ -38,6 +23,13 @@ const SignUpBidingScreen = (props: any) => {
             setErrorText('Vui lòng nhập số lượng ');
         } else if (!!!price) {
             setErrorText('Vui lòng nhập giá');
+        }
+
+        else if (quantity < MinimumQuantity) {
+            setErrorText('Vui lòng nhập số lượng lớn hơn giới hạn');
+        }
+        else if (quantity > MaximumQuantity) {
+            setErrorText('Vui lòng nhập số lượng nhỏ hơn giới hạn');
         } else {
             PostBidding({
                 quantity: quantity,

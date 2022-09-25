@@ -10,6 +10,7 @@ type Routers = {
   BiddingList: any;
   SignUpBiding: any;
   Confirm: any;
+  ConfirmFail: any;
   AllHome: any;
   HistoryScreen: any;
   HistoryDetailScreen: any;

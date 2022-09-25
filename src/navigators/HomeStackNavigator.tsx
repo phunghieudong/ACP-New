@@ -8,6 +8,7 @@ import HomeScreen from "../views/Root/Screen/Home/Home";
 import BiddingList from "../views/Root/Screen/Profile/BiddingList";
 import SignUpBiding from "../views/Root/Screen/Profile/SignUpBiding";
 import Confirm from "../views/Root/Screen/Profile/Confirm";
+import ConfirmFail from "../views/Root/Screen/Profile/ConfirmFail";
 import ChangePassword from "../views/Root/Screen/Home/ChangePassword";
 import UpdateAccount from "../views/Root/Screen/Home/UpdateAccount";
 import SigninScreeen from "../views/Auth/Screen/Signin";
@@ -26,6 +27,7 @@ function RootStackNavigator() {
             <Stack.Screen name="BiddingList" component={BiddingList} />
             <Stack.Screen name="SignUpBiding" component={SignUpBiding} />
             <Stack.Screen name="Confirm" component={Confirm} />
+            <Stack.Screen name="ConfirmFail" component={ConfirmFail} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
             <Stack.Screen name="SigninScreeen" component={SigninScreeen} />

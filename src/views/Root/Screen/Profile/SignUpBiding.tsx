@@ -15,6 +15,7 @@ const SignUpBidingScreen = (props: any) => {
     const [errorText, setErrorText] = useState<string>('');
 
 
+
     // useEffect(() => {
     //      PostBidding ();
 
@@ -51,18 +52,29 @@ const SignUpBidingScreen = (props: any) => {
     const PostBidding = async (data: any) => {
         try {
             const res = await PostBiddingTicket.Ticket(data);
-            console.log("day la cai ress post", res);
+
 
             if (res.data.ResultCode === 200) {
-
+                console.log("res-dong", res);
                 navigation.navigate('Confirm')
             }
+            //     else if (res.ResultCode === 500) {
+            //         // ToastAndroid.show("Ban da dau thau phien nay thanh cong", ToastAndroid.BOTTOM);
+            //         // setErrorText(res.ResultMessage);
+            //         setErrorText(res.data.ResultMessage);
+            //         navigation.navigate('ConfirmFail')
+            //     }
+            // } catch (error: any) {
+            //     setErrorText(error?.message);
+            // }
             else {
-                ToastAndroid.show("", ToastAndroid.BOTTOM);
+                // setErrorText(res.ResultMessage);
+                setErrorText(error?.message);
+                // navigation.navigate('Confirm')
             }
-
         } catch (error: any) {
             setErrorText(error?.message);
+            console.log(error);
         }
     }
 

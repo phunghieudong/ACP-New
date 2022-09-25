@@ -57,7 +57,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [ready, setReady] = useState(false);
   const handleConvertTime = (data) => {
     console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
-    let time = Math.round((data * 1000 - new Date().getTime()) / 1000)
+    let time = Math.round((data * 10000000 - new Date().getDate()) / 10000000)
 
     if (time < 0) {
       time = time * -1

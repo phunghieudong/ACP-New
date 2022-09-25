@@ -57,7 +57,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [ready, setReady] = useState(false);
   const handleConvertTime = (data) => {
     console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
-    let time = Math.round((data * 10000000 - new Date().getDate()) / 10000000)
+    let time = Math.round((data * 1000 - new Date().getDate()) / 1000)
 
     if (time < 0) {
       time = time * -1
@@ -70,12 +70,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     time = time - hours * 3600
     let minutes = Math.floor(time / 60)
     time = time - minutes * 60
+    let second = Math.floor(time / 60)
+    time = time - second * 60
     if (days) content += days + ' ngày'
     if (hours || days) {
       if (days) content += ', '
       content += hours + ' giờ, '
     }
-    content += minutes + ' phút'
+    content += minutes + ' phút, '
+    content += minutes + ' giây'
     return (
 
       <>
@@ -155,7 +158,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity ,Id:item.Id})}
+            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id })}
           >
             <View style={styles.box}>
               <View style={{ width: '100%', flexDirection: 'row' }}>
@@ -167,7 +170,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                       style={{ width: 164, height: 100, borderRadius: 6 }}
                     />
                     <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width:"90%" }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" }}>
                       <Image
                         source={require('../../../../assets/images/clock.png')}
                         style={{ width: 14, height: 14, marginRight: 5 }}
@@ -324,9 +327,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginTop: 5,
     flexDirection: "column",
-    justifyContent:'space-between',
-    alignItems:'center',
-    width:"55%"
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: "55%"
 
   },
   detail: {

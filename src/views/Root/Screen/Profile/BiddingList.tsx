@@ -170,7 +170,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 ) : null}
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
                     <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding', { ID: Id, MinimumQuantity: MinimumQuantity, MaximumQuantity: MaximumQuantity })}>
-                        <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ marginTop: 3, marginBottom:20, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
                         </View>
                     </TouchableOpacity>

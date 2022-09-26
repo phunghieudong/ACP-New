@@ -96,6 +96,7 @@ const SignUpBidingScreen = (props: any) => {
                     value={quantity}
                     placeholder='Số lượng'
                     onChangeText={(e: number) => setQuantity(e)}
+                    keyboardType={'numeric'}
 
                 />
                 <Text style={{ marginTop: 16, fontWeight: '600' }}>Giá</Text>
@@ -112,6 +113,7 @@ const SignUpBidingScreen = (props: any) => {
                     value={price}
                     placeholder='Giá tiền'
                     onChangeText={(e: number) => setPrice(e)}
+                    keyboardType={'numeric'}
                 />
                 <ErrorText content={errorText} />
 

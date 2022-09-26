@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, TextInput, StyleSheet, Pressable } from 'react-native';
@@ -31,7 +32,7 @@ function ForgotPasswordScreen() {
       const res = await PutPassword.Password(data);
       if (res.data.ResultCode === 200) {
         console.log("ressssssssssssssssssssssss", res)
-        // navigation.navigate('OTP')
+        navigation.navigate('OTP')
 
       } else {
         console.log("ressssssssssssssssssssssss", res)
@@ -104,7 +105,7 @@ function ForgotPasswordScreen() {
       <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 36, fontWeight: '600', marginTop: 15 }}>Quên mật khẩu</Text>
-          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 }}>Vui lòng nhập UserName của bạn. Chúng tôi sẽ gửi bạn mật khẩu thông qua Email !</Text>
+          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 , paddingHorizontal:20 }}>Vui lòng nhập UserName của bạn. Chúng tôi sẽ gửi bạn mật khẩu thông qua Email !</Text>
         </View>
         <View style={{
           width: 343,

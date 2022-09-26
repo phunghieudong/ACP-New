@@ -77,22 +77,22 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
             onPress={() => navigation.navigate('HistoryDetail', { FullName: item.FullName, Price: item.Price, Quantity: item.Quantity, BiddingName: item.BiddingName, BiddingSessionName: item.BiddingSessionName, Thumbnail: item.Thumbnail, Id: item.Id, Created: item.Created })}
           >
             <View style={styles.box}>
-              <View style={{ width: '100%', flexDirection: 'row' }}>
+              <View style={{ width: '100%', flexDirection: 'row', paddingTop:16 , }}>
                 <View style={{ flexDirection: 'row' }}>
 
                   <View style={{ flexDirection: 'column' }}>
                     <Image
                       source={{ uri: item.Thumbnail }}
-                      style={{ width: 164, height: 100, borderRadius: 6 }}
+                      style={{ width: 150, height: 100, borderRadius: 6 }}
                     />
-                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.BiddingName}</Text>
+                    <Text numberOfLines={1} style={{ width: "70%", fontSize: 16, fontWeight: "400" }}>{item.BiddingName}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                       <Image
                         source={require('../../../../assets/images/clock.png')}
                         style={{ width: 14, height: 14, marginRight: 5 }}
                       />
                       {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{moment(item.Created * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
+                      <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
 
                     </View>
                   </View>
@@ -207,8 +207,9 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   body: {
-    paddingHorizontal: 20,
-    backgroundColor: '#fff'
+    paddingHorizontal: 30,
+    backgroundColor: '#fff',
+
 
   },
   container: {
@@ -217,11 +218,14 @@ const styles = StyleSheet.create({
 
   },
   box: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 4,
-    padding: 14,
     marginTop: 5,
     flexDirection: "column",
+    width: "50%",
+
+
+
 
   },
   text: {

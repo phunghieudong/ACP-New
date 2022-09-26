@@ -77,8 +77,8 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       if (days) content += ', '
       content += hours + ' giờ, '
     }
-    content += minutes + ' phút, '
-    content += minutes + ' giây'
+    content += minutes + ' phút'
+    // content += minutes + ' giây'
     return (
 
       <>
@@ -162,15 +162,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
               onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id })}
             >
               <View style={styles.box}>
-                <View style={{ width: '100%', flexDirection: 'row' }}>
+                <View style={{ width: '100%', flexDirection: 'row' , paddingTop:16}}>
                   <View style={{ flexDirection: 'row' }}>
 
                     <View style={{ flexDirection: 'column' }}>
                       <Image
                         source={{ uri: item.Thumbnail }}
-                        style={{ width: 164, height: 100, borderRadius: 6 }}
+                        style={{ width: 150, height: 100, borderRadius: 6 }}
                       />
-                      <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                      <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" }}>
                         <Image
                           source={require('../../../../assets/images/clock.png')}

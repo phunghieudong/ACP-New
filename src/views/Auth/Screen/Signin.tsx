@@ -24,7 +24,7 @@ const SigninScreen = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state: any) => state.user);
 
-  const [userName, setUserName] = useState<string>('dongph');
+  const [userName, setUserName] = useState<string>('monaprovider');
   const [password, setPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
 
@@ -41,7 +41,7 @@ const SigninScreen = () => {
       setErrorText('Vui lòng nhập tài khoản ');
     } else if (!!!password) {
       setErrorText('Vui lòng nhập mật khẩu');
-    } else if (userName != "dongph" && password == "mona@123") { // Đoan này đang viết bùa - fix lại
+    } else if (userName != "dongph" && password == "NTqVZ2xU") { // Đoan này đang viết bùa - fix lại
       setErrorText('Mật khẩu hoặc tài khoản đăng nhập sai');
     } else {
       FromData({

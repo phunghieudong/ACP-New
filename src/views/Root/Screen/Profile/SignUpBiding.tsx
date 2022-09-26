@@ -15,7 +15,7 @@ const SignUpBidingScreen = (props: any) => {
     const [quantity, setQuantity] = useState<any>('');
     const [price, setPrice] = useState<any>('');
     const [errorText, setErrorText] = useState<string>('');
-
+    const mask = '[000],[000],[000]';
     const BiddingTicket = () => {
 
         setErrorText('');
@@ -55,7 +55,7 @@ const SignUpBidingScreen = (props: any) => {
 
             }
         } catch (error: any) {
-        
+
             navigation.navigate('ConfirmFail')
         }
     }

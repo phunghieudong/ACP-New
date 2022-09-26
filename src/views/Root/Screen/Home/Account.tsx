@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, ToastAndroid } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, ToastAndroid, Modal, Pressable } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import ToggleSwitch from "toggle-switch-react-native";
@@ -8,9 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import { LocalStorage } from '../../../../utils/LocalStorage';
 
 
-const AccountScreen = ({  }) => {
+const AccountScreen = ({ }) => {
   const navigation = useNavigation<any>();
   const [enabled, setEnabled] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const toggleSwitch = () => {
     setEnabled((oldValue) => !oldValue);
   };
@@ -20,10 +21,11 @@ const AccountScreen = ({  }) => {
   // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   // const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
   // const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
-const _logout = ()=> {
-  LocalStorage.logout();
-  navigation.navigate('SigninScreeen')
-}
+  const _logout = () => {
+    LocalStorage.logout();
+    navigation.navigate('SigninScreeen')
+  }
+
   return (
     <View style={styles.container}>
 
@@ -134,7 +136,8 @@ const _logout = ()=> {
             </View>
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity  onPress={_logout}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, marginBottom: 20 }}>
               <Image
 
@@ -146,7 +149,37 @@ const _logout = ()=> {
           </TouchableOpacity>
         </ScrollView>
       </View>
+      <Modal
+        animationType="fade"
+        transparent={false}
+        visible={modalVisible}
+      // onRequestClose={() => {
+      //   Alert.alert("Modal has been closed.");
+      //   setModalVisible(!modalVisible);
+      // }}   onPress={_logout}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Bạn có chắc chắn muốn đăng xuất khỏi ứng dụng ?</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>THOÁT</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button1, styles.buttonClose1]}
+                onPress={_logout}
+              >
+                <Text style={styles.textStyle}>ĐĂNG XUẤT</Text>
+              </Pressable>
+            </View>
 
+
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -167,5 +200,55 @@ const styles = StyleSheet.create({
     color: '#fff',
     borderRadius: 12,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 20,
+    elevation: 2
+  },
+  button1: {
+    borderRadius: 20,
+    padding: 20,
+    elevation: 2,
+    marginLeft: 5
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  buttonClose1: {
+    backgroundColor: "red",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
 export default AccountScreen; 

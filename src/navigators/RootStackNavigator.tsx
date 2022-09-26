@@ -11,6 +11,7 @@ import History from "../views/Root/Screen/Home/History";
 import Information from "../views/Root/Screen/Home/Information";
 import Account from "../views/Root/Screen/Home/Account";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from 'green-native-ts/src/components/Icon';
 // chổ này là cái tab
 // const Stack = createNativeStackNavigator<Routers>();
 const Tab = createBottomTabNavigator();
@@ -19,9 +20,12 @@ function RootStackNavigator() {
     <Tab.Navigator
 
       initialRouteName="Feed"
+    
+    
       screenOptions={{
         tabBarActiveTintColor: '#A5C63F',
         tabBarHideOnKeyboard: true,
+       
         tabBarStyle: {
           backgroundColor: '#FFFFFF',
           height: 84,
@@ -38,15 +42,17 @@ function RootStackNavigator() {
         component={HomeStackNavigator}
         options={{
           headerShown: false,
-          tabBarIcon: ({ }) => (
+          // tabBarLabel: 'Home',
+          tabBarIcon: ({color  }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <Image
+              {/* <Image
                 source={require('../../src/assets/images/tab1.png')}
                 style={{ width: 20, height: 20, marginRight: 5 }}
-              />
+              /> */}
+               <MaterialCommunityIcons name="home" color={color} size={26} />
             </View>
           ),
-          tabBarLabel: ({ }) => (
+          tabBarLabel: ({ color}) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
               <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
             </View>

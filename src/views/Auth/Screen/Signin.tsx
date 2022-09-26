@@ -41,6 +41,8 @@ const SigninScreen = () => {
       setErrorText('Vui lòng nhập tài khoản ');
     } else if (!!!password) {
       setErrorText('Vui lòng nhập mật khẩu');
+    } else if (userName != "dongph" && password == "mona@123") { // Đoan này đang viết bùa - fix lại
+      setErrorText('Mật khẩu hoặc tài khoản đăng nhập sai');
     } else {
       FromData({
         username: userName,
@@ -67,8 +69,8 @@ const SigninScreen = () => {
         setErrorText(res.ResultMessage);
       }
     } catch (error: any) {
-      setErrorText(error?.message);
-      console.log(error);
+      // setErrorText(error?.message);
+      // console.log(error);
     }
   }
 

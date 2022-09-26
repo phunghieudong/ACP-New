@@ -122,72 +122,73 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-      <Swiper
-        showsButtons={false}
-        height={160}
-        containerStyle={{ flex: 0 }}
-        activeDotColor={"#E7312F"}
-        dotColor="rgba(0, 0, 0, .2)"
-        paginationStyle={{
-          bottom: 8,
-        }}
-      >
-        <Image
+      <ScrollView>
+        <Swiper
+          showsButtons={false}
+          height={160}
+          containerStyle={{ flex: 0 }}
+          activeDotColor={"#E7312F"}
+          dotColor="rgba(0, 0, 0, .2)"
+          paginationStyle={{
+            bottom: 8,
+          }}
+        >
+          <Image
 
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-        <Image
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-        <Image
-          source={require('../../../../assets/images/home.png')}
-          style={{ width: "100%", height: 180 }}
-        />
-      </Swiper>
-      <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
-        <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-        <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text>
-      </View>
-      <FlatList
-        data={data}
-        style={styles.body}
-        numColumns={2}
-        onEndReachedThreshold={0.5}
-        keyExtractor={(i) => i.Id.toString()}
-        renderItem={({ item }) => (
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id })}
-          >
-            <View style={styles.box}>
-              <View style={{ width: '100%', flexDirection: 'row' }}>
-                <View style={{ flexDirection: 'row' }}>
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require('../../../../assets/images/home.png')}
+            style={{ width: "100%", height: 180 }}
+          />
+        </Swiper>
+        <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
+          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
+          <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text>
+        </View>
+        <FlatList
+          data={data}
+          style={styles.body}
+          numColumns={2}
+          onEndReachedThreshold={0.5}
+          keyExtractor={(i) => i.Id.toString()}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+              onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id })}
+            >
+              <View style={styles.box}>
+                <View style={{ width: '100%', flexDirection: 'row' }}>
+                  <View style={{ flexDirection: 'row' }}>
 
-                  <View style={{ flexDirection: 'column' }}>
-                    <Image
-                      source={{ uri: item.Thumbnail }}
-                      style={{ width: 164, height: 100, borderRadius: 6 }}
-                    />
-                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" }}>
+                    <View style={{ flexDirection: 'column' }}>
                       <Image
-                        source={require('../../../../assets/images/clock.png')}
-                        style={{ width: 14, height: 14, marginRight: 5 }}
+                        source={{ uri: item.Thumbnail }}
+                        style={{ width: 164, height: 100, borderRadius: 6 }}
                       />
-                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
+                      <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" }}>
+                        <Image
+                          source={require('../../../../assets/images/clock.png')}
+                          style={{ width: 14, height: 14, marginRight: 5 }}
+                        />
+                        {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                        <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
 
+                      </View>
                     </View>
-                  </View>
 
+                  </View>
                 </View>
               </View>
-            </View>
-          </TouchableWithoutFeedback>
-        )}
-      />
-
+            </TouchableWithoutFeedback>
+          )}
+        />
+      </ScrollView>
 
       <BottomSheet
         visible={isModalVisible}

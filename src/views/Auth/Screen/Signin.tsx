@@ -111,7 +111,9 @@ const SigninScreen = () => {
       </View>
       <View style={{
         width: 343,
-        marginTop: 58
+        marginTop: 58,
+        // paddingHorizontal:20
+      
       }}>
         <View style={{
           backgroundColor: 'white',

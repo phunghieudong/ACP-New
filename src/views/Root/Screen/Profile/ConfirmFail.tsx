@@ -41,7 +41,7 @@ const ConfirmFailScreen = ({ navigation }) => {
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
                 <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center',  }}>
                         <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>QUAY LẠI TRANG CHỦ</Text>
                     </View>
                 </TouchableOpacity>

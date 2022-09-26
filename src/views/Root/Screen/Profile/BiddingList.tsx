@@ -60,65 +60,66 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                     </View>
                 </TouchableOpacity>
             </View>
-            <View style={{ marginTop: 6, marginHorizontal: 20 }}>
-                <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án {Name}</Text>
-                <Text style={{ fontSize: 14, color: '#999999', }}>Chi tiết phần phiên đấu thầu mà anh chị quan tâm</Text>
-            </View>
-            <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Tên phiên</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{Name}</Text>
+            <ScrollView>
+                <View style={{ marginTop: 6, marginHorizontal: 20 }}>
+                    <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600" }}>Chào thầu dự án {Name}</Text>
+                    <Text style={{ fontSize: 14, color: '#999999', }}>Chi tiết phần phiên đấu thầu mà anh chị quan tâm</Text>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Sản phẩm</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{ProductName}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian bắt đầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(StartDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian kết thúc</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(EndDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu gói thầu</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MinimumQuantity}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                    <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối đa gói thầu </Text>
-                    <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MaximumQuantity}</Text>
-                </View>
-            </View>
-
-
-
-
-            <View style={{ marginTop: 16, marginHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
-                <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
-                    <Text style={{ fontSize: 20, color: 'blue', fontWeight: "600", fontStyle: 'italic' }}>(Xem thêm)</Text>
-                </TouchableOpacity>
-            </View>
-
-            {shouldShow ? (
-                <><View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
+                <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 1</Text>
-                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Tên phiên</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{Name}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 2</Text>
-                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Sản phẩm</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{ProductName}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
-                        <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 3</Text>
-                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian bắt đầu</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(StartDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
                     </View>
-
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian kết thúc</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(EndDate * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu gói thầu</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MinimumQuantity}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                        <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối đa gói thầu </Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MaximumQuantity}</Text>
+                    </View>
                 </View>
-                    <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 10, height: 150, marginTop: 20 }}>
-                        {/* <View style={{ flexDirection: 'row' , justifyContent:"space-around", alignItems:'center'}}>
+
+
+
+
+                <View style={{ marginTop: 16, marginHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
+                    <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
+                        <Text style={{ fontSize: 20, color: 'blue', fontWeight: "600", fontStyle: 'italic' }}>(Xem thêm)</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {shouldShow ? (
+                    <><View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 15 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                            <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 1</Text>
+                            <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                            <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 2</Text>
+                            <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
+                            <Text style={{ fontSize: 14, color: "#999999" }}>Tiêu chuẩn kĩ thuật 3</Text>
+                            <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>Dừa chất lượng XT21</Text>
+                        </View>
+
+                    </View>
+                        <View style={{ flexDirection: 'column', marginHorizontal: 20, paddingTop: 10, height: 150, marginTop: 20 }}>
+                            {/* <View style={{ flexDirection: 'row' , justifyContent:"space-around", alignItems:'center'}}>
                             <Image
                                 source={require('../../../../assets/images/image1.png')}
                                 style={{ width: 75, height: 75 }} />
@@ -130,7 +131,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                                 style={{ width: 75, height: 75 }} />
 
                         </View> */}
-                        {/* <View style={{ flexDirection: 'row' , justifyContent:'space-around', alignItems:'center'}}>
+                            {/* <View style={{ flexDirection: 'row' , justifyContent:'space-around', alignItems:'center'}}>
                             <Image
                                 source={require('../../../../assets/images/image1.png')}
                                 style={{ width: 75, height: 75 }} />
@@ -142,38 +143,39 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                                 style={{ width: 75, height: 75 }} />
 
                         </View> */}
-                        <Swiper
-                            showsButtons={true}
-                            endFillColor="green"
-                            height={80}
-                            containerStyle={{ flex: 0 }}
-                            activeDotColor={"#9CBD44"}
-                            dotColor="rgba(0, 0, 0, .2)"
-                            paginationStyle={{
-                                bottom: 8,
-                            }}
-                        >
-                            <Image
-                                source={require('../../../../assets/images/image1.png')}
-                                style={{ width: "100%", height: 80 }} />
-                            <Image
-                                source={require('../../../../assets/images/image2.png')}
-                                style={{ width: "100%", height: 80 }} />
-                            <Image
-                                source={require('../../../../assets/images/image3.png')}
-                                style={{ width: "100%", height: 80 }} />
-                        </Swiper>
-                    </View>
+                            <Swiper
+                                showsButtons={true}
+                                endFillColor="green"
+                                height={80}
+                                containerStyle={{ flex: 0 }}
+                                activeDotColor={"#9CBD44"}
+                                dotColor="rgba(0, 0, 0, .2)"
+                                paginationStyle={{
+                                    bottom: 8,
+                                }}
+                            >
+                                <Image
+                                    source={require('../../../../assets/images/image1.png')}
+                                    style={{ width: "100%", height: 80 }} />
+                                <Image
+                                    source={require('../../../../assets/images/image2.png')}
+                                    style={{ width: "100%", height: 80 }} />
+                                <Image
+                                    source={require('../../../../assets/images/image3.png')}
+                                    style={{ width: "100%", height: 80 }} />
+                            </Swiper>
+                        </View>
 
-                </>
-            ) : null}
-            <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding', { ID: Id, MinimumQuantity: MinimumQuantity, MaximumQuantity: MaximumQuantity })}>
-                    <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                    </>
+                ) : null}
+                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding', { ID: Id, MinimumQuantity: MinimumQuantity, MaximumQuantity: MaximumQuantity })}>
+                        <View style={{ marginTop: 3, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
         </View>
     );
 };

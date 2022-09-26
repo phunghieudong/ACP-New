@@ -19,7 +19,7 @@ const ConfirmFailScreen = ({ navigation }) => {
                 </View>
 
                 <View >
-                    <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Phunghieeudong</Text>
+                    <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đăng ký thất bại</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', height: 10, width: 50 }}>
@@ -30,11 +30,11 @@ const ConfirmFailScreen = ({ navigation }) => {
             <View style={{ marginHorizontal: 20, marginTop: 32, justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
                 <Image
 
-                    source={require('../../../../assets/images/Confirm.png')}
+                    source={require('../../../../assets/images/Confirm1.png')}
                     style={{ width: 87.69, height: 78.85 }}
                 />
 
-                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600" }}>Chúc mừng bạn đã đăng ký thành công</Text>
+                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600" }}>Bạn đã đấu thầu của phiên này!</Text>
                 <Text style={{ fontSize: 14, color: '#999999', marginTop: 8, textAlign: 'center' }}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Text>
                 {/* <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}></Text> */}
 

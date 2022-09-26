@@ -17,7 +17,7 @@ const SignUpBidingScreen = (props: any) => {
     const [errorText, setErrorText] = useState<string>('');
 
     const BiddingTicket = () => {
-        console.log("resdddddddddddddđongggggggggggggggg");
+
         setErrorText('');
         if (!!!quantity) {
             setErrorText('Vui lòng nhập số lượng ');
@@ -44,29 +44,19 @@ const SignUpBidingScreen = (props: any) => {
     const PostBidding = async (data: any) => {
         try {
             const res = await PostBiddingTicket.Ticket(data);
-
-
             if (res.data.ResultCode === 200) {
-                console.log("res-dong", res);
+
                 navigation.navigate('Confirm')
-            }
-            //     else if (res.ResultCode === 500) {
-            //         // ToastAndroid.show("Ban da dau thau phien nay thanh cong", ToastAndroid.BOTTOM);
-            //         // setErrorText(res.ResultMessage);
-            //         setErrorText(res.data.ResultMessage);
-            //         navigation.navigate('ConfirmFail')
-            //     }
-            // } catch (error: any) {
-            //     setErrorText(error?.message);
-            // }
-            else {
+
+            } else {
+                console.log("ressssssssssssssssssssssss", res)
                 // setErrorText(res.ResultMessage);
-                setErrorText(error?.message);
-                // navigation.navigate('Confirm')
+                // navigation.navigate('ConfirmFail')
+
             }
         } catch (error: any) {
-            setErrorText(error?.message);
-            console.log(error);
+        
+            navigation.navigate('ConfirmFail')
         }
     }
 
@@ -118,6 +108,7 @@ const SignUpBidingScreen = (props: any) => {
                         marginTop: 8
 
                     }}
+
                     value={price}
                     placeholder='Giá tiền'
                     onChangeText={(e: number) => setPrice(e)}

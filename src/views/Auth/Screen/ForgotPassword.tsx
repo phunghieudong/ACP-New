@@ -1,66 +1,73 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, TextInput, StyleSheet, Pressable } from 'react-native';
-import { ViewProps } from '../../../navigators/types/navigation';
+// import { ViewProps } from '../../../navigators/types/navigation';
 import { FontAwesome } from '@expo/vector-icons';
 import { accountApi } from '../../../api/Auth';
+import ErrorText from '../../../components/More/error-text';
+import { PutPassword } from '../../../api/Demo';
+function ForgotPasswordScreen() {
+  const [username, setusername] = useState<any>('dongph');
+  const [errorText, setErrorText] = useState<string>('');
 
-
-// import { useTogglePasswordVisibility } from './hooks/useTogglePasswordVisibility';
-
-export const useTogglePasswordVisibility = () => {
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye');
-  const [username , setUserName] = useState('dongph');
-
-  useEffect(() => {
-    putFprgot()
-  }, []);
-
-
-  const putFprgot = () => {
-    try {
-      const res = accountApi.forgotpass({userName : username});
-      console.log(res);
-      
-    } catch (error) {
-      console.log(error?.message);
-      
+  const UserNamePut = () => {
+    console.log("phunghieudong", username)
+    setErrorText('');
+    if (!!!username) {
+      setErrorText('Vui lòng username ');
     }
-    
+    else {
+      UserNamePutAPI({
+        username: username,
+       
+      });
+      console.log("phunghieudong123", username)
+    }
   }
 
 
+  const UserNamePutAPI = async (data: any) => {
+    try {
+      const res = await PutPassword.Password(data);
+      if (res.data.ResultCode === 200) {
+        console.log("ressssssssssssssssssssssss", res)
+        // navigation.navigate('OTP')
+
+      } else {
+        console.log("ressssssssssssssssssssssss", res)
+        // setErrorText(res.ResultMessage);
+
+      }
+    } catch (error: any) {
 
 
-
-
-
-  const handlePasswordVisibility = () => {
-    if (rightIcon === 'eye') {
-      setRightIcon('eye-off');
-      setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === 'eye-off') {
-      setRightIcon('eye');
-      setPasswordVisibility(!passwordVisibility);
+      setErrorText(error?.message);
+      console.log(error);
     }
-  };
+  }
+  // import { useTogglePasswordVisibility } from './hooks/useTogglePasswordVisibility';
+  // const [username , setUserName] = useState('dongph');
 
-  return {
-    passwordVisibility,
-    rightIcon,
-    handlePasswordVisibility
-  };
-};
-function ForgotPasswordScreen() {
+  // useEffect(() => {
+  //   putFprgot()
+  // }, []);
 
-  const navigation = useNavigation<ViewProps['navigation']>(); // Hooks của navigation
-  // const [text, onChangeText] = React.useState("Email");
-  // const [text1, onChangeText1] = React.useState("Mật khẩu");
-  // const [number, onChangeNumber] = React.useState(null);
-  const { passwordVisibility, rightIcon, handlePasswordVisibility } =
-    useTogglePasswordVisibility();
-  const [password, setPassword] = useState('');
+
+  // const putFprgot = () => {
+  //   try {
+  //     const res = accountApi.forgotpass({userName : username});
+  //     console.log(res);
+
+  //   } catch (error) {
+  //     console.log(error?.message);
+
+  //   }
+
+  // }
+
+
+  const navigation = useNavigation();
+
 
 
 
@@ -114,10 +121,9 @@ function ForgotPasswordScreen() {
             borderRadius: 6,
           }}>
             <TextInput
-              placeholder='Email'
-              autoCorrect={false}
-              secureTextEntry={false}
-              textContentType='emailAddress'
+              value={username}
+              placeholder='username'
+              onChangeText={(e: any) => setusername(e)}
               style={{
                 width: '90%',
                 height: 40,
@@ -133,8 +139,9 @@ function ForgotPasswordScreen() {
           </View>
 
         </View>
-
-        <TouchableOpacity onPress={() => navigation.navigate('OTP')}>
+        <ErrorText content={errorText} />
+        <TouchableOpacity onPress={UserNamePut}>
+          {/* onPress={() => navigation.navigate('OTP')} */}
           {/* Chổ này mà xài replace là đá thẳng ra luôn */}
           <View style={{ marginTop: 50, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>

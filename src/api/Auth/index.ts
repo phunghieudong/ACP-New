@@ -31,7 +31,7 @@ const accountApi = {
     return instance.post("/api/CreateAccount", data);
   },
   forgotpass(data: any){
-    return instance.put("/api/forgot-password", data);
+    return instance.put("/api/authenticate/forgot-password", data);
   }
 };
 

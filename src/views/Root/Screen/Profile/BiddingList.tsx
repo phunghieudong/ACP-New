@@ -1,7 +1,7 @@
 
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, FlatList, Linking, } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
@@ -25,6 +25,14 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
     const [data, setData] = useState<GetTechnicalProductdata[]>([]);
     const [page, setPage] = useState({ current: 1, next: true });
     const [ready, setReady] = useState(false);
+    const supportedURL = "http://api-acp.monamedia.net/3f12d7bd-ce43-414e-b40d-41be89e481b3-Ky thuat trong dua 2020.pdf";
+    // 
+    const OpenURLButton = ({ url, children }) => {
+        const handlePress = () => {
+            Linking.openURL(url);
+        }
+        return <TouchableOpacity onPress={handlePress} activeOpacity={0.2}>{children}</TouchableOpacity>;
+    };
 
     console.log("Dongggggggggggggg", ProductId);
 
@@ -142,10 +150,17 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
 
 
 
-                                <View style={{ flexDirection: "column", paddingHorizontal:50 , marginTop:20}}>
-                                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400" , color:'#666666'}}>{item.TechnicalOptionName}</Text>
+                                <View style={{ flexDirection: "column", paddingHorizontal: 50, marginTop: 20 }}>
+                                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalOptionName}</Text>
 
-                                    <Text style={{ width: "100%", fontSize: 16, fontWeight: "400" ,color:'#666666'}}>{item.TechnicalValue}</Text>
+
+
+                                    <OpenURLButton url={supportedURL} >
+
+                                        <Text style={{ width: "100%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalValue}</Text>
+                                    </OpenURLButton>
+
+
                                 </View>
 
                             )}

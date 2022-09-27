@@ -12,6 +12,7 @@ import Information from "../views/Root/Screen/Home/Information";
 import Account from "../views/Root/Screen/Home/Account";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from 'green-native-ts/src/components/Icon';
+import { FontAwesome } from '@expo/vector-icons';
 // chổ này là cái tab
 // const Stack = createNativeStackNavigator<Routers>();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,8 @@ function RootStackNavigator() {
           alignItems: 'center',
           elevation: 30,
           paddingHorizontal: 60,
+          paddingBottom: 20,
+
         }
       }}
     >
@@ -42,21 +45,21 @@ function RootStackNavigator() {
         component={HomeStackNavigator}
         options={{
           headerShown: false,
-          // tabBarLabel: 'Home',
-          tabBarIcon: ({ color }) => (
+          tabBarLabel: 'Đấu thầu',
+          tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Image
-                source={require('../../src/assets/images/tab1.png')}
+                resizeMode='cover'
+                source={focused ? require('../../src/assets/images/tab1green.png') : require('../../src/assets/images/tab1.png')}
                 style={{ width: 20, height: 20, marginRight: 5 }}
               />
-              {/* <MaterialCommunityIcons name="home" color={color} size={26} /> */}
             </View>
           ),
-          tabBarLabel: ({  }) => (
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
-            </View>
-          ),
+          // tabBarLabel: ({ }) => (
+          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
+          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
+          //   </View>
+          // ),
         }}
       />
       <Tab.Screen
@@ -64,19 +67,21 @@ function RootStackNavigator() {
         component={HistoryStackNavigator}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
+          tabBarLabel: "Lịch sử",
+          tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Image
-                source={require('../../src/assets/images/tab2.png')}
+                resizeMode='cover'
+                source={focused ? require('../../src/assets/images/tab2green.png') : require('../../src/assets/images/tab2.png')}
                 style={{ width: 20, height: 20, marginRight: 5 }}
               />
             </View>
           ),
-          tabBarLabel: ({ }) => (
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Lịch sử</Text>
-            </View>
-          ),
+          // tabBarLabel: ({ }) => (
+          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
+          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Lịch sử</Text>
+          //   </View>
+          // ),
         }}
       />
       <Tab.Screen
@@ -84,19 +89,21 @@ function RootStackNavigator() {
         component={Information}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
+          tabBarLabel: "Thông báo",
+          tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Image
-                source={require('../../src/assets/images/tab3.png')}
+                resizeMode='cover'
+                source={focused ? require('../../src/assets/images/tab3green.png') : require('../../src/assets/images/tab3.png')}
                 style={{ width: 20, height: 20, marginRight: 5 }}
               />
             </View>
           ),
-          tabBarLabel: ({ }) => (
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Thông báo</Text>
-            </View>
-          ),
+          // tabBarLabel: ({ }) => (
+          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
+          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Thông báo</Text>
+          //   </View>
+          // ),
         }}
       />
       <Tab.Screen
@@ -105,19 +112,23 @@ function RootStackNavigator() {
         options={{
 
           headerShown: false,
-          tabBarIcon: ({ color, size }) => (
+
+          tabBarLabel: "Tài khoản",
+
+          tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Image
-                source={require('../../src/assets/images/tab4.png')}
+                resizeMode='cover'
+                source={focused ? require('../../src/assets/images/tab4green.png') : require('../../src/assets/images/tab4.png')}
                 style={{ width: 20, height: 20, marginRight: 5 }}
               />
             </View>
           ),
-          tabBarLabel: ({ }) => (
-            <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-              <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Tài khoản</Text>
-            </View>
-          ),
+          // tabBarLabel: ({ }) => (
+          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
+          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Tài khoản</Text>
+          //   </View>
+          // ),
         }}
       />
     </Tab.Navigator>
@@ -125,3 +136,5 @@ function RootStackNavigator() {
 }
 
 export default RootStackNavigator;
+
+

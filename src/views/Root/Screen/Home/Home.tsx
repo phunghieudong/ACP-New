@@ -161,17 +161,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             <TouchableWithoutFeedback
               onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id })}
             >
-              <View style={styles.box}>
-                <View style={{ width: '100%', flexDirection: 'row' , paddingTop:16}}>
-                  <View style={{ flexDirection: 'row' }}>
-
+              <View style={{flexDirection:"row", width:"50%", justifyContent:"center"}}> 
+                  <View style={{ flexDirection: 'row' }}> 
                     <View style={{ flexDirection: 'column' }}>
                       <Image
                         source={{ uri: item.Thumbnail }}
-                        style={{ width: 150, height: 100, borderRadius: 6 }}
+                        style={{alignSelf:"center", width: 160,height:100, borderRadius: 6 }}
                       />
                       <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" }}>
+                      <View style={{flexDirection: 'row', alignItems: 'center', width: "90%" }}>
                         <Image
                           source={require('../../../../assets/images/clock.png')}
                           style={{ width: 14, height: 14, marginRight: 5 }}
@@ -180,9 +178,8 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                         <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
 
                       </View>
-                    </View>
-
-                  </View>
+                    </View> 
+                   
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -324,7 +321,7 @@ const styles = StyleSheet.create({
     fontFamily: "SFProDisplay-Regular",
   },
   box: {
-    backgroundColor: "#fff",
+    backgroundColor: "green",
     borderRadius: 4,
     marginTop: 5,
     flexDirection: "column",

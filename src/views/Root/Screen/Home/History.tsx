@@ -208,7 +208,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   body: {
     paddingHorizontal: 30,
-    backgroundColor: '#fff',
+    backgroundColor: 'blue',
 
 
   },

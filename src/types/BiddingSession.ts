@@ -11,4 +11,5 @@ export type BiddingSessionData = {
   EndDate: Date;
   MinimumQuantity: number;
   MaximumQuantity: number;
+  ProductId:string;
 };

@@ -46,25 +46,7 @@ function ForgotPasswordScreen() {
       console.log(error);
     }
   }
-  // import { useTogglePasswordVisibility } from './hooks/useTogglePasswordVisibility';
-  // const [username , setUserName] = useState('dongph');
 
-  // useEffect(() => {
-  //   putFprgot()
-  // }, []);
-
-
-  // const putFprgot = () => {
-  //   try {
-  //     const res = accountApi.forgotpass({userName : username});
-  //     console.log(res);
-
-  //   } catch (error) {
-  //     console.log(error?.message);
-
-  //   }
-
-  // }
 
 
   const navigation = useNavigation();

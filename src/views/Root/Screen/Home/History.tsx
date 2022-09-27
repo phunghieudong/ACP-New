@@ -76,33 +76,40 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
           <TouchableWithoutFeedback
             onPress={() => navigation.navigate('HistoryDetail', { FullName: item.FullName, Price: item.Price, Quantity: item.Quantity, BiddingName: item.BiddingName, BiddingSessionName: item.BiddingSessionName, Thumbnail: item.Thumbnail, Id: item.Id, Created: item.Created })}
           >
-            <View style={styles.box}>
-              <View style={{ width: '100%', flexDirection: 'row', paddingTop:16 , }}>
-                <View style={{ flexDirection: 'row' }}>
-
-                  <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 20 }}>
+              <View style={{ flexDirection: 'row', }}>
+                <View style={{ flexDirection: 'column' }}>
+                <Image
+                    source={{ uri: item.Thumbnail }}
+                    style={{ alignSelf: "center", width: 140, height: 100, borderRadius: 6 }}
+                  />
+                 
+                 <Text numberOfLines={1} style={{ width: 125, fontSize: 16, fontWeight: "400" ,alignSelf: "center" }}>{item.BiddingName}</Text>
+                 <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%" ,alignSelf: "center" }}>
                     <Image
-                      source={{ uri: item.Thumbnail }}
-                      style={{ width: 150, height: 100, borderRadius: 6 }}
+                      source={require('../../../../assets/images/clock.png')}
+                      style={{ width: 14, height: 14, marginRight: 5}}
                     />
-                    <Text numberOfLines={1} style={{ width: "70%", fontSize: 16, fontWeight: "400" }}>{item.BiddingName}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <Image
-                        source={require('../../../../assets/images/clock.png')}
-                        style={{ width: 14, height: 14, marginRight: 5 }}
-                      />
-                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
+                    {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                    <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
 
-                    </View>
                   </View>
 
+
                 </View>
+
               </View>
+
             </View>
           </TouchableWithoutFeedback>
         )}
       />
+
+
+              
+
+
+
       <BottomSheet
         visible={isModalVisible}
         onBackButtonPress={toggleBottomNavigationView}
@@ -148,17 +155,21 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                   elevation: 10,
                   marginTop: 16,
                   borderRadius: 6,
+                  borderWidth:1,
+                  borderColor:'#666666'
                 }}>
                   <TextInput
                     placeholder='Tên phiên đấu thầu'
                     autoCorrect={false}
                     secureTextEntry={false}
                     textContentType='username'
+                    
                     style={{
                       width: '90%',
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
+                      
 
 
                     }}
@@ -208,7 +219,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   body: {
     paddingHorizontal: 30,
-    backgroundColor: 'blue',
+    backgroundColor: '#fff',
 
 
   },

@@ -6,61 +6,81 @@ import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-
-export const useTogglePasswordVisibility = () => {
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye');
-
-  const handlePasswordVisibility = () => {
-    if (rightIcon === 'eye') {
-      setRightIcon('eye-off');
-      setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === 'eye-off') {
-      setRightIcon('eye');
-      setPasswordVisibility(!passwordVisibility);
-    }
-  };
-
-  return {
-    passwordVisibility,
-    rightIcon,
-    handlePasswordVisibility
-  };
-};
+import ErrorText from '../../../../components/More/error-text';
+import { ChangePassword } from '../../../../api/ChangePassword';
 
 const UpdateAccountScreen = () => {
-  const { passwordVisibility, rightIcon, handlePasswordVisibility } =
-    useTogglePasswordVisibility();
+  const [oldPassword, setoldPassword] = useState<string>('lzc0grj9');
+  const [newPassword, setnewPassword] = useState<string>('mona@1234');
+  const [confirmNewPassword, setconfirmNewPassword] = useState<string>('mona@1234');
+  const [errorText, setErrorText] = useState<string>('');
 
-  const [hidePass, setHidePass] = useState(true);
-  const [hidePass1, setHidePass1] = useState(true);
-  const [hidePass2, setHidePass2] = useState(true);
+  const ChangePasswordPut = () => {
+    // console.log("phunghieudong", username)
+    setErrorText('');
+    if (!!!oldPassword) {
+      setErrorText('Vui lòng oldPassword ');
+    }
+    if (!!!newPassword) {
+      setErrorText('Vui lòng newPassword ');
+    }
+    if (!!!setconfirmNewPassword) {
+      setErrorText('Vui lòng setconfirmNewPassword ');
+    }
+    else {
+      UserNamePutAPI({
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        confirmNewPassword: confirmNewPassword,
+        providerId: "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef"
+      });
+      // console.log("phunghieudong123", username)
+    }
+  }
+
+
+  const UserNamePutAPI = async (data: any) => {
+    try {
+      const res = await ChangePassword.Password(data);
+      console.log("ressssssssssssssssssssssss", res)
+      if (res.data.ResultCode === 200) {
+       
+
+
+      } else {
+        console.log("ressssssssssssssssssssssss", res)
+        // setErrorText(res.ResultMessage);
+
+      }
+    } catch (error: any) {
+
+
+      setErrorText(error?.message);
+      console.log(error);
+    }
+  }
+
+
+
   const navigation = useNavigation();
+
 
   return (
     <View style={styles.container}>
-
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}>
-
             <Image
-
               source={require('../../../../assets/images/goback.png')}
               style={{ width: 7.17, height: 14 }}
             />
           </View>
-
         </TouchableOpacity>
         <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Đổi mật khẩu</Text>
         <View style={{ backgroundColor: '#9CBD44', height: 30, width: 30 }}>
-
         </View>
       </View>
-
       <View style={styles.container}>
-
         <View style={{ marginHorizontal: 20, marginTop: 32 }}>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mật khẩu cũ</Text>
           <View style={{
@@ -74,10 +94,9 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder=''
-              autoCorrect={false}
-              secureTextEntry={hidePass ? true : false}
-              textContentType='username'
+              value={oldPassword}
+              placeholder="Mật khẩu cũ"
+              onChangeText={(e: string) => setoldPassword(e)}
               style={{
                 width: '90%',
                 height: 40,
@@ -86,14 +105,6 @@ const UpdateAccountScreen = () => {
 
               }}
 
-            // onChangeText={onChangeText1}
-            // value={text1}
-            />
-            <Icon
-              name={hidePass ? 'eye' : 'eye-slash'}
-              size={15}
-              color="grey"
-              onPress={() => setHidePass(!hidePass)}
             />
           </View>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mật khẩu mới</Text>
@@ -108,10 +119,9 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder=''
-              autoCorrect={false}
-              secureTextEntry={hidePass1 ? true : false}
-              textContentType='username'
+              value={newPassword}
+              placeholder="Mật khẩu mới"
+              onChangeText={(e: string) => setnewPassword(e)}
               style={{
                 width: '90%',
                 height: 40,
@@ -119,21 +129,10 @@ const UpdateAccountScreen = () => {
                 paddingHorizontal: 16,
 
               }}
-
-            // onChangeText={onChangeText1}
-            // value={text1}
-            />
-            <Icon
-              name={hidePass1 ? 'eye' : 'eye-slash'}
-              size={15}
-              color="grey"
-              onPress={() => setHidePass1(!hidePass1)}
             />
           </View>
 
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Nhập lại mật khẩu mới</Text>
-
-
 
           <View style={{
             backgroundColor: 'white',
@@ -146,10 +145,9 @@ const UpdateAccountScreen = () => {
             borderColor: '#999999'
           }}>
             <TextInput
-              placeholder=''
-              autoCorrect={false}
-              secureTextEntry={hidePass2 ? true : false}
-              textContentType='username'
+              value={confirmNewPassword}
+              placeholder="Xác nhận mật khẩu"
+              onChangeText={(e: string) => setconfirmNewPassword(e)}
               style={{
                 width: '90%',
                 height: 40,
@@ -157,24 +155,16 @@ const UpdateAccountScreen = () => {
                 paddingHorizontal: 16,
 
               }}
+            />
 
-            // onChangeText={onChangeText1}
-            // value={text1}
-            />
-            <Icon
-              name={hidePass2 ? 'eye' : 'eye-slash'}
-              size={15}
-              color="grey"
-              onPress={() => setHidePass2(!hidePass2)}
-            />
           </View>
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <ErrorText content={errorText} />
+          <TouchableOpacity onPress={ChangePasswordPut}>
             <View style={{ marginTop: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
               <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>ĐỔI MẬT KHẨU</Text>
             </View>
           </TouchableOpacity>
         </View>
-
       </View>
     </View>
   );

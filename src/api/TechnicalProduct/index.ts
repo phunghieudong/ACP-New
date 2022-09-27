@@ -1,10 +1,16 @@
-import { appConfig } from "../../configs";
 import { instance } from "../instance";
 
-const GetTechnicalProduct = {
-  async TechnicalProduct(data: any) {
-    return instance.get("/api/technicalproduct/" + data.ProductId); // phải gắn thêm cái thằng username nữa , nếu không sẽ bị sai link lỗi 404
-  },
+export const GetTechnicalProduct = async (params: {
+  pageIndex: number;
+  pageSize: number;
+}) => {
+  try {
+    const { pageIndex, pageSize } = params;
+    const res = await instance.get(
+      `/api/technicalproduct?PageIndex=${pageIndex}&PageSize=${pageSize}&OrderBy=0`
+    );
+    return res.data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
 };
-
-export { GetTechnicalProduct };

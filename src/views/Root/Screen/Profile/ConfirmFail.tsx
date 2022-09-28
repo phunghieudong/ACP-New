@@ -34,8 +34,8 @@ const ConfirmFailScreen = ({ navigation }) => {
                     style={{ width: 87.69, height: 78.85 }}
                 />
 
-                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600" }}>Bạn đã đấu thầu của phiên này!</Text>
-                <Text style={{ fontSize: 14, color: '#999999', marginTop: 8, textAlign: 'center' }}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Text>
+                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600",textAlign: 'center'  }}>Bạn đã đấu thầu của phiên này!</Text>
+                <Text style={{ fontSize: 14, color: '#999999', marginTop: 8, textAlign: 'center' }}>Quay trở lại trang chủ để tiếp tục đấu các phiên thầu trong tương lai .</Text>
                 {/* <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}></Text> */}
 
             </View>

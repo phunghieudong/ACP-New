@@ -16,9 +16,11 @@ function AuthNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+
       }}
     >
       <Stack.Screen
+    
         name="SigninScreeen" component={SigninScreeen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />

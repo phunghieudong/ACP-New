@@ -17,18 +17,13 @@ const InformationScreen = () => {
               source={require('../../../../assets/images/goback.png')}
               style={{ width: 7.17, height: 14 }}
             /> */}
-
-
           </View>
         </TouchableOpacity>
         <View >
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Thông báo</Text>
         </View>
-
         <View style={{ flexDirection: 'row', width: 50 }}>
-
         </View>
-
       </View>
 
 

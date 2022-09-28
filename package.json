@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^1.8.5",
     "@types/react-native": "~0.69.1",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "expo": "~46.0.9",
     "expo-custom-switch": "^1.0.2",
     "expo-secure-store": "^11.3.0",

@@ -19,14 +19,10 @@ const Tab = createBottomTabNavigator();
 function RootStackNavigator() {
   return (
     <Tab.Navigator
-
       initialRouteName="Feed"
-
-
       screenOptions={{
         tabBarActiveTintColor: '#A5C63F',
         tabBarHideOnKeyboard: true,
-
         tabBarStyle: {
           backgroundColor: '#FFFFFF',
           height: 84,
@@ -39,10 +35,12 @@ function RootStackNavigator() {
 
         }
       }}
+    
     >
       <Tab.Screen
         name="AllHome"
         component={HomeStackNavigator}
+        
         options={{
           headerShown: false,
           tabBarLabel: 'Đấu thầu',
@@ -89,6 +87,7 @@ function RootStackNavigator() {
         component={Information}
         options={{
           headerShown: false,
+         
           tabBarLabel: "Thông báo",
           tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -106,13 +105,14 @@ function RootStackNavigator() {
           // ),
         }}
       />
+   
       <Tab.Screen
         name="account"
         component={AccountStackNavigator}
+    
         options={{
-
+    
           headerShown: false,
-
           tabBarLabel: "Tài khoản",
 
           tabBarIcon: ({ focused }) => (

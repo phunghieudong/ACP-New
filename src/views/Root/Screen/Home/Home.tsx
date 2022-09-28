@@ -10,7 +10,14 @@ import moment from 'moment';
 import { getBiddingSession } from "../../../../api/BiddingSession/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
+import { useNavigation } from '@react-navigation/native';
+import { LocalStorage } from '../../../../utils/LocalStorage';
+
 export const useTogglePasswordVisibility = () => {
+
+
+
+
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
 
@@ -33,7 +40,10 @@ export const useTogglePasswordVisibility = () => {
 
 const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const _logout = () => {
+    LocalStorage.logout();
+    navigation.navigate('SigninScreeen')
+  }
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -85,7 +95,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
- 
+
   useEffect(() => {
     (async () => {
       try {
@@ -159,27 +169,26 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           keyExtractor={(i) => i.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id , ProductId:item.ProductId })}
+              onPress={() => navigation.navigate('BiddingList', { Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
             >
-              <View style={{flexDirection:"row", width:"50%", justifyContent:"center" , paddingTop:15}}> 
-                  <View style={{ flexDirection: 'row', }}> 
-                    <View style={{ flexDirection: 'column' }}>
+              <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
+                <View style={{ flexDirection: 'row', }}>
+                  <View style={{ flexDirection: 'column' }}>
+                    <Image
+                      source={{ uri: item.Thumbnail }}
+                      style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
+                    />
+                    <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
                       <Image
-                        source={{ uri: item.Thumbnail }}
-                        style={{alignSelf:"center", width: 160,height:100, borderRadius: 6 }}
+                        source={require('../../../../assets/images/clock.png')}
+                        style={{ width: 14, height: 14, marginRight: 5 }}
                       />
-                      <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                      <View style={{flexDirection: 'row', alignItems: 'center', width: "90%" , }}>
-                        <Image
-                          source={require('../../../../assets/images/clock.png')}
-                          style={{ width: 14, height: 14, marginRight: 5 }}
-                        />
-                        {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                        <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
+                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
 
-                      </View>
-                    </View> 
-                   
+                    </View>
+                  </View>
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -211,7 +220,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             alignItems: "center",
             justifyContent: "space-between",
             flexDirection: "row",
-       
+
           }}>
             <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
             <TouchableOpacity onPress={toggleModal}>
@@ -233,8 +242,8 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                   elevation: 10,
                   marginTop: 16,
                   borderRadius: 6,
-                  borderWidth:1,
-                  borderColor:'#666666'
+                  borderWidth: 1,
+                  borderColor: '#666666'
 
                 }}>
                   <TextInput
@@ -247,7 +256,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
-                  
+
                     }}
                   // onChangeText={onChangeText1}
                   // value={text1}

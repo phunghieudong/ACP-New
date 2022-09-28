@@ -20,6 +20,7 @@ function AccountStackNavigator() {
         <Stack.Navigator
             screenOptions={{
                 headerShown: false,
+
             }}
         >
             <Stack.Screen name="Account" component={Account} />

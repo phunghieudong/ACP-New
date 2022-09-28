@@ -19,7 +19,7 @@ function RootStackNavigator() {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerShown: false,
+                headerShown: false,      
             }}
 
         >

@@ -135,7 +135,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 <View style={{ marginTop: 16, marginHorizontal: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={{ fontSize: 20, color: '#E7312F', fontWeight: "600", fontStyle: 'italic' }}>Tiêu chuẩn kĩ thuật</Text>
                     <TouchableOpacity onPress={() => setShouldShow(!shouldShow)}>
-                        <Text style={{ fontSize: 20, color: 'blue', fontWeight: "600", fontStyle: 'italic' }}>(Xem thêm)</Text>
+                        <Text style={{ fontSize: 20, color: 'blue', fontWeight: "400", fontStyle: "normal" }}>(Xem thêm)</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -143,21 +143,17 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                     <>
                         <FlatList
                             data={data}
-                            style={styles.body}
                             numColumns={1}
                             onEndReachedThreshold={0.5}
+                            style={{  borderWidth:1 ,borderColor:'#9CBD44', borderRadius:6 , margin:20 , marginHorizontal:20 , marginBottom:20}}
                             renderItem={({ item }) => (
 
 
 
-                                <View style={{ flexDirection: "column", paddingHorizontal: 50, marginTop: 20 }}>
-                                    <Text style={{ width: "90%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalOptionName}</Text>
-
-
-
+                                <View style={{ flexDirection: "row", paddingHorizontal: 50, marginTop: 20,marginBottom:20}}>
+                                    <Text style={{ width: "50%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalOptionName}</Text>
                                     <OpenURLButton url={supportedURL} >
-
-                                        <Text style={{ width: "100%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalValue}</Text>
+                                        <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalValue}</Text>
                                     </OpenURLButton>
 
 

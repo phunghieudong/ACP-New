@@ -15,13 +15,11 @@ function AuthNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
+        tabBarShow: false,
 
       }}
     >
-      <Stack.Screen
-    
-        name="SigninScreeen" component={SigninScreeen} />
+      <Stack.Screen name="SigninScreeen" component={SigninScreeen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="OTP" component={OTPScreen} />

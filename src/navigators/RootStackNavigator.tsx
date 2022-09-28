@@ -1,5 +1,3 @@
-
-
 import * as React from 'react';
 import { View, Text, Button, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,8 +11,6 @@ import Account from "../views/Root/Screen/Home/Account";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from 'green-native-ts/src/components/Icon';
 import { FontAwesome } from '@expo/vector-icons';
-// chổ này là cái tab
-// const Stack = createNativeStackNavigator<Routers>();
 const Tab = createBottomTabNavigator();
 function RootStackNavigator() {
   return (
@@ -32,15 +28,12 @@ function RootStackNavigator() {
           elevation: 30,
           paddingHorizontal: 60,
           paddingBottom: 20,
-
         }
       }}
-    
     >
       <Tab.Screen
         name="AllHome"
         component={HomeStackNavigator}
-        
         options={{
           headerShown: false,
           tabBarLabel: 'Đấu thầu',
@@ -53,11 +46,6 @@ function RootStackNavigator() {
               />
             </View>
           ),
-          // tabBarLabel: ({ }) => (
-          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Đấu thầu</Text>
-          //   </View>
-          // ),
         }}
       />
       <Tab.Screen
@@ -75,11 +63,6 @@ function RootStackNavigator() {
               />
             </View>
           ),
-          // tabBarLabel: ({ }) => (
-          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Lịch sử</Text>
-          //   </View>
-          // ),
         }}
       />
       <Tab.Screen
@@ -87,7 +70,6 @@ function RootStackNavigator() {
         component={Information}
         options={{
           headerShown: false,
-         
           tabBarLabel: "Thông báo",
           tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -98,23 +80,14 @@ function RootStackNavigator() {
               />
             </View>
           ),
-          // tabBarLabel: ({ }) => (
-          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Thông báo</Text>
-          //   </View>
-          // ),
         }}
       />
-   
       <Tab.Screen
         name="account"
         component={AccountStackNavigator}
-    
         options={{
-    
           headerShown: false,
           tabBarLabel: "Tài khoản",
-
           tabBarIcon: ({ focused }) => (
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Image
@@ -124,17 +97,11 @@ function RootStackNavigator() {
               />
             </View>
           ),
-          // tabBarLabel: ({ }) => (
-          //   <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15 }}>
-          //     <Text style={{ fontSize: 12, fontWeight: "600", color: '#000000' }}>Tài khoản</Text>
-          //   </View>
-          // ),
         }}
       />
     </Tab.Navigator>
   );
 }
-
 export default RootStackNavigator;
 
 

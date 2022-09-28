@@ -3,7 +3,9 @@ import { instance } from "../instance";
 
 const ChangePassword = {
   async Password(data: any) {
-    return instance.put("/api/authenticate/change-password/" + data.providerId ); // phải gắn thêm cái thằng username nữa , nếu không sẽ bị sai link lỗi 404
+    return instance.put(
+      "/api/authenticate/change-password/dd191af6-1f5e-4af1-bf2f-08da9b88f5ef/"
+    ); // phải gắn thêm cái thằng username nữa , nếu không sẽ bị sai link lỗi 404
   },
 };
 export { ChangePassword };

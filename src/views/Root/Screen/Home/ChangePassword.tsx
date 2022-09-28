@@ -10,9 +10,9 @@ import ErrorText from '../../../../components/More/error-text';
 import { ChangePassword } from '../../../../api/ChangePassword';
 
 const UpdateAccountScreen = () => {
-  const [oldPassword, setoldPassword] = useState<string>('lzc0grj9');
-  const [newPassword, setnewPassword] = useState<string>('mona@1234');
-  const [confirmNewPassword, setconfirmNewPassword] = useState<string>('mona@1234');
+  const [oldPassword, setoldPassword] = useState<string>('mona@1234');
+  const [newPassword, setnewPassword] = useState<string>('mona@123');
+  const [confirmNewPassword, setconfirmNewPassword] = useState<string>('mona@123');
   const [errorText, setErrorText] = useState<string>('');
 
   const ChangePasswordPut = () => {
@@ -43,7 +43,7 @@ const UpdateAccountScreen = () => {
     try {
       const res = await ChangePassword.Password(data);
       console.log("ressssssssssssssssssssssss", res)
-      if (res.data.ResultCode === 200) {
+      if (res.ResultCode === 200) {
        
 
 

@@ -18,9 +18,8 @@ function RootStackNavigator() {
       initialRouteName="Feed"
       screenOptions={{
         tabBarActiveTintColor: '#A5C63F',
-        tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#fff',
           height: 84,
           width: "100%",
           justifyContent: 'center',

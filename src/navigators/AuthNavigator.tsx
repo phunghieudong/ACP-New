@@ -15,8 +15,7 @@ function AuthNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShow: false,
-
+       
       }}
     >
       <Stack.Screen name="SigninScreeen" component={SigninScreeen} />

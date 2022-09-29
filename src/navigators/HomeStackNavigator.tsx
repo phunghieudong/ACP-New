@@ -20,7 +20,7 @@ function RootStackNavigator() {
         <Stack.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarShown: false,
+
             }}
 
         >

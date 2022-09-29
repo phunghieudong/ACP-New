@@ -145,15 +145,17 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                             data={data}
                             numColumns={1}
                             onEndReachedThreshold={0.5}
-                            style={{  borderWidth:1 ,borderColor:'#9CBD44', borderRadius:6 , margin:20 , marginHorizontal:20 , marginBottom:20}}
+                            style={{ borderWidth: 1, borderColor: '#9CBD44', borderRadius: 6, margin: 20, marginHorizontal: 20, marginBottom: 20 }}
                             renderItem={({ item }) => (
 
 
 
-                                <View style={{ flexDirection: "row", paddingHorizontal: 50, marginTop: 20,marginBottom:20}}>
+                                <View style={{ flexDirection: "row", paddingHorizontal: 50, marginTop: 20, marginBottom: 20 }}>
                                     <Text style={{ width: "50%", fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalOptionName}</Text>
                                     <OpenURLButton url={supportedURL} >
-                                        <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalValue}</Text>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                            <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400", color: '#666666' }}>{item.TechnicalValue}</Text>
+                                        </View>
                                     </OpenURLButton>
 
 

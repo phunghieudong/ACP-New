@@ -76,12 +76,18 @@ function SigninScreen() {
     }
   };
 
-  // useEffect(() => {
-  //   LocalStorage.getToken();
+  useEffect(() => {
+    DemoToken();
+}, []);
+const DemoToken = () => {
+    const accessToken = LocalStorage.getToken();
+    console.log("accessToken-PhungHieuDong123", accessToken);
+    return accessToken == null ? null : accessToken;
+}
 
-
-  // }, []);
-
+  // const accessToken =  LocalStorage.getToken();
+  // console.log("accessToken-PhungHieuDong123", accessToken);
+  // return accessToken == null ? null : accessToken;
 
   // if (res.ResultCode === 401) {
   //   setErrorText(res.ResultMessage);
@@ -117,8 +123,8 @@ function SigninScreen() {
     var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
     return JSON.parse(jsonPayload) || {};
   }
-  console.log("hieudong1", Object.values(parseJwt(hieudong))[0]);
-  console.log("hieudong2", JSON.parse(Object.values(parseJwt(hieudong))[0]));
+  // console.log("hieudong1", Object.values(parseJwt(hieudong))[0]);
+  // console.log("hieudong2", JSON.parse(Object.values(parseJwt(hieudong))[0]));
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

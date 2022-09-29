@@ -10,6 +10,7 @@ const LocalStorage = {
 	async getToken() { // cho này
 		const response = await AsyncStorage.getItem(TOKEN);
 		return response == null ? null : response;
+	
 		
 	},
 	async deleteToken() {

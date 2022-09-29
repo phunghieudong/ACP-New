@@ -63,15 +63,24 @@ function SigninScreen() {
       if (res.ResultCode === 200) {
         navigation.replace("Auth");
         // handleLogged(res);
-      } else {
+      }
+
+
+      else {
         setErrorText(res.ResultMessage);
       }
     } catch (error: any) {
-      // setErrorText(error?.message);
-      // console.log(error);
+      setErrorText("Tên đăng nhập hoặc mật khẩu không chính xác !");
+      //   console.log(error);
+      //   setErrorText(res.ResultMessage);
+      //   console.log("res.ResultMessage", res.ResultMessage);
     }
   };
+  // if (res.ResultCode === 401) {
+  //   setErrorText(res.ResultMessage);
+  //   console.log("res.ResultMessage", res.ResultMessage);
 
+  // }
 
   async function setTToken() {
     try {

@@ -5,9 +5,8 @@ import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import ToggleSwitch from "toggle-switch-react-native";
 import { useNavigation } from '@react-navigation/native';
-import { LocalStorage } from '../../../../utils/LocalStorage';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LocalStorage } from "../../../../utils/LocalStorage/index";
 const AccountScreen = ({ }) => {
   const navigation = useNavigation<any>();
   const [enabled, setEnabled] = useState(false);
@@ -15,7 +14,9 @@ const AccountScreen = ({ }) => {
   const toggleSwitch = () => {
     setEnabled((oldValue) => !oldValue);
   };
-
+  function showToast() {
+    ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
+  }
 
   // const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
   // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
@@ -25,7 +26,6 @@ const AccountScreen = ({ }) => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
   }
-
   return (
     <View style={styles.container}>
 
@@ -34,10 +34,9 @@ const AccountScreen = ({ }) => {
       </View>
       <View style={styles.container}>
         <ScrollView style={{ height: 1000 }}>
-          <TouchableOpacity>
+          <TouchableOpacity  onPress={showToast}>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
-
                 source={require('../../../../assets/images/camera.png')}
                 style={{ width: 90, height: 90 }}
               />
@@ -50,7 +49,6 @@ const AccountScreen = ({ }) => {
             <TouchableOpacity onPress={() => navigation.navigate('UpdateAccount')}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-
                   source={require('../../../../assets/images/pen.png')}
                   style={{ width: 13.13, height: 13.13, marginRight: 9 }}
                 />
@@ -58,12 +56,9 @@ const AccountScreen = ({ }) => {
               </View>
             </TouchableOpacity>
           </View>
-
           <View>
             <View style={{ flexDirection: 'row', marginTop: 48, marginLeft: 16 }}>
-
               <Image
-
                 source={require('../../../../assets/images/user.png')}
                 style={{ width: 16, height: 16, marginRight: 9 }}
               />
@@ -72,7 +67,6 @@ const AccountScreen = ({ }) => {
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
-
               source={require('../../../../assets/images/calender.png')}
               style={{ width: 13.48, height: 14, marginRight: 9 }}
             />
@@ -96,7 +90,7 @@ const AccountScreen = ({ }) => {
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity >
+          <TouchableOpacity  onPress={showToast}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
               <Image
 

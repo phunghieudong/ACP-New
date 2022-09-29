@@ -24,15 +24,15 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({ navigation,
         }}
       >
         <Image
-          source={require('../../../../assets/images/image1.png')}
+          source={{ uri: Thumbnail }}
           style={{ width: "100%", height: 180 }}
         />
         <Image
-          source={require('../../../../assets/images/image4.png')}
+          source={{ uri: Thumbnail }}
           style={{ width: "100%", height: 180 }}
         />
         <Image
-          source={require('../../../../assets/images/image3.png')}
+          source={{ uri: Thumbnail }}
           style={{ width: "100%", height: 180 }}
         />
       </Swiper>
@@ -65,12 +65,12 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({ navigation,
           <Text style={{ fontSize: 14, color: "#999999" }}>Tên phiên</Text>
           <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{BiddingName}</Text>
         </View>
-      
+
         <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
           <Text style={{ fontSize: 14, color: "#999999" }}>Thời gian</Text>
           <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{moment(Created * 1000).format('HH:mm:ss - DD/MM/YYYY')}</Text>
         </View>
-     
+
         <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
           <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng </Text>
           <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{Quantity}</Text>

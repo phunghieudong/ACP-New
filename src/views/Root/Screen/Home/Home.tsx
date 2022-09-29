@@ -96,7 +96,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
 
-  useEffect(() => { 
+  useEffect(() => {
     (async () => {
       try {
         const { current, next } = page;
@@ -169,7 +169,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           keyExtractor={(i) => i.Id.toString()}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate('BiddingList', { Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
+              onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
             >
               <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
                 <View style={{ flexDirection: 'row', }}>

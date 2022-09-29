@@ -79,6 +79,8 @@ const SignUpBidingScreen = (props: any) => {
                         paddingHorizontal: 16,
                         marginTop: 8,
                     }}
+                  
+
                     value={quantity}
                     placeholder='Số lượng'
                     onChangeText={(e: number) => setQuantity(e)}

@@ -45,8 +45,6 @@ const UpdateAccountScreen = () => {
       console.log("ressssssssssssssssssssssss", res)
       if (res.ResultCode === 200) {
        
-
-
       } else {
         console.log("ressssssssssssssssssssssss", res)
         // setErrorText(res.ResultMessage);
@@ -54,7 +52,7 @@ const UpdateAccountScreen = () => {
       }
     } catch (error: any) {
 
-
+      console.log("ressssssssssssssssssssssss", res)
       setErrorText(error?.message);
       console.log(error);
     }

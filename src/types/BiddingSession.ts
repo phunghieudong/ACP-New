@@ -12,4 +12,5 @@ export type BiddingSessionData = {
   MinimumQuantity: number;
   MaximumQuantity: number;
   ProductId:string;
+  IsBid:boolean;
 };

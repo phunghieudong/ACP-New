@@ -7,9 +7,10 @@ const LocalStorage = {
 	async setToken(params: any) {
 		await AsyncStorage.setItem(TOKEN, params);
 	},
-	async getToken() {
+	async getToken() { // cho này
 		const response = await AsyncStorage.getItem(TOKEN);
 		return response == null ? null : response;
+		
 	},
 	async deleteToken() {
 		await AsyncStorage.removeItem(TOKEN);

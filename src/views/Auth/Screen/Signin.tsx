@@ -59,6 +59,7 @@ function SigninScreen() {
 
       // storeData(res.Data.token)
       LocalStorage.setToken(res.Data.token);
+      // LocalStorage.getToken(res.Data.token);
 
       if (res.ResultCode === 200) {
         navigation.replace("Auth");
@@ -71,33 +72,39 @@ function SigninScreen() {
       }
     } catch (error: any) {
       setErrorText("Tên đăng nhập hoặc mật khẩu không chính xác !");
-      //   console.log(error);
-      //   setErrorText(res.ResultMessage);
-      //   console.log("res.ResultMessage", res.ResultMessage);
+
     }
   };
+
+  // useEffect(() => {
+  //   LocalStorage.getToken();
+
+
+  // }, []);
+
+
   // if (res.ResultCode === 401) {
   //   setErrorText(res.ResultMessage);
   //   console.log("res.ResultMessage", res.ResultMessage);
 
   // }
 
-  async function setTToken() {
-    try {
-      const jsonValue = JSON.stringify(tokendemo); // chuyen dổi
-      await AsyncStorage.setItem("TOKEN", jsonValue); // luu token 
-      console.log('jsonValue-> Lưu Token', jsonValue);
-    } catch (error) { }
-  }
-  setTToken();
+  // async function setTToken() {
+  //   try {
+  //     const jsonValue = JSON.stringify(tokendemo); // chuyen dổi
+  //     await AsyncStorage.setItem("TOKEN", jsonValue); // luu token 
+  //     console.log('jsonValue-> Lưu Token', jsonValue);
+  //   } catch (error) { }
+  // }
+  // setTToken();
 
-  const getIteamStorage = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("TOKEN"); // lây nhung gì trong cai bo 
-      console.log("Lấy token", jsonValue);
-    } catch (error) { }
-  };
-  getIteamStorage();
+  // const getIteamStorage = async () => {
+  //   try {
+  //     const jsonValue = await AsyncStorage.getItem("TOKEN"); // lây nhung gì trong cai bo 
+  //     console.log("Lấy token", jsonValue);
+  //   } catch (error) { }
+  // };
+  // getIteamStorage();
 
 
   //ParseJwt-Token

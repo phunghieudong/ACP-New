@@ -15,7 +15,7 @@ import moment from 'moment';
 const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
 
     route: {
-        params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity, Id, ProductId },
+        params: { Name, ProductName, StartDate, EndDate, MinimumQuantity, MaximumQuantity, Id, ProductId, Thumbnail },
     },
 
 
@@ -72,15 +72,15 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                 }}
             >
                 <Image
-                    source={require('../../../../assets/images/BiddingList.png')}
+                    source={{ uri: Thumbnail }}
                     style={{ width: "100%", height: 180 }}
                 />
                 <Image
-                    source={require('../../../../assets/images/BiddingList.png')}
+                    source={{ uri: Thumbnail }}
                     style={{ width: "100%", height: 180 }}
                 />
                 <Image
-                    source={require('../../../../assets/images/BiddingList.png')}
+                    source={{ uri: Thumbnail }}
                     style={{ width: "100%", height: 180 }}
                 />
             </Swiper>

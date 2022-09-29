@@ -20,7 +20,7 @@ function RootStackNavigator() {
         <Stack.Navigator
             screenOptions={{
                 headerShown: false,
-
+              
             }}
 
         >
@@ -31,7 +31,7 @@ function RootStackNavigator() {
             <Stack.Screen name="ConfirmFail" component={ConfirmFail} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
-            <Stack.Screen  name="SigninScreeen" component={SigninScreeen} />
+            <Stack.Screen name="SigninScreeen" component={SigninScreeen} />
 
         </Stack.Navigator>
     );

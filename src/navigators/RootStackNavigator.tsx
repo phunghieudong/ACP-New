@@ -17,6 +17,7 @@ function RootStackNavigator() {
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: '#A5C63F',
         tabBarStyle: {
           backgroundColor: '#fff',

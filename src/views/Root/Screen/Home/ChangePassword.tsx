@@ -42,27 +42,23 @@ const UpdateAccountScreen = () => {
   const UserNamePutAPI = async (data: any) => {
     try {
       const res = await ChangePassword.Password(data);
-      console.log("ressssssssssssssssssssssss", res)
-      if (res.ResultCode === 200) {
-       
+      console.log("hieudong1", res)
+      if (res.data.ResultCode === 200) {
+        navigation.navigate("SigninScreeen");
       } else {
-        console.log("ressssssssssssssssssssssss", res)
+        console.log("hieudong2", res)
         // setErrorText(res.ResultMessage);
 
       }
     } catch (error: any) {
-
-      console.log("ressssssssssssssssssssssss", res)
+      setErrorText("Mật khẩu cũ không chính xác");
+      console.log("hieudong3", res)
       setErrorText(error?.message);
       console.log(error);
     }
   }
 
-
-
   const navigation = useNavigation();
-
-
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>

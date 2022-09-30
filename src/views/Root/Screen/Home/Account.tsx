@@ -53,7 +53,8 @@ const AccountScreen = ({ }) => {
           <TouchableOpacity onPress={showToast}>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
-                source={require('../../../../assets/images/camera.png')}
+                // source={require('../../../../assets/images/camera.png')}
+                source={{ uri: user.thumbnail }}
                 style={{ width: 90, height: 90 }}
               />
             </View>
@@ -102,7 +103,7 @@ const AccountScreen = ({ }) => {
               source={require('../../../../assets/images/now.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.userName}</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.address}</Text>
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>

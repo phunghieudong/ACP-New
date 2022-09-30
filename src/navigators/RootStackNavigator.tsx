@@ -27,7 +27,7 @@ function RootStackNavigator() {
           justifyContent: 'center',
           alignItems: 'center',
           elevation: 30,
-          paddingHorizontal: 60,
+          paddingHorizontal: 40,
           paddingBottom: 20,
         }
       }}

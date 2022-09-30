@@ -14,7 +14,7 @@ const Empty = (props: Props) => {
   return (
     <View style={styles.empty}>
       <AnimatedLottieView
-        source={require("../../assets/images/Confirm.png")}
+        source={require("../../assets/images/empty.png")}
         autoPlay
         loop={true}
         style={{ bottom: 40 }}

@@ -10,9 +10,9 @@ import ErrorText from '../../../../components/More/error-text';
 import { ChangePassword } from '../../../../api/ChangePassword';
 
 const UpdateAccountScreen = () => {
-  const [oldPassword, setoldPassword] = useState<string>('mona@1234');
-  const [newPassword, setnewPassword] = useState<string>('mona@123');
-  const [confirmNewPassword, setconfirmNewPassword] = useState<string>('mona@123');
+  const [oldPassword, setoldPassword] = useState<string>('');
+  const [newPassword, setnewPassword] = useState<string>('');
+  const [confirmNewPassword, setconfirmNewPassword] = useState<string>('');
   const [errorText, setErrorText] = useState<string>('');
 
   const ChangePasswordPut = () => {

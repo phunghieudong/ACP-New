@@ -163,8 +163,12 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         </View>
         {ready && !data.length && (
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
-          <View >
-            <Text style={{ alignSelf: 'center', fontSize: 20, fontWeight: "600", borderWidth: 1, borderColor: '#A5C63F', marginTop: 20, borderRadius: 6 }}>Không tìm thấy bất kì phiên đấu thấu nào</Text>
+          <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#A5C63F', }}>
+            <Image
+              source={require('../../../../assets/images/empty.png')}
+              style={{ width: "50%", height: 200, marginRight: 5 }}
+            />
+            <Text style={{ alignSelf: 'center', fontSize: 20, fontWeight: "600", marginTop: 20, borderRadius: 6 }}>Không tìm thấy bất kì phiên đấu thấu nào</Text>
           </View>
         )}
         {ready && (
@@ -202,6 +206,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             )}
 
           />
+
         )}
       </ScrollView>
 

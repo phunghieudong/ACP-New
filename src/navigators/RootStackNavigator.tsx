@@ -17,6 +17,7 @@ function RootStackNavigator() {
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
+
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: '#A5C63F',
         tabBarStyle: {
@@ -69,6 +70,7 @@ function RootStackNavigator() {
         name="Information"
         component={Information}
         options={{
+
           headerShown: false,
           tabBarLabel: "Thông báo",
           tabBarIcon: ({ focused }) => (
@@ -86,6 +88,7 @@ function RootStackNavigator() {
         name="account"
         component={AccountStackNavigator}
         options={{
+        
           headerShown: false,
           tabBarLabel: "Tài khoản",
           tabBarIcon: ({ focused }) => (

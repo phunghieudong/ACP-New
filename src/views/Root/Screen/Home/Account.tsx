@@ -1,31 +1,47 @@
-
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Switch, ToastAndroid, Modal, Pressable } from 'react-native';
-import HeaderRoot from "../../../../components/HeaderRoot/index";
-import { Toast } from "native-base";
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, ToastAndroid, Modal, Pressable } from 'react-native';
 import ToggleSwitch from "toggle-switch-react-native";
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
+import { Buffer } from 'buffer';
+
+Buffer.from('anything', 'base64');
+
+
 const AccountScreen = ({ }) => {
   const navigation = useNavigation<any>();
-  const [enabled, setEnabled] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const toggleSwitch = () => {
-    setEnabled((oldValue) => !oldValue);
-  };
+
+  const [user, setUser] = useState({});
+
   function showToast() {
     ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
   }
 
-  // const thumbColorOn = Platform.OS === "android" ? "#219EBC" : "#f3f3f3";
-  // const thumbColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
-  // const trackColorOn = Platform.OS === "android" ? "#219EBC" : "#fff";
-  // const trackColorOff = Platform.OS === "android" ? "#CCCCCC" : "#fff";
   const _logout = () => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
   }
+
+  useEffect(() => {
+    DemoToken();
+  }, []);
+
+  const DemoToken = async () => {
+    const accessToken = await LocalStorage.getToken();
+    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
+  }
+
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    return JSON.parse(jsonPayload) || {};
+  }
+
+  console.log("--- user", user);
+
   return (
     <View style={styles.container}>
 
@@ -34,7 +50,7 @@ const AccountScreen = ({ }) => {
       </View>
       <View style={styles.container}>
         <ScrollView style={{ height: 1000 }}>
-          <TouchableOpacity  onPress={showToast}>
+          <TouchableOpacity onPress={showToast}>
             <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 12 }}>
               <Image
                 source={require('../../../../assets/images/camera.png')}
@@ -44,7 +60,7 @@ const AccountScreen = ({ }) => {
           </TouchableOpacity >
           <View style={{ marginHorizontal: 32, marginTop: 18 }}>
             <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600" }}>
-              Phùng Hiểu Đông
+              {user.fullName}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('UpdateAccount')}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -70,7 +86,7 @@ const AccountScreen = ({ }) => {
               source={require('../../../../assets/images/calender.png')}
               style={{ width: 13.48, height: 14, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>23 tháng 09, 1991</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.email}</Text>
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
@@ -78,7 +94,7 @@ const AccountScreen = ({ }) => {
               source={require('../../../../assets/images/phone.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>+84 902 345 678</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.phone}</Text>
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
@@ -86,11 +102,11 @@ const AccountScreen = ({ }) => {
               source={require('../../../../assets/images/now.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
-            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>1073/23 CMT8, phường7, quận Tân Bình, TP.HCM</Text>
+            <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.userName}</Text>
 
           </View>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-          <TouchableOpacity  onPress={showToast}>
+          <TouchableOpacity onPress={showToast}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
               <Image
 

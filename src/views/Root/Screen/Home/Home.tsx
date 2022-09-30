@@ -12,7 +12,7 @@ import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
 import { useNavigation } from '@react-navigation/native';
 import { LocalStorage } from '../../../../utils/LocalStorage';
-
+import Empty from "../../../../components/Empty/index";
 export const useTogglePasswordVisibility = () => {
 
 
@@ -161,39 +161,48 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
           <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text>
         </View>
-        <FlatList
-          data={data}
-          style={styles.body}
-          numColumns={2}
-          onEndReachedThreshold={0.5}
-          keyExtractor={(i) => i.Id.toString()}
-          renderItem={({ item }) => (
-            <TouchableWithoutFeedback
-              onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
-            >
-              <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
-                <View style={{ flexDirection: 'row', }}>
-                  <View style={{ flexDirection: 'column' }}>
-                    <Image
-                      source={{ uri: item.Thumbnail }}
-                      style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
-                    />
-                    <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
+        {ready && !data.length && (
+          // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
+          <View >
+            <Text style={{ alignSelf: 'center', fontSize: 20, fontWeight: "600", borderWidth: 1, borderColor: '#A5C63F', marginTop: 20, borderRadius: 6 }}>Không tìm thấy bất kì phiên đấu thấu nào</Text>
+          </View>
+        )}
+        {ready && (
+          <FlatList
+            data={data}
+            style={styles.body}
+            numColumns={2}
+            onEndReachedThreshold={0.5}
+            keyExtractor={(i) => i.Id.toString()}
+            renderItem={({ item }) => (
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
+              >
+                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
+                  <View style={{ flexDirection: 'row', }}>
+                    <View style={{ flexDirection: 'column' }}>
                       <Image
-                        source={require('../../../../assets/images/clock.png')}
-                        style={{ width: 14, height: 14, marginRight: 5 }}
+                        source={{ uri: item.Thumbnail }}
+                        style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
                       />
-                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
+                      <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
+                        <Image
+                          source={require('../../../../assets/images/clock.png')}
+                          style={{ width: 14, height: 14, marginRight: 5 }}
+                        />
+                        {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                        <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
 
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
-          )}
-        />
+              </TouchableWithoutFeedback>
+            )}
+
+          />
+        )}
       </ScrollView>
 
       <BottomSheet

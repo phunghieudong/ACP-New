@@ -24,6 +24,7 @@
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.5",
     "green-native-ts": "^1.0.3",
+    "lottie-react-native": "^5.1.4",
     "moment": "^2.29.4",
     "native-base": "^3.4.13",
     "react": "18.0.0",

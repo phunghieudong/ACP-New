@@ -11,7 +11,7 @@ import Confirm from "../views/Root/Screen/Profile/Confirm";
 import ChangePassword from "../views/Root/Screen/Home/ChangePassword";
 import UpdateAccount from "../views/Root/Screen/Home/UpdateAccount";
 import Account from "../views/Root/Screen/Home/Account";
-
+import SigninScreeen from "../views/Auth/Screen/Signin";
 // chổ này là cái tab
 const Stack = createNativeStackNavigator<Routers>();
 // const Tab = createNativeStackNavigator<Routers>();
@@ -26,6 +26,9 @@ function AccountStackNavigator() {
             <Stack.Screen name="Account" component={Account} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
+            <Stack.Screen options={{
+                tabBarStyle: { display: "none" },
+            }} name="SigninScreeen" component={SigninScreeen} />
         </Stack.Navigator>
     );
 }

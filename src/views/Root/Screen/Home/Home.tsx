@@ -159,7 +159,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         </Swiper>
         <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
           <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-          <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text>
+          {/* <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text> */}
         </View>
         {ready && !data.length && (
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />

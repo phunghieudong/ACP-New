@@ -92,7 +92,7 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tình / Thành phố</Text>
+            {/* <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tình / Thành phố</Text>
             <TextInput
               style={{
                 height: 40,
@@ -124,7 +124,7 @@ const ChangePasswordScreen = () => {
                 paddingHorizontal: 16,
                 marginTop: 8
               }}
-            />
+            /> */}
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Địa chỉ</Text>
             <TextInput
               style={{

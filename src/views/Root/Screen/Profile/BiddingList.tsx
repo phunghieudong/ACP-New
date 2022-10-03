@@ -25,6 +25,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
     const [data, setData] = useState<GetTechnicalProductdata[]>([]);
     const [page, setPage] = useState({ current: 1, next: true });
     const [ready, setReady] = useState(false);
+    const [buttom, setbuttom] = useState(false)
     const supportedURL = "http://api-acp.monamedia.net/3f12d7bd-ce43-414e-b40d-41be89e481b3-Ky thuat trong dua 2020.pdf";
     // 
     const OpenURLButton = ({ url, children }) => {
@@ -35,7 +36,19 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
     };
 
     console.log("Dongggggggggggggg", ProductId);
+    const DemoButtom = () => {
+        if (!IsBid) {
+            setbuttom(buttom);
+            console.log("buttom", buttom);
+            console.log("IsBid", IsBid);
+            navigation.navigate('SignUpBiding', { ID: Id, MinimumQuantity: MinimumQuantity, MaximumQuantity: MaximumQuantity })
+        } else {
+            setbuttom(!buttom);
 
+        }
+
+
+    }
     useEffect(() => {
         (async () => {
             try {
@@ -165,13 +178,13 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                         />
                     </>
                 ) : null}
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUpBiding', { ID: Id, MinimumQuantity: MinimumQuantity, MaximumQuantity: MaximumQuantity })}>
+                {!buttom && <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+                    <TouchableOpacity onPress={DemoButtom}>
                         <View style={{ marginTop: 3, marginBottom: 20, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 16, color: "#ffffff" }}>BỎ THẦU</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
+                </View>}
             </ScrollView>
         </View>
     );

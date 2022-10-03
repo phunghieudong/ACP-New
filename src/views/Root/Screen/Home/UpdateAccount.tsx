@@ -9,8 +9,11 @@ const ChangePasswordScreen = () => {
     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
   }
   const navigation = useNavigation();
-  const [text, onChangeText] = React.useState("");
-  const [text1, onChangeText1] = React.useState("");
+
+
+
+  
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
@@ -68,7 +71,7 @@ const ChangePasswordScreen = () => {
             />
             <View style={{ flexDirection: 'row' }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Email</Text>
-              <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
+              {/* <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text> */}
             </View>
 
             <TextInput

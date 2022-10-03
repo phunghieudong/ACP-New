@@ -14,13 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 import { LocalStorage } from '../../../../utils/LocalStorage';
 import Empty from "../../../../components/Empty/index";
 export const useTogglePasswordVisibility = () => {
-
-
-
-
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
-
   const handlePasswordVisibility = () => {
     if (rightIcon === 'eye') {
       setRightIcon('eye-off');
@@ -30,14 +25,12 @@ export const useTogglePasswordVisibility = () => {
       setPasswordVisibility(!passwordVisibility);
     }
   };
-
   return {
     passwordVisibility,
     rightIcon,
     handlePasswordVisibility
   };
 };
-
 const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const _logout = () => {
@@ -55,7 +48,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
   const [password, setPassword] = useState('');
-
   const [leftNumber, setLeftNumber] = useState<number>();
   const [user, setUser] = useState<IUser>();
   useEffect(() => {
@@ -68,7 +60,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     if (time < 0) {
       time = time * -1
     }
-
     let content = ''
     let days = Math.floor(time / 86400)
     time = time - days * 86400
@@ -86,7 +77,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     content += minutes + ' phút'
     // content += minutes + ' giây'
     return (
-
       <>
         <Text>{content}</Text>
       </>
@@ -95,7 +85,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
-
   useEffect(() => {
     (async () => {
       try {
@@ -115,7 +104,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       }
     })();
   }, [page.current]);
-
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>
@@ -144,7 +132,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           }}
         >
           <Image
-
             source={require('../../../../assets/images/home.png')}
             style={{ width: "100%", height: 180 }}
           />
@@ -197,19 +184,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                         />
                         {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
                         <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
-
                       </View>
                     </View>
                   </View>
                 </View>
               </TouchableWithoutFeedback>
             )}
-
           />
-
         )}
       </ScrollView>
-
       <BottomSheet
         visible={isModalVisible}
         onBackButtonPress={toggleBottomNavigationView}

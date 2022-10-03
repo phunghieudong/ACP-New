@@ -24,6 +24,8 @@ const AccountScreen = ({ }) => {
   const _logout = () => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
+    // navigation.navigate('Confirm')
+    
   }
 
   useEffect(() => {

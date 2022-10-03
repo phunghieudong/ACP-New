@@ -6,11 +6,12 @@ import HomeStackNavigator from "./HomeStackNavigator";
 import AccountStackNavigator from "./AccountStackNavigator";
 import HistoryStackNavigator from "./HistoryStackNavigator";
 import History from "../views/Root/Screen/Home/History";
-import Information from "../views/Root/Screen/Home/Information";
+// import NotificationStackNavigator from "../views/Root/Screen";
 import Account from "../views/Root/Screen/Home/Account";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from 'green-native-ts/src/components/Icon';
 import { FontAwesome } from '@expo/vector-icons';
+import NotificationStackNavigator from './NotificationStackNavigator';
 const Tab = createBottomTabNavigator();
 function RootStackNavigator() {
   return (
@@ -68,7 +69,7 @@ function RootStackNavigator() {
       />
       <Tab.Screen
         name="Information"
-        component={Information}
+        component={NotificationStackNavigator}
         options={{
 
           headerShown: false,
@@ -88,7 +89,7 @@ function RootStackNavigator() {
         name="account"
         component={AccountStackNavigator}
         options={{
-        
+
           headerShown: false,
           tabBarLabel: "Tài khoản",
           tabBarIcon: ({ focused }) => (

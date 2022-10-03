@@ -1,5 +1,5 @@
 // Có nhiều cách viết lắm, cách này dễ thì sài thôi
-import AccountScreen from './../../views/Root/Screen/Home/Account';
+import AccountScreen from "./../../views/Root/Screen/Home/Account";
 // Xem thêm: https://reactnavigation.org/docs/typescript
 
 type Routers = {
@@ -14,13 +14,14 @@ type Routers = {
   AllHome: any;
   HistoryScreen: any;
   HistoryDetailScreen: any;
+  InformationDetailScreen: any;
   InformationScreen: any;
   AccountScreen: any;
   ChangePassword: any;
   UpdateAccount: any;
   ForgotPassword: any;
-  SplashScreen:any;
-  OTP:any;
-  Account:any;
-  Demo:any;
+  SplashScreen: any;
+  OTP: any;
+  Account: any;
+  Demo: any;
 };

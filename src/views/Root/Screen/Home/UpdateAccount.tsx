@@ -4,15 +4,71 @@ import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput,
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { putProvider } from "../../../../api/Provider/index"
+import ErrorText from '../../../../components/More/error-text';
 const ChangePasswordScreen = () => {
   function showToast() {
     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
   }
   const navigation = useNavigation();
+  const [namecompany, setnamecompany] = useState<string>('PHUNG HIEU DONG1234');
+  const [phone, setphone] = useState<string>('12345678991');
+  const [gmail, setgmail] = useState<string>('dongph.10a2@gmail.com');
+  const [taxcode, settaxcode] = useState<string>('7777777');
+  const [address, setaddress] = useState<string>('Thành phố Hồ Chí Minh');
+  const [errorText, setErrorText] = useState<string>('');
+  const UpdateProvider = () => {
+    // console.log("phunghieudong", username)
+    setErrorText('');
+    if (!!!namecompany) {
+      setErrorText('Vui lòng nhập tên công ty ');
+    }
+    if (!!!phone) {
+      setErrorText('Vui lòng nhập số điện thoại ');
+    }
+    if (!!!gmail) {
+      setErrorText('Vui lòng nhập Email ');
+    }
+    if (!!!taxcode) {
+      setErrorText('Vui lòng nhập mã số thuế ');
+    }
+    if (!!!address) {
+      setErrorText('Vui lòng nhập địa chỉ ');
+    }
+    else {
+      UpdateProviderPutApi({
+        namecompany: namecompany,
+        phone: phone,
+        gmail: gmail,
+        taxcode: taxcode,
+        address: address,
+        providerId: "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef"
+      });
+      // console.log("phunghieudong123", username)
+    }
+  }
 
 
+  const UpdateProviderPutApi = async (data: any) => {
+    try {
+      const res = await putProvider.putapiprovider(data);
+      console.log("hieudong1", res)
+      if (res.data.ResultCode === 200) {
+        navigation.navigate("HomeScreen");
 
-  
+      } else {
+        console.log("hieudong2", res)
+        // setErrorText(res.ResultMessage);
+        console.log("hieudong3", res)
+      }
+    } catch (error: any) {
+      // setErrorText("Mật khẩu cũ không chính xác");
+      // console.log("hieudong3", res)
+      // setErrorText(error?.message);
+      // console.log(error);
+      console.log("hieudong4", res)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -45,6 +101,9 @@ const ChangePasswordScreen = () => {
             </View>
 
             <TextInput
+              value={namecompany}
+              placeholder="Tên công ty"
+              onChangeText={(e: string) => setnamecompany(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -60,6 +119,9 @@ const ChangePasswordScreen = () => {
             </View>
 
             <TextInput
+              value={phone}
+              placeholder="Số điện thoại"
+              onChangeText={(e: string) => setphone(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -75,6 +137,9 @@ const ChangePasswordScreen = () => {
             </View>
 
             <TextInput
+              value={gmail}
+              placeholder="Email"
+              onChangeText={(e: string) => setgmail(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -86,6 +151,9 @@ const ChangePasswordScreen = () => {
             />
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mã số thuế</Text>
             <TextInput
+              value={taxcode}
+              placeholder="Mã số thuế"
+              onChangeText={(e: string) => settaxcode(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -130,6 +198,9 @@ const ChangePasswordScreen = () => {
             /> */}
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Địa chỉ</Text>
             <TextInput
+              value={address}
+              placeholder="Địa chỉ"
+              onChangeText={(e: string) => setaddress(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -139,7 +210,10 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-            <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <ErrorText content={errorText} />
+
+            <TouchableOpacity onPress={UpdateProvider}>
+              {/* <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}> */}
               <View style={{ marginTop: 32, marginBottom: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>CẬP NHẬT</Text>
               </View>

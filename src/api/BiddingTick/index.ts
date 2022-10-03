@@ -5,8 +5,7 @@ export const getBiddingTicket = async (params: {
   pageSize: number;
 }) => {
   try {  
-    const {pageIndex, pageSize } = params; 
-    const res = await instance.get(`/api/biddingticket?PageIndex=${pageIndex}&PageSize=${pageSize}&OrderBy=0`)
+    const res = await instance.get(`/api/biddingticket`,{params})
     return res.data;
   } catch (error) {
     return Promise.reject(error);

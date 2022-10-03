@@ -1,5 +1,5 @@
 
-
+//@ts-nocheck
 import React, { useEffect, useState, FC } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, FlatList, TouchableWithoutFeedback, Pressable } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
@@ -11,11 +11,20 @@ import { BottomSheet } from 'react-native-btr';
 import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
 import { useIsFocused } from '@react-navigation/native';
+import { LocalStorage } from "../../../../utils/LocalStorage/index";
+import { Buffer } from 'buffer';
+import { async } from 'rxjs';
+
 const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
 
 
+  const [user, setUser] = useState({});
 
   const [isModalVisible, setModalVisible] = useState(false);
+
+
+  const [isFirst, setFirst] = useState(true);
+
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -29,23 +38,33 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
 
 
   const focused = useIsFocused();
+  const getdata = async () => {
+    const accessToken = await LocalStorage.getToken();
+    const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0])
+    try {
+      const { current, next } = page;
+      const params = { pageIndex: current, pageSize: 20, CreatedBy: userx.userId, OrderBy: 0 };
+      const res = await getBiddingTicket(params);
+      console.log("res ne ban oi", res);
+      if (res.ResultCode == 200) {
+        setData(res.Data.Items);
+        console.log("res ne ban oi", res);
+      }
+      if (!ready) setReady(true);
+
+    } catch (error) {
+
+    }
+  }
 
   useEffect(() => {
 
     (async () => {
 
       if (!focused) {
-
+        setFirst(true)
       } else {
-        const { current, next } = page;
-        const params = { pageIndex: current, pageSize: 20 };
-        const res = await getBiddingTicket(params);
-        console.log("res ne ban oi", res);
-        if (res.ResultCode == 200) {
-          setData([...res.Data.Items.filter((item) => item.CreatedBy == "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef")]);
-          console.log("res ne ban oi", res);
-        }
-        if (!ready) setReady(true);
+        getdata()
       }
     })();
   }, [focused]);
@@ -56,24 +75,30 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { current, next } = page;
-        if (next) {
-          const params = { pageIndex: current, pageSize: 20 };
-          const res = await getBiddingTicket(params);
-          console.log("res ne ban oi", res);
-          if (res.ResultCode == 200) {
-            setData([...res.Data.Items.filter((item) => item.CreatedBy == "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef")]);
-            console.log("res ne ban oi", res);
-          }
-          if (!ready) setReady(true);
-        }
-      } catch (error) {
-      }
-    })();
+    if (!isFirst) {
+      getdata()
+    } else {
+      setFirst(false)
+    }
   }, [page.current]);
 
+  useEffect(() => {
+    DemoToken();
+  }, []);
+
+  const DemoToken = async () => {
+    const accessToken = await LocalStorage.getToken();
+    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
+  }
+
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    return JSON.parse(jsonPayload) || {};
+  }
+
+  console.log("--- user", user);
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 64, justifyContent: "space-between", alignItems: 'center', }}>
@@ -110,7 +135,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                     source={{ uri: item.Thumbnail }}
                     style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
                   />
-                  <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.BiddingSessionName}</Text>
+                  <Text numberOfLines={1} style={{ width: "80%", fontSize: 16, fontWeight: "400" }}>{item.BiddingSessionName}</Text>
                   <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", alignSelf: "center" }}>
                     <Image
                       source={require('../../../../assets/images/clock.png')}

@@ -10,7 +10,11 @@ import { BiddingTicketData } from "../../../../types/BiddingTicket";
 import { BottomSheet } from 'react-native-btr';
 import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
+import { useIsFocused } from '@react-navigation/native';
 const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
+
+
+
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -22,6 +26,29 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
     //Toggling the visibility state of the bottom sheet
     setVisible(!visible);
   };
+
+
+  const focused = useIsFocused();
+
+  useEffect(() => {
+
+    (async () => {
+
+      if (!focused) {
+
+      } else {
+        const { current, next } = page;
+        const params = { pageIndex: current, pageSize: 20 };
+        const res = await getBiddingTicket(params);
+        console.log("res ne ban oi", res);
+        if (res.ResultCode == 200) {
+          setData([...res.Data.Items.filter((item) => item.CreatedBy == "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef")]);
+          console.log("res ne ban oi", res);
+        }
+        if (!ready) setReady(true);
+      }
+    })();
+  }, [focused]);
 
 
   const [data, setData] = useState<BiddingTicketData[]>([]);
@@ -79,15 +106,15 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
             <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 20 }}>
               <View style={{ flexDirection: 'row', }}>
                 <View style={{ flexDirection: 'column' }}>
-                <Image
+                  <Image
                     source={{ uri: item.Thumbnail }}
                     style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
                   />
-                 <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.BiddingName}</Text>
-                 <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%" ,alignSelf: "center"  }}>
+                  <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.BiddingSessionName}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', width: "100%", alignSelf: "center" }}>
                     <Image
                       source={require('../../../../assets/images/clock.png')}
-                      style={{ width: 14, height: 14, marginRight: 5}}
+                      style={{ width: 14, height: 14, marginRight: 5 }}
                     />
                     {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
                     <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
@@ -105,7 +132,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
       />
 
 
-              
+
 
 
 
@@ -154,21 +181,21 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                   elevation: 10,
                   marginTop: 16,
                   borderRadius: 6,
-                  borderWidth:1,
-                  borderColor:'#666666'
+                  borderWidth: 1,
+                  borderColor: '#666666'
                 }}>
                   <TextInput
                     placeholder='Tên phiên đấu thầu'
                     autoCorrect={false}
                     secureTextEntry={false}
                     textContentType='username'
-                    
+
                     style={{
                       width: '90%',
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
-                      
+
 
 
                     }}

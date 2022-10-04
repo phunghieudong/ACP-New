@@ -8,7 +8,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { PostBiddingTicket } from '../../../../api/CreateBiddingTick';
 import ErrorText from '../../../../components/More/error-text';
 import { ToastAndroid } from 'react-native';
-import { NumberFormat } from 'react-number-format';
+import CurrencyInput from 'react-native-currency-input';
+import NumberFormat from 'react-number-format';
 const SignUpBidingScreen = (props: any) => {
     const ID = props.route.params.ID;
     const MinimumQuantity = props.route.params.MinimumQuantity;
@@ -51,6 +52,16 @@ const SignUpBidingScreen = (props: any) => {
             navigation.navigate('ConfirmFail')
         }
     }
+    const currencyFormat = (num) => {
+        console.log("num", num);
+        console.log(!!num ? num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '') : '');
+
+
+        return !!num ? num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '') : ''
+    }
+    // console.log(currencyFormat(2665)); // $2,665.00
+    console.log("quantity", quantity);
+
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
@@ -69,9 +80,9 @@ const SignUpBidingScreen = (props: any) => {
                 <View style={{ flexDirection: 'row', height: 10, width: 50 }}>
                 </View>
             </View>
-            <View style={{ marginHorizontal: 20, marginTop: 32 }}>
+            <View style={{ marginHorizontal: 20, marginTop: 32, }}>
                 <Text style={{ fontWeight: '600' }}>Số lượng</Text>
-                <TextInput
+                {/* <TextInput
                     style={{
                         height: 40,
                         borderWidth: 0.5,
@@ -79,15 +90,34 @@ const SignUpBidingScreen = (props: any) => {
                         paddingHorizontal: 16,
                         marginTop: 8,
                     }}
-                  
 
-                    value={quantity}
+
+
+                    value={currencyFormat(quantity)}
                     placeholder='Số lượng'
                     onChangeText={(e: number) => setQuantity(e)}
                     keyboardType={'numeric'}
+                /> */}
+                <CurrencyInput
+                    value={quantity}
+                    onChangeValue={(value: any) => setQuantity(value)}
+                    placeholder='Số lượng'
+                    delimiter=","
+                    separator="."
+                    precision={0}
+                    onChangeText={(formattedValue) => {
+                        console.log(formattedValue); // $2,310.46
+                    }}
+                    style={{
+                        height: 40,
+                        borderWidth: 0.5,
+                        borderRadius: 6,
+                        paddingHorizontal: 16,
+                        marginTop: 8,
+                    }}
                 />
                 <Text style={{ marginTop: 16, fontWeight: '600' }}>Giá</Text>
-                <TextInput
+                {/* <TextInput
                     style={{
                         height: 40,
                         borderWidth: 0.5,
@@ -96,11 +126,49 @@ const SignUpBidingScreen = (props: any) => {
                         marginTop: 8
 
                     }}
+
                     value={price}
                     placeholder='Giá tiền'
                     onChangeText={(e: number) => setPrice(e)}
                     keyboardType={'numeric'}
+
+                /> */}
+                <CurrencyInput
+                    value={price}
+                    onChangeValue={(value: any) => setPrice(value)}
+                    placeholder='Giá tiền'
+                    delimiter=","
+                    separator="."
+                    precision={0}
+                    onChangeText={(formattedValue) => {
+                        console.log(formattedValue); // $2,310.46
+                    }}
+                    style={{
+                        height: 40,
+                        borderWidth: 0.5,
+                        borderRadius: 6,
+                        paddingHorizontal: 16,
+                        marginTop: 8,
+                    }}
                 />
+
+                {/* <NumberFormat
+                    style={{
+                        height: 40,
+                        borderWidth: 0.5,
+                        borderRadius: 6,
+                        paddingHorizontal: 16,
+                        marginTop: 8
+
+                    }}
+                    value={quantity}
+                    displayType="text"
+                    thousandSeparator
+                    prefix="$"
+                    // renderText={(value) => <Text>{value}</Text>}
+                    onChangeText={(e: number) => setQuantity(e)}
+                /> */}
+
                 <ErrorText content={errorText} />
                 <TouchableOpacity onPress={BiddingTicket}>
                     <View style={{ marginTop: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>

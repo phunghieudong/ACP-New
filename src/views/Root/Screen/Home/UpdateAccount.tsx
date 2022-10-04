@@ -11,40 +11,30 @@ const ChangePasswordScreen = () => {
     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
   }
   const navigation = useNavigation();
-  const [namecompany, setnamecompany] = useState<string>('PHUNG HIEU DONG1234');
-  const [phone, setphone] = useState<string>('12345678991');
-  const [gmail, setgmail] = useState<string>('dongph.10a2@gmail.com');
-  const [taxcode, settaxcode] = useState<string>('7777777');
-  const [address, setaddress] = useState<string>('Thành phố Hồ Chí Minh');
+  const [fullName, setfullName] = useState<string>('');
+  const [phone, setphone] = useState<string>('');
+  const [gmail, setgmail] = useState<string>('');
+  const [taxcode, settaxcode] = useState<string>('');
+  const [address, setaddress] = useState<string>('');
   const [errorText, setErrorText] = useState<string>('');
   const UpdateProvider = () => {
     // console.log("phunghieudong", username)
     setErrorText('');
-    if (!!!namecompany) {
+    if (!!!fullName) {
       setErrorText('Vui lòng nhập tên công ty ');
     }
     if (!!!phone) {
       setErrorText('Vui lòng nhập số điện thoại ');
     }
-    if (!!!gmail) {
-      setErrorText('Vui lòng nhập Email ');
-    }
-    if (!!!taxcode) {
-      setErrorText('Vui lòng nhập mã số thuế ');
-    }
-    if (!!!address) {
-      setErrorText('Vui lòng nhập địa chỉ ');
-    }
+
+
     else {
       UpdateProviderPutApi({
-        namecompany: namecompany,
+        fullName: fullName,
         phone: phone,
-        gmail: gmail,
-        taxcode: taxcode,
-        address: address,
-        providerId: "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef"
+        id: "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef"
       });
-      // console.log("phunghieudong123", username)
+
     }
   }
 
@@ -54,7 +44,7 @@ const ChangePasswordScreen = () => {
       const res = await putProvider.putapiprovider(data);
       console.log("hieudong1", res)
       if (res.data.ResultCode === 200) {
-        navigation.navigate("HomeScreen");
+        navigation.navigate("Account");
 
       } else {
         console.log("hieudong2", res)
@@ -101,9 +91,9 @@ const ChangePasswordScreen = () => {
             </View>
 
             <TextInput
-              value={namecompany}
+              value={fullName}
               placeholder="Tên công ty"
-              onChangeText={(e: string) => setnamecompany(e)}
+              onChangeText={(e: string) => setfullName(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,

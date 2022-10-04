@@ -5,7 +5,7 @@ import ToggleSwitch from "toggle-switch-react-native";
 import { useNavigation } from '@react-navigation/native';
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from 'buffer';
-
+import { useIsFocused } from '@react-navigation/native';
 Buffer.from('anything', 'base64');
 
 
@@ -15,8 +15,10 @@ const AccountScreen = ({ }) => {
 
   const [user, setUser] = useState({});
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const focused = useIsFocused(true);
   function showToast() {
     ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
   }
@@ -25,12 +27,20 @@ const AccountScreen = ({ }) => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
     // navigation.navigate('Confirm')
-    
+
   }
 
   useEffect(() => {
-    DemoToken();
-  }, []);
+    (async () => {
+      if (!focused) {
+        console.log("focused1", focused);
+
+      } else {
+        DemoToken()
+        console.log("focused2", focused);
+      }
+    })();
+  }, [focused]);
 
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
@@ -132,17 +142,17 @@ const AccountScreen = ({ }) => {
             </View>
           </TouchableOpacity>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-      
-            <View style={{ justifyContent: "space-between", flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, }}>
 
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ justifyContent: "space-between", flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, }}>
 
-                <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600", }}>Nhận thông báo  dự thầu</Text>
-              </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
 
-              <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
-                {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
-                {/* <ToggleSwitch
+              <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600", }}>Nhận thông báo  dự thầu</Text>
+            </View>
+
+            <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
+              {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
+              {/* <ToggleSwitch
                 isOn={true}
                 onColor="#CCCCCC"
                 offColor="#CCCCCC"
@@ -151,19 +161,19 @@ const AccountScreen = ({ }) => {
                 onToggle={isOn => console.log("changed to : ", isOn)}
               /> */}
 
-                <Switch
-                  trackColor={{ false: '#666666', true: '#666666' }}
-                  thumbColor={isEnabled ? '#A5C63F' : '#f4f3f4'}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                />
+              <Switch
+                trackColor={{ false: '#666666', true: '#666666' }}
+                thumbColor={isEnabled ? '#A5C63F' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
 
-
-              </View>
 
             </View>
-      
+
+          </View>
+
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={() => setModalVisible(true)}>
 

@@ -226,7 +226,11 @@ const ChangePasswordScreen = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Xin chúc mừng </Text>
+            <Text style={{
+              fontSize: 20, fontWeight: '600',
+              marginBottom: 15,
+              textAlign: "center"
+            }}>Xin chúc mừng </Text>
             <Text style={styles.modalText}>Bạn đã cập nhật thông tin Nhà Cung Cấp thành công </Text>
             <View style={{ flexDirection: 'row' }}>
               <Pressable
@@ -236,10 +240,7 @@ const ChangePasswordScreen = () => {
               >
                 <Text style={styles.textStyle}>THOÁT</Text>
               </Pressable>
-
             </View>
-
-
           </View>
         </View>
       </Modal>
@@ -311,7 +312,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
+    color: '#666666'
   }
 });
 export default ChangePasswordScreen; 

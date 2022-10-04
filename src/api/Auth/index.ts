@@ -1,7 +1,7 @@
 import { appConfig } from "../../configs";
 import { instance } from "../instance";
 const FormData = require("form-data");
- 
+
 const accountApi = {
   async login(data: any) {
     const formdata = new FormData();
@@ -30,10 +30,9 @@ const accountApi = {
   register(data: any) {
     return instance.post("/api/CreateAccount", data);
   },
-  forgotpass(data: any){
+  forgotpass(data: any) {
     return instance.put("/api/authenticate/forgot-password", data);
-  }
+  },
 };
 
 export { accountApi };
-

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { View, Text, Button, TouchableOpacity, Image, TextInput } from 'react-native';

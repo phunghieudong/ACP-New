@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { LocalStorage } from "../utils/LocalStorage/index";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { appConfig } from "../configs";
@@ -15,7 +16,7 @@ export const getAuthHeader = async () => {
   // const accessToken = await getAccessToken();
   const accessToken = await LocalStorage.getToken();
   console.log("accessToken-PhungHieuDong", accessToken);
-  
+
   if (accessToken !== null) {
     return { Authorization: "Bearer" + " " + accessToken };
   } else {

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, TextInput } from 'react-native';
 import { appConfig } from '../../configs';
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
 	title: {
 		marginBottom: 8,
 		fontSize: 14,
-		
+
 		color: '#000',
 	},
 	main: {
@@ -65,10 +66,10 @@ const styles = StyleSheet.create({
 		padding: 0,
 		flex: 1,
 		width: '100%',
-		
+
 	},
 	required: {
 		color: "red",
-	
+
 	},
 });

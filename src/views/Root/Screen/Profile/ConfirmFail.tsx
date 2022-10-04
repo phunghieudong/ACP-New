@@ -1,6 +1,6 @@
 
 
-
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";
@@ -34,14 +34,14 @@ const ConfirmFailScreen = ({ navigation }) => {
                     style={{ width: 87.69, height: 78.85 }}
                 />
 
-                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600",textAlign: 'center'  }}>Bạn đã đấu thầu của phiên này!</Text>
+                <Text style={{ fontSize: 20, color: '#000000', marginTop: 34, fontWeight: "600", textAlign: 'center' }}>Bạn đã đấu thầu của phiên này!</Text>
                 <Text style={{ fontSize: 14, color: '#999999', marginTop: 8, textAlign: 'center' }}>Quay trở lại trang chủ để tiếp tục đấu các phiên thầu trong tương lai .</Text>
                 {/* <Text style={{ fontSize: 14, color: '#999999', marginTop: 8 }}></Text> */}
 
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 32, width: "100%", }}>
                 <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center',  }}>
+                    <View style={{ marginTop: 16, backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>QUAY LẠI TRANG CHỦ</Text>
                     </View>
                 </TouchableOpacity>

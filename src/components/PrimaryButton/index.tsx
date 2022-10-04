@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect } from 'react';
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { appConfig } from '../../configs';

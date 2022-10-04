@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { RouteProp } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -6,10 +7,10 @@ export type AuthParamList = {
   Information: undefined;
   UsageRules: undefined;
   ContactOut: undefined;
-  Guide:undefined;
+  Guide: undefined;
   ContactLogin: undefined;
   SignIn: undefined;
-  NewsOut:undefined;
+  NewsOut: undefined;
   Register: undefined;
   ForgotPassword: undefined;
   ConfirmOTP: {
@@ -39,7 +40,6 @@ export type InformationProps = {
   route: InformationScreenRouteProp;
 };
 
-
 // ++ information
 type UsageRulesScreenNavigationProp = StackNavigationProp<
   AuthParamList,
@@ -50,7 +50,6 @@ export type UsageRulesProps = {
   navigation: UsageRulesScreenNavigationProp;
   route: UsageRulesScreenRouteProp;
 };
-
 
 // ++ information
 type ContactOutScreenNavigationProp = StackNavigationProp<
@@ -64,16 +63,12 @@ export type ContactOutProps = {
 };
 
 // ++ information
-type GuideScreenNavigationProp = StackNavigationProp<
-  AuthParamList,
-  "Guide"
->;
+type GuideScreenNavigationProp = StackNavigationProp<AuthParamList, "Guide">;
 type GuideScreenRouteProp = RouteProp<AuthParamList, "Guide">;
 export type GuideProps = {
   navigation: GuideScreenNavigationProp;
   route: GuideScreenRouteProp;
 };
-
 
 // ++ information
 type NewsOutScreenNavigationProp = StackNavigationProp<
@@ -86,8 +81,6 @@ export type NewsOutProps = {
   route: NewsOutScreenRouteProp;
 };
 
-
-
 // ++ information
 type ContactLoginScreenNavigationProp = StackNavigationProp<
   AuthParamList,
@@ -98,10 +91,6 @@ export type ContactLoginProps = {
   navigation: ContactLoginScreenNavigationProp;
   route: ContactLoginScreenRouteProp;
 };
-
-
-
-
 
 // ++ register
 type RegisterScreenNavigationProp = StackNavigationProp<

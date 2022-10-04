@@ -1,5 +1,5 @@
 
-
+//@ts-nocheck
 import React, { useEffect, useState, FC } from 'react';
 import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, } from 'react-native';
 import HeaderRoot from "../../../../components/HeaderRoot/index";

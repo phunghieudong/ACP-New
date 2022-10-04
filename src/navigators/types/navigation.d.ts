@@ -1,5 +1,6 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+//@ts-nocheck
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type ViewProps = NativeStackScreenProps<Routers>;
 
-export {ViewProps};
+export { ViewProps };

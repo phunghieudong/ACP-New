@@ -1,4 +1,5 @@
 // Có nhiều cách viết lắm, cách này dễ thì sài thôi
+//@ts-nocheck
 import AccountScreen from "./../../views/Root/Screen/Home/Account";
 // Xem thêm: https://reactnavigation.org/docs/typescript
 

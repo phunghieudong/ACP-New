@@ -171,23 +171,23 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                 onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
               >
                 <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
-                  <View style={{ flexDirection: 'row', }}>
-                    <View style={{ flexDirection: 'column' }}>
+
+                  <View style={{ flexDirection: 'column', }}>
+                    <Image
+                      source={{ uri: item.Thumbnail }}
+                      style={{ alignSelf: "center", width: 150, height: 100, borderRadius: 6 }}
+                    />
+                    <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
                       <Image
-                        source={{ uri: item.Thumbnail }}
-                        style={{ alignSelf: "center", width: 150, height: 100, borderRadius: 6 }}
+                        source={require('../../../../assets/images/clock.png')}
+                        style={{ width: 14, height: 14, marginRight: 5 }}
                       />
-                      <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
-                        <Image
-                          source={require('../../../../assets/images/clock.png')}
-                          style={{ width: 14, height: 14, marginRight: 5 }}
-                        />
-                        {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                        <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
-                      </View>
+                      {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
                     </View>
                   </View>
+
                 </View>
               </TouchableWithoutFeedback>
             )}

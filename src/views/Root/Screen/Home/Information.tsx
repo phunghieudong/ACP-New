@@ -122,7 +122,7 @@ const InformationScreen = () => {
         onEndReachedThreshold={0.5}
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
-          <TouchableWithoutFeedback
+          <TouchableOpacity
             onPress={() => navigation.navigate('InformationDetail', { Title: item.Title, content: item.content, Created: item.Created })}
           >
 
@@ -148,7 +148,7 @@ const InformationScreen = () => {
 
               </View>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
 
         )}
       />

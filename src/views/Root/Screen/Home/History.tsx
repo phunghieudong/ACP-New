@@ -135,8 +135,8 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                     source={{ uri: item.Thumbnail }}
                     style={{ alignSelf: "center", width: 150, height: 100, borderRadius: 6 }}
                   />
-                  <Text numberOfLines={1} style={{ width: "80%", fontSize: 16, fontWeight: "400", marginLeft: 20 }}>{item.BiddingSessionName}</Text>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', width: "80%", alignSelf: "center", }}>
+                  <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400" }}>{item.BiddingSessionName}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', width: "80%", }}>
                     <Image
                       source={require('../../../../assets/images/clock.png')}
                       style={{ width: 14, height: 14, marginRight: 5 }}

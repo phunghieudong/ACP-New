@@ -69,7 +69,7 @@ const AccountScreen = ({ }) => {
               <Image
                 // source={require('../../../../assets/images/camera.png')}
                 source={{ uri: user.thumbnail }}
-                style={{ width: 90, height: 90 }}
+                style={{ width: 90, height: 90, borderRadius: 100 }}
               />
             </View>
           </TouchableOpacity >
@@ -119,7 +119,11 @@ const AccountScreen = ({ }) => {
             />
             <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.address}</Text>
 
+
+
+
           </View>
+          {/* <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.userId}</Text> */}
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={showToast}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>

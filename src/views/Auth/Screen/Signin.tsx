@@ -78,12 +78,12 @@ function SigninScreen() {
 
   useEffect(() => {
     DemoToken();
-}, []);
-const DemoToken = () => {
+  }, []);
+  const DemoToken = () => {
     const accessToken = LocalStorage.getToken();
     console.log("accessToken-PhungHieuDong123", accessToken);
     return accessToken == null ? null : accessToken;
-}
+  }
 
   // const accessToken =  LocalStorage.getToken();
   // console.log("accessToken-PhungHieuDong123", accessToken);

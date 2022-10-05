@@ -32,7 +32,7 @@ const ChangePasswordScreen = () => {
       UpdateProviderPutApi({
         fullName: fullName,
         phone: phone,
-        id: "dd191af6-1f5e-4af1-bf2f-08da9b88f5ef"
+        id: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
       });
 
     }
@@ -41,6 +41,7 @@ const ChangePasswordScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateProviderPutApi = async (data: any) => {
     try {
+
       const res = await putProvider.putapiprovider(data);
       console.log("hieudong1", res)
       if (res.data.ResultCode === 200) {

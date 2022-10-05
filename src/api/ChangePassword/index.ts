@@ -4,7 +4,8 @@ import { instance } from "../instance";
 const ChangePassword = {
   async Password(data: any) {
     return instance.put(
-      "/api/authenticate/change-password/dd191af6-1f5e-4af1-bf2f-08da9b88f5ef/",data
+      "/api/authenticate/change-password/e0ea6f06-3184-4bf3-5892-08daa6ad9043/",
+      data
     ); // phải gắn thêm cái thằng username nữa , nếu không sẽ bị sai link lỗi 404
   },
 };

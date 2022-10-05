@@ -126,15 +126,16 @@ const InformationScreen = () => {
             onPress={() => navigation.navigate('InformationDetail', { Title: item.Title, content: item.content, Created: item.Created })}
           >
 
-            <View style={{ flexDirection: 'row', marginHorizontal: 20, paddingVertical: 20 }}>
-              <View>
+            <View style={{ flexDirection: 'row', marginHorizontal: 20, paddingVertical: 20, borderBottomWidth: 1, borderColor: '#666666' }}>
+              {/* <View>
                 <Image
 
                   source={require('../../../../assets/images/Information1.png')}
                   style={{ width: 74, height: 59 }}
                 />
-              </View>
+              </View> */}
               <View style={{ flexDirection: 'column', width: '100%', marginHorizontal: 8 }}>
+                <Text style={{ width: "80%" }}>{item.Title}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Image
 
@@ -144,7 +145,7 @@ const InformationScreen = () => {
 
                   <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
                 </View>
-                <Text style={{ width: "80%" }}>{item.Title}</Text>
+
               </View>
             </View>
           </TouchableWithoutFeedback>

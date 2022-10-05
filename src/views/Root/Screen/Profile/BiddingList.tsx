@@ -75,6 +75,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
     return (
         <View style={styles.container}>
             <Swiper
+                vertical={false} autoplay
                 showsButtons={false}
                 height={180}
                 containerStyle={{ flex: 0 }}

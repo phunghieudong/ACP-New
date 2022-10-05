@@ -14,6 +14,7 @@ const InformationDetailScreen: FC<BiddingTicketProps> = ({ navigation,
   return (
     <View style={styles.container}>
       <Swiper
+        vertical={false} autoplay
         showsButtons={false}
         height={180}
         containerStyle={{ flex: 0 }}

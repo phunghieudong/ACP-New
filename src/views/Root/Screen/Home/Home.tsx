@@ -122,6 +122,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       </View>
       <ScrollView>
         <Swiper
+          vertical={false} autoplay
           showsButtons={false}
           height={160}
           containerStyle={{ flex: 0 }}

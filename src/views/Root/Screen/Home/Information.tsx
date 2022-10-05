@@ -126,7 +126,7 @@ const InformationScreen = () => {
             onPress={() => navigation.navigate('InformationDetail', { Title: item.Title, content: item.content, Created: item.Created })}
           >
 
-            <View style={{ flexDirection: 'row', marginHorizontal: 20, paddingVertical: 20, borderBottomWidth: 1, borderColor: '#666666' }}>
+            <View style={{ flexDirection: 'row', marginHorizontal: 20, paddingVertical: 20, borderBottomWidth: 1, borderColor: '#9CBD44' }}>
               {/* <View>
                 <Image
 

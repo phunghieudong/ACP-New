@@ -10,80 +10,55 @@ import { PutPassword } from '../../../api/Demo';
 function ForgotPasswordScreen() {
   const [username, setusername] = useState<any>('dongph');
   const [errorText, setErrorText] = useState<string>('');
-
   const UserNamePut = () => {
     console.log("phunghieudong", username)
     setErrorText('');
     if (!!!username) {
-      setErrorText('Vui lòng username ');
+      setErrorText('Vui lòng Username ');
     }
     else {
       UserNamePutAPI({
         username: username,
-
       });
       console.log("phunghieudong123", username)
     }
   }
-
-
   const UserNamePutAPI = async (data: any) => {
     try {
       const res = await PutPassword.Password(data);
       if (res.data.ResultCode === 200) {
         console.log("ressssssssssssssssssssssss", res)
         navigation.navigate('OTP')
-
       } else {
         console.log("ressssssssssssssssssssssss", res)
-        // setErrorText(res.ResultMessage);
-
       }
     } catch (error: any) {
-
       setErrorText('Username không tồn tại ! ');
-      // setErrorText(error?.message);
-      // console.log(error);
     }
   }
-
-
-
   const navigation = useNavigation();
-
-
-
-
   return (
     <View style={{
       flex: 1,
       backgroundColor: '#fff',
     }}>
       <View style={{ backgroundColor: '#9CBD44', width: '100%', height: 64, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 25, alignItems: 'center' }}>
-
         <View style={{ flexDirection: 'row', width: 50 }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Image
-
                 source={require('../../../assets/images/goback.png')}
                 style={{ width: 7.17, height: 14 }}
               />
             </View>
           </TouchableOpacity>
-
         </View>
-
         <View >
           <Text style={{ fontSize: 20, color: '#ffffff', fontWeight: '600' }}>Quên mật khẩu</Text>
         </View>
         <View style={{ flexDirection: 'row', width: 50 }}>
-
         </View>
-
       </View>
-
-
       <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 36, fontWeight: '600', marginTop: 15 }}>Quên mật khẩu</Text>
@@ -114,30 +89,20 @@ function ForgotPasswordScreen() {
                 paddingHorizontal: 16,
 
               }}
-
-            // onChangeText={onChangeText1}
-            // value={text1}
             />
-
           </View>
-
         </View>
         <ErrorText content={errorText} />
         <TouchableOpacity onPress={UserNamePut}>
-          {/* onPress={() => navigation.navigate('OTP')} */}
-          {/* Chổ này mà xài replace là đá thẳng ra luôn */}
           <View style={{ marginTop: 50, borderColor: "#000000", backgroundColor: '#9CBD44', height: 44, width: 343, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>XÁC NHẬN</Text>
           </View>
         </TouchableOpacity>
       </View>
-
     </View>
   );
 }
 const styles = StyleSheet.create({
-
-
   inputContainer: {
     backgroundColor: 'red',
     width: '100%',

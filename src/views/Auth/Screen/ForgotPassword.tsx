@@ -20,7 +20,7 @@ function ForgotPasswordScreen() {
     else {
       UserNamePutAPI({
         username: username,
-       
+
       });
       console.log("phunghieudong123", username)
     }
@@ -41,9 +41,9 @@ function ForgotPasswordScreen() {
       }
     } catch (error: any) {
 
-
-      setErrorText(error?.message);
-      console.log(error);
+      setErrorText('Username không tồn tại ! ');
+      // setErrorText(error?.message);
+      // console.log(error);
     }
   }
 
@@ -87,7 +87,7 @@ function ForgotPasswordScreen() {
       <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ fontSize: 36, fontWeight: '600', marginTop: 15 }}>Quên mật khẩu</Text>
-          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30 , paddingHorizontal:20 }}>Vui lòng nhập UserName của bạn. Chúng tôi sẽ gửi bạn mật khẩu thông qua Email !</Text>
+          <Text style={{ color: '#666666', fontSize: 15, width: 400, textAlign: 'center', marginTop: 30, paddingHorizontal: 20 }}>Vui lòng nhập UserName của bạn. Chúng tôi sẽ gửi bạn mật khẩu thông qua Email !</Text>
         </View>
         <View style={{
           width: 343,

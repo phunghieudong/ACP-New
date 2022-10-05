@@ -150,7 +150,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         </View>
         {ready && !data.length && (
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
-          <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#A5C63F', }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', }}>
             <Image
               source={require('../../../../assets/images/empty.png')}
               style={{ width: "50%", height: 200, marginRight: 5 }}
@@ -174,7 +174,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                     <View style={{ flexDirection: 'column' }}>
                       <Image
                         source={{ uri: item.Thumbnail }}
-                        style={{ alignSelf: "center", width: 160, height: 100, borderRadius: 6 }}
+                        style={{ alignSelf: "center", width: 150, height: 100, borderRadius: 6 }}
                       />
                       <Text numberOfLines={1} style={{ width: "90%", fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>

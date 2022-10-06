@@ -31,6 +31,7 @@ function RootStackNavigator() {
             <Stack.Screen name="ConfirmFail" component={ConfirmFail} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
+            {/* QUen mat khau */}
             <Stack.Screen options={{
                 tabBarStyle: { display: "none" },
             }} name="SigninScreeen" component={SigninScreeen} />

@@ -26,6 +26,7 @@ function AccountStackNavigator() {
             <Stack.Screen name="Account" component={Account} />
             <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
+            {/* Account */}
             <Stack.Screen options={{
                 tabBarStyle: { display: "none" },
             }} name="SigninScreeen" component={SigninScreeen} />

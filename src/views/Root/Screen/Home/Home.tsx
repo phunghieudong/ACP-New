@@ -34,73 +34,6 @@ export const useTogglePasswordVisibility = () => {
 const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const [search, setSearch] = useState('');
-  const [filteredDataSource, setFilteredDataSource] = useState([]);
-  const [masterDataSource, setMasterDataSource] = useState([]);
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setFilteredDataSource(responseJson);
-        setMasterDataSource(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  const searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource and update FilteredDataSource
-      const newData = masterDataSource.filter(function (item) {
-        // Applying filter for the inserted text in search bar
-        const itemData = item.title
-          ? item.title.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
-        return itemData.indexOf(textData) > -1;
-      });
-      setFilteredDataSource(newData);
-      setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      setFilteredDataSource(masterDataSource);
-      setSearch(text);
-    }
-  };
-
-  const ItemView = ({ item }) => {
-    return (
-      // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
-      </Text>
-    );
-  };
-
-  const ItemSeparatorView = () => {
-    return (
-      // Flat List Item Separator
-      <View
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#C8C8C8',
-        }}
-      />
-    );
-  };
-
-  const getItem = (item) => {
-    // Function for click on an item
-    alert('Id : ' + item.id + ' Title : ' + item.title);
-  };
-
   const _logout = () => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
@@ -115,12 +48,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   };
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
-  const [password, setPassword] = useState('');
-  const [leftNumber, setLeftNumber] = useState<number>();
-  const [user, setUser] = useState<IUser>();
-  useEffect(() => {
-    setLeftNumber(69);
-  }, []);
   const handleConvertTime = (data) => {
     // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
     let time = Math.round((data * 1000 - new Date().getDate()) / 1000)
@@ -150,29 +77,38 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       </>
     )
   }
+
+  const [search, setSearch] = useState<any>('');
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
-  useEffect(() => {
-    (async () => {
-      try {
-        const { current, next } = page;
-        if (next) {
-          const params = { pageIndex: current, pageSize: 20, Status: 1, SearchContent: "" };
-          const res = await getBiddingSession(params);
-          console.log("res ne ban oi", res);
-          if (res.ResultCode == 200) {
-            setData([...res.Data.Items]);
-            // .filter((item) => item.Status == 1)
-            console.log("res ne ban oi", res);
-          }
-          if (!ready) setReady(true);
-        }
-      } catch (error) {
 
+  useEffect(() => {
+    SearchContent();
+  }, []);
+  console.log("search", search);
+
+  const SearchContent = async () => {
+    try {
+      const { current, next } = page;
+      if (next) {
+        const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
+        const res = await getBiddingSession(params);
+        console.log("res ne ban oi", res);
+        if (res.ResultCode == 200) {
+          setData([...res.Data.Items]);
+          // .filter((item) => item.Status == 1)
+
+        }
+        if (!ready) setReady(true);
       }
-    })();
-  }, [page.current]);
+    } catch (error) {
+
+    }
+
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>
@@ -216,6 +152,24 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         </Swiper>
         <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
           <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
+          <TextInput
+            style={{
+              height: 40,
+              borderWidth: 0.5,
+              borderRadius: 6,
+              paddingHorizontal: 16,
+              marginTop: 8,
+            }}
+            value={search}
+            placeholder='search'
+            onChangeText={(e: string) => setSearch(e)}
+            keyboardType={"ascii-capable"}
+          />
+          <TouchableOpacity onPress={SearchContent}>
+            <View style={{ backgroundColor: 'green', height: 50, width: 50 }}>
+              <Text>Nut</Text>
+            </View>
+          </TouchableOpacity>
           {/* <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text> */}
         </View>
         {ready && !data.length && (
@@ -229,21 +183,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           </View>
         )}
         {ready && (
-          // <View style={styles.container}>
-          //   <TextInput
-          //     style={styles.textInputStyle}
-          //     onChangeText={(text) => searchFilterFunction(text)}
-          //     value={search}
-          //     underlineColorAndroid="transparent"
-          //     placeholder="Search Here"
-          //   />
-          //   <FlatList
-          //     data={filteredDataSource}
-          //     keyExtractor={(item, index) => index.toString()}
-          //     ItemSeparatorComponent={ItemSeparatorView}
-          //     renderItem={ItemView}
-          //   />
-          // </View>
           <FlatList
             data={data}
             style={styles.body}
@@ -453,6 +392,14 @@ const styles = StyleSheet.create({
     padding: 8,
     left: 8,
 
+  },
+  textInputStyle: {
+    height: 40,
+    borderWidth: 1,
+    paddingLeft: 20,
+    margin: 5,
+    borderColor: '#009688',
+    backgroundColor: '#FFFFFF',
   },
 });
 export default HomeScreen; 

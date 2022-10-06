@@ -118,12 +118,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           source={require('../../../../assets/images/logo.png')}
           style={{ width: 110, height: 50 }}
         />
-        <TouchableOpacity onPress={toggleModal}>
+        {/* <TouchableOpacity onPress={toggleModal}>
           <Image
             source={require('../../../../assets/images/find.png')}
             style={{ width: 24, height: 24, marginRight: 16 }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <View style={{ backgroundColor: '#A5C63F', height: 24, width: 24 }}>
+
+        </View>
       </View>
       <ScrollView>
         <Swiper
@@ -152,7 +155,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         </Swiper>
         <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
           <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-          <TextInput
+          {/* <TextInput
             style={{
               height: 40,
               borderWidth: 0.5,
@@ -164,13 +167,50 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             placeholder='search'
             onChangeText={(e: string) => setSearch(e)}
             keyboardType={"ascii-capable"}
+            
           />
+          
           <TouchableOpacity onPress={SearchContent}>
             <View style={{ backgroundColor: 'green', height: 50, width: 50 }}>
               <Text>Nut</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           {/* <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text> */}
+          <View style={{ justifyContent: "center", alignItems: 'center', }}>
+            <View style={{
+              backgroundColor: 'white',
+              width: '90%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 10,
+              borderRadius: 6,
+              borderWidth: 1,
+              borderColor: '#666666'
+
+            }}>
+              <TextInput
+                value={search}
+                placeholder='Tên phiên đấu thầu'
+                onChangeText={(e: string) => setSearch(e)}
+                keyboardType={"ascii-capable"}
+                style={{
+                  width: '90%',
+                  height: 40,
+                  borderRadius: 6,
+                  paddingHorizontal: 16,
+
+                }}
+
+              />
+              <TouchableOpacity style={{ marginRight: 10, }} onPress={SearchContent} >
+
+                <FontAwesome name='search' size={18} color="#232323" />
+
+              </TouchableOpacity>
+            </View>
+
+
+          </View>
         </View>
         {ready && !data.length && (
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
@@ -193,7 +233,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
               <TouchableWithoutFeedback
                 onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
               >
-                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15 }}>
+                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center" }}>
 
                   <View style={{ flexDirection: 'column', }}>
                     <Image

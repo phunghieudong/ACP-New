@@ -204,7 +204,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
               />
               <TouchableOpacity style={{ marginRight: 10, }} onPress={SearchContent} >
 
-                <FontAwesome name='search' size={18} color="#232323" />
+                <FontAwesome name='search' size={18} color="red" />
 
               </TouchableOpacity>
             </View>
@@ -233,7 +233,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
               <TouchableWithoutFeedback
                 onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
               >
-                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center" }}>
+                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15, paddingBottom: 5 }}>
 
                   <View style={{ flexDirection: 'column', }}>
                     <Image

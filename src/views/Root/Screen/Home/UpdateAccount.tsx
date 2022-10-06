@@ -13,8 +13,8 @@ const ChangePasswordScreen = () => {
   const navigation = useNavigation();
   const [fullName, setfullName] = useState<string>('');
   const [phone, setphone] = useState<string>('');
-  const [gmail, setgmail] = useState<string>('');
-  const [taxcode, settaxcode] = useState<string>('');
+  const [email, setemail] = useState<string>('');
+  const [taxCode, settaxCode] = useState<string>('');
   const [address, setaddress] = useState<string>('');
   const [errorText, setErrorText] = useState<string>('');
   const UpdateProvider = () => {
@@ -28,10 +28,14 @@ const ChangePasswordScreen = () => {
     }
 
 
+
     else {
       UpdateProviderPutApi({
         fullName: fullName,
         phone: phone,
+        address: address,
+        email: email,
+        taxCode: taxCode,
         id: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
       });
 
@@ -128,9 +132,9 @@ const ChangePasswordScreen = () => {
             </View>
 
             <TextInput
-              value={gmail}
+              value={email}
               placeholder="Email"
-              onChangeText={(e: string) => setgmail(e)}
+              onChangeText={(e: string) => setemail(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -142,9 +146,9 @@ const ChangePasswordScreen = () => {
             />
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Mã số thuế</Text>
             <TextInput
-              value={taxcode}
+              value={taxCode}
               placeholder="Mã số thuế"
-              onChangeText={(e: string) => settaxcode(e)}
+              onChangeText={(e: string) => settaxCode(e)}
               style={{
                 height: 40,
                 borderWidth: 0.5,
@@ -234,13 +238,13 @@ const ChangePasswordScreen = () => {
             }}>Xin chúc mừng </Text>
             <Text style={styles.modalText}>Bạn đã cập nhật thông tin Nhà Cung Cấp thành công </Text>
             <View style={{ flexDirection: 'row' }}>
-              <Pressable
+              <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
 
                 onPress={() => UpdateProvider()}
               >
                 <Text style={styles.textStyle}>THOÁT</Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

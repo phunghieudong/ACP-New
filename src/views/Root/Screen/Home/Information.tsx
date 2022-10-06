@@ -117,16 +117,28 @@ const InformationScreen = () => {
         style={{
           paddingHorizontal: 30,
           backgroundColor: '#fff',
+
         }}
 
         onEndReachedThreshold={0.5}
         keyExtractor={(i) => i.Id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('InformationDetail', { Title: item.Title, content: item.content, Created: item.Created })}
+            onPress={() => navigation.navigate('InformationDetail', {
+              Title: item.Title,
+              content: item.content,
+              Created: item.Created
+            })}
           >
 
-            <View style={{ flexDirection: 'row', marginHorizontal: 20, paddingVertical: 20, borderBottomWidth: 1, borderColor: '#9CBD44' }}>
+            <View style={{
+              flexDirection: 'row',
+              paddingVertical: 20,
+              borderBottomWidth: 1,
+              borderColor: '#9CBD44',
+
+
+            }}>
               {/* <View>
                 <Image
 
@@ -164,6 +176,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+
 
   },
   text: {

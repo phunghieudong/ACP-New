@@ -216,7 +216,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
           <View style={{ justifyContent: 'center', alignItems: 'center', }}>
             <Image
-              source={require('../../../../assets/images/empty.png')}
+              source={require('../../../../assets/images/nodata2.gif')}
               style={{ width: "50%", height: 200, marginRight: 5 }}
             />
             <Text style={{ alignSelf: 'center', fontSize: 20, fontWeight: "600", marginTop: 20, borderRadius: 6 }}>Không tìm thấy bất kì phiên đấu thấu nào</Text>
@@ -255,6 +255,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
               </TouchableWithoutFeedback>
             )}
           />
+
         )}
       </ScrollView>
       <BottomSheet

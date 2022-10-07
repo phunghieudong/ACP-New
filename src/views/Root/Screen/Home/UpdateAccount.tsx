@@ -6,6 +6,8 @@ import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { putProvider } from "../../../../api/Provider/index"
 import ErrorText from '../../../../components/More/error-text';
+import { LocalStorage } from "../../../../utils/LocalStorage/index";
+import { Buffer } from 'buffer';
 const ChangePasswordScreen = () => {
   function showToast() {
     ToastAndroid.show('Request sent successfully!', ToastAndroid.SHORT);
@@ -17,6 +19,7 @@ const ChangePasswordScreen = () => {
   const [taxCode, settaxCode] = useState<string>('');
   const [address, setaddress] = useState<string>('');
   const [errorText, setErrorText] = useState<string>('');
+  const [user, setUser] = useState({});
   const UpdateProvider = () => {
     // console.log("phunghieudong", username)
     setErrorText('');
@@ -36,7 +39,7 @@ const ChangePasswordScreen = () => {
         address: address,
         email: email,
         taxCode: taxCode,
-        id: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
+        id: user.userId
       });
 
     }
@@ -45,26 +48,34 @@ const ChangePasswordScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateProviderPutApi = async (data: any) => {
     try {
-
       const res = await putProvider.putapiprovider(data);
       console.log("hieudong1", res)
       if (res.data.ResultCode === 200) {
-        // navigation.navigate("UpdateAccount");
         onPress = setModalVisible(!modalVisible)
       } else {
         console.log("hieudong2", res)
-        // setErrorText(res.ResultMessage);
         console.log("hieudong3", res)
       }
     } catch (error: any) {
-      // setErrorText("Mật khẩu cũ không chính xác");
-      // console.log("hieudong3", res)
-      // setErrorText(error?.message);
-      // console.log(error);
       console.log("hieudong4", res)
     }
   }
 
+  useEffect(() => {
+    DemoToken();
+  }, []);
+
+  const DemoToken = async () => {
+    const accessToken = await LocalStorage.getToken();
+    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
+  }
+
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    return JSON.parse(jsonPayload) || {};
+  }
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>
@@ -92,6 +103,7 @@ const ChangePasswordScreen = () => {
           <View style={{ marginHorizontal: 20, marginTop: 15 }}>
             <View style={{ flexDirection: 'row' }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tên công ty</Text>
+
               <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
             </View>
 
@@ -158,39 +170,6 @@ const ChangePasswordScreen = () => {
                 marginTop: 8
               }}
             />
-            {/* <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Tình / Thành phố</Text>
-            <TextInput
-              style={{
-                height: 40,
-                borderWidth: 0.5,
-                borderRadius: 6,
-                borderColor: "#666666",
-                paddingHorizontal: 16,
-                marginTop: 8
-              }}
-            />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Quận / Huyện</Text>
-            <TextInput
-              style={{
-                height: 40,
-                borderWidth: 0.5,
-                borderRadius: 6,
-                borderColor: "#666666",
-                paddingHorizontal: 16,
-                marginTop: 8
-              }}
-            />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Phường / Xã</Text>
-            <TextInput
-              style={{
-                height: 40,
-                borderWidth: 0.5,
-                borderRadius: 6,
-                borderColor: "#666666",
-                paddingHorizontal: 16,
-                marginTop: 8
-              }}
-            /> */}
             <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Địa chỉ</Text>
             <TextInput
               value={address}
@@ -206,10 +185,7 @@ const ChangePasswordScreen = () => {
               }}
             />
             <ErrorText content={errorText} />
-
             <TouchableOpacity onPress={() => setModalVisible(true)}>
-
-
               {/* <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}> */}
               <View style={{ marginTop: 32, marginBottom: 32, backgroundColor: '#9CBD44', height: 44, width: "100%", borderRadius: 6, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{ fontSize: 16, color: "#ffffff", fontWeight: "600" }}>CẬP NHẬT</Text>

@@ -33,7 +33,7 @@ const UpdateAccountScreen = () => {
         oldPassword: oldPassword,
         newPassword: newPassword,
         confirmNewPassword: confirmNewPassword,
-        // providerId: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
+
       });
 
     }

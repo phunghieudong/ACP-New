@@ -8,13 +8,14 @@ import { FontAwesome } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ErrorText from '../../../../components/More/error-text';
 import { ChangePassword } from '../../../../api/ChangePassword';
-
+import { LocalStorage } from "../../../../utils/LocalStorage/index";
+import { Buffer } from 'buffer';
 const UpdateAccountScreen = () => {
   const [oldPassword, setoldPassword] = useState<string>('');
   const [newPassword, setnewPassword] = useState<string>('');
   const [confirmNewPassword, setconfirmNewPassword] = useState<string>('');
   const [errorText, setErrorText] = useState<string>('');
-
+  const [user, setUser] = useState({});
   const ChangePasswordPut = () => {
     // console.log("phunghieudong", username)
     setErrorText('');
@@ -24,7 +25,7 @@ const UpdateAccountScreen = () => {
     if (!!!newPassword) {
       setErrorText('Vui lòng newPassword ');
     }
-    if (!!!setconfirmNewPassword) {
+    if (!!!confirmNewPassword) {
       setErrorText('Vui lòng setconfirmNewPassword ');
     }
     else {
@@ -32,33 +33,52 @@ const UpdateAccountScreen = () => {
         oldPassword: oldPassword,
         newPassword: newPassword,
         confirmNewPassword: confirmNewPassword,
-        providerId: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
+        // providerId: "e0ea6f06-3184-4bf3-5892-08daa6ad9043"
       });
-      // console.log("phunghieudong123", username)
+
     }
   }
 
 
   const UserNamePutAPI = async (data: any) => {
+    console.log("Sieunhanxanh")
+    const accessToken = await LocalStorage.getToken();
+    const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0])
     try {
-      const res = await ChangePassword.Password(data);
-      console.log("hieudong1", res)
+      const params = { providerId: userx.userId, };
+      const res = await ChangePassword.Password(params, data);
       if (res.data.ResultCode === 200) {
+        console.log("Sieunhancam", res)
         navigation.navigate("SigninScreeen");
-      } else {
-        console.log("hieudong2", res)
-        // setErrorText(res.ResultMessage);
-
       }
     } catch (error: any) {
       setErrorText("Mật khẩu cũ không chính xác");
-      console.log("hieudong3", res)
       setErrorText(error?.message);
-      console.log(error);
     }
   }
 
   const navigation = useNavigation();
+
+
+  useEffect(() => {
+    DemoToken();
+  }, []);
+
+  const DemoToken = async () => {
+    const accessToken = await LocalStorage.getToken();
+    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
+  }
+
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    return JSON.parse(jsonPayload) || {};
+  }
+  // console.log("oldPassword", oldPassword)
+  // console.log("newPassword", newPassword)
+  // console.log("confirmNewPassword", confirmNewPassword)
+  // console.log("ChangePassword", user);
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#9CBD44', width: '100%', height: 64, justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 20 }}>

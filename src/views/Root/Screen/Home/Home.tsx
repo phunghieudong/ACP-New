@@ -107,8 +107,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     }
 
   }
-
-
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>

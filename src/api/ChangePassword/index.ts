@@ -2,10 +2,10 @@ import { appConfig } from "../../configs";
 import { instance } from "../instance";
 
 const ChangePassword = {
-  async Password(data: any) {
+  async Password(data: any, params: any) {
     return instance.put(
-      "/api/authenticate/change-password/e0ea6f06-3184-4bf3-5892-08daa6ad9043/",
-      data
+      "/api/authenticate/change-password/" + `${data.providerId}`,
+      params
     ); // phải gắn thêm cái thằng username nữa , nếu không sẽ bị sai link lỗi 404
   },
 };

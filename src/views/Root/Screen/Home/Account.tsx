@@ -7,29 +7,21 @@ import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from 'buffer';
 import { useIsFocused } from '@react-navigation/native';
 Buffer.from('anything', 'base64');
-
-
 const AccountScreen = ({ }) => {
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState(false);
-
   const [user, setUser] = useState({});
   const [isEnabled, setIsEnabled] = useState(false);
-
-
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const focused = useIsFocused(true);
   function showToast() {
     ToastAndroid.show('Tính năng còn đang phát triển !', ToastAndroid.SHORT);
   }
-
   const _logout = () => {
     LocalStorage.logout();
     navigation.navigate('SigninScreeen')
     // navigation.navigate('Confirm')
-
   }
-
   useEffect(() => {
     (async () => {
       if (!focused) {
@@ -41,24 +33,19 @@ const AccountScreen = ({ }) => {
       }
     })();
   }, [focused]);
-
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
     !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
   }
-
   function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
     return JSON.parse(jsonPayload) || {};
   }
-
   console.log("--- user", user);
-
   return (
     <View style={styles.container}>
-
       <View style={{ backgroundColor: '#A5C63F', width: "100%", height: 64, justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ color: '#ffffff', fontSize: 20, fontWeight: '600' }}>Tài khoản</Text>
       </View>
@@ -105,7 +92,6 @@ const AccountScreen = ({ }) => {
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
-
               source={require('../../../../assets/images/phone.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
@@ -113,22 +99,16 @@ const AccountScreen = ({ }) => {
           </View>
           <View style={{ marginTop: 9, marginLeft: 40.28, flexDirection: "row" }}>
             <Image
-
               source={require('../../../../assets/images/now.png')}
               style={{ width: 16, height: 16, marginRight: 9 }}
             />
             <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.address}</Text>
-
-
-
-
           </View>
           {/* <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.userId}</Text> */}
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={showToast}>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27 }}>
               <Image
-
                 source={require('../../../../assets/images/balo.png')}
                 style={{ width: 16, height: 14.06, marginRight: 9 }}
               />
@@ -146,25 +126,11 @@ const AccountScreen = ({ }) => {
             </View>
           </TouchableOpacity>
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
-
           <View style={{ justifyContent: "space-between", flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, }}>
-
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-
               <Text style={{ fontSize: 16, color: '#000000', fontWeight: "600", }}>Nhận thông báo  dự thầu</Text>
             </View>
-
             <View style={{ flexDirection: "row-reverse", paddingStart: 10 }}>
-              {/* <Text>{enabled ? "Switch is ON" : "Switch is OFF"}</Text> */}
-              {/* <ToggleSwitch
-                isOn={true}
-                onColor="#CCCCCC"
-                offColor="#CCCCCC"
-                labelStyle={{ color: "black", fontWeight: "900" }}
-                size="small"
-                onToggle={isOn => console.log("changed to : ", isOn)}
-              /> */}
-
               <Switch
                 trackColor={{ false: '#666666', true: '#666666' }}
                 thumbColor={isEnabled ? '#A5C63F' : '#f4f3f4'}
@@ -172,18 +138,12 @@ const AccountScreen = ({ }) => {
                 onValueChange={toggleSwitch}
                 value={isEnabled}
               />
-
-
             </View>
-
           </View>
-
           <View style={{ borderBottomWidth: 0.5, justifyContent: 'center', alignItems: 'center', borderColor: '#D9D9D9', width: "100%", paddingTop: 24 }}></View>
           <TouchableOpacity onPress={() => setModalVisible(true)}>
-
             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 16, marginTop: 27, marginBottom: 20 }}>
               <Image
-
                 source={require('../../../../assets/images/lognout.png')}
                 style={{ width: 16, height: 16, marginRight: 9 }}
               />
@@ -196,10 +156,6 @@ const AccountScreen = ({ }) => {
         animationType="fade"
         transparent={false}
         visible={modalVisible}
-      // onRequestClose={() => {
-      //   Alert.alert("Modal has been closed.");
-      //   setModalVisible(!modalVisible);
-      // }}   onPress={_logout}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -218,23 +174,16 @@ const AccountScreen = ({ }) => {
                 <Text style={styles.textStyle}>ĐĂNG XUẤT</Text>
               </Pressable>
             </View>
-
-
           </View>
         </View>
       </Modal>
     </View>
   );
 };
-
-
-
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
   text: {
     fontSize: 22,

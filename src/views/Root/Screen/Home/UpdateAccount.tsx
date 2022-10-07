@@ -29,9 +29,6 @@ const ChangePasswordScreen = () => {
     if (!!!phone) {
       setErrorText('Vui lòng nhập số điện thoại ');
     }
-
-
-
     else {
       UpdateProviderPutApi({
         fullName: fullName,
@@ -41,10 +38,8 @@ const ChangePasswordScreen = () => {
         taxCode: taxCode,
         id: user.userId
       });
-
     }
   }
-
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateProviderPutApi = async (data: any) => {
     try {
@@ -60,16 +55,13 @@ const ChangePasswordScreen = () => {
       console.log("hieudong4", res)
     }
   }
-
   useEffect(() => {
     DemoToken();
   }, []);
-
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
     !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
   }
-
   function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -106,7 +98,6 @@ const ChangePasswordScreen = () => {
 
               <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
             </View>
-
             <TextInput
               value={fullName}
               placeholder="Tên công ty"
@@ -124,7 +115,6 @@ const ChangePasswordScreen = () => {
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Số điện thoại</Text>
               <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text>
             </View>
-
             <TextInput
               value={phone}
               placeholder="Số điện thoại"
@@ -142,7 +132,6 @@ const ChangePasswordScreen = () => {
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>Email</Text>
               {/* <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text> */}
             </View>
-
             <TextInput
               value={email}
               placeholder="Email"
@@ -200,10 +189,6 @@ const ChangePasswordScreen = () => {
         animationType="fade"
         transparent={false}
         visible={modalVisible}
-      // onRequestClose={() => {
-      //   Alert.alert("Modal has been closed.");
-      //   setModalVisible(!modalVisible);
-      // }}   onPress={_logout}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -229,14 +214,10 @@ const ChangePasswordScreen = () => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
   text: {
     fontSize: 22,

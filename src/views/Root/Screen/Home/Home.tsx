@@ -13,6 +13,9 @@ import { BiddingSessionData } from "../../../../types/BiddingSession";
 import { useNavigation } from '@react-navigation/native';
 import { LocalStorage } from '../../../../utils/LocalStorage';
 import Empty from "../../../../components/Empty/index";
+import { useIsFocused } from '@react-navigation/native';
+
+import { Buffer } from 'buffer';
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
   const [rightIcon, setRightIcon] = useState('eye');
@@ -77,36 +80,90 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
       </>
     )
   }
-
+  // const [isModalVisible, setModalVisible] = useState(false);
+  const [isFirst, setFirst] = useState(true);
+  const [user, setUser] = useState({});
   const [search, setSearch] = useState<any>('');
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
 
-  useEffect(() => {
-    SearchContent();
-  }, []);
-  console.log("search", search);
+  // useEffect(() => {
+  //   SearchContent();
+  // }, []);
+  // console.log("search", search);
 
+  // const SearchContent = async () => {
+  //   try {
+  //     const { current, next } = page;
+  //     if (next) {
+  //       const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
+  //       const res = await getBiddingSession(params);
+  //       console.log("res ne ban oi", res);
+  //       if (res.ResultCode == 200) {
+  //         setData([...res.Data.Items]);
+  //         // .filter((item) => item.Status == 1)
+
+  //       }
+  //       if (!ready) setReady(true);
+  //     }
+  //   } catch (error) {
+
+  //   }
+
+  // }
+
+  const focused = useIsFocused();
   const SearchContent = async () => {
+    const accessToken = await LocalStorage.getToken();
+    const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0])
     try {
       const { current, next } = page;
-      if (next) {
-        const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
-        const res = await getBiddingSession(params);
+      const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
+      const res = await getBiddingSession(params);
+      console.log("res ne ban oi", res);
+      if (res.ResultCode == 200) {
+        setData(res.Data.Items);
         console.log("res ne ban oi", res);
-        if (res.ResultCode == 200) {
-          setData([...res.Data.Items]);
-          // .filter((item) => item.Status == 1)
-
-        }
-        if (!ready) setReady(true);
       }
+      if (!ready) setReady(true);
+
     } catch (error) {
 
     }
-
   }
+  const DemoToken = async () => {
+    const accessToken = await LocalStorage.getToken();
+    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
+  }
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    return JSON.parse(jsonPayload) || {};
+  }
+  useEffect(() => {
+    (async () => {
+      if (!focused) {
+        setFirst(true)
+      } else {
+        SearchContent()
+      }
+    })();
+  }, [focused]);
+  useEffect(() => {
+    if (!isFirst) {
+      SearchContent()
+    } else {
+      setFirst(false)
+    }
+  }, [page.current]);
+
+  useEffect(() => {
+    DemoToken();
+  }, []);
+
+  console.log("--- user", user);
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>

@@ -103,10 +103,7 @@ instance.interceptors.response.use(
         "color: red; font-weight: bold",
         error.response.data
       );
-      return Promise.reject({
-        status: error.response.status,
-        message: error.response.data.message,
-      });
+      return Promise.reject(error.response.data);
     } else if (error.request) {
       // request mãi mãi ko thấy response
       // `error.request` là XMLHttpRequest trong website còn nodejs là http.ClientRequest

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 
 import { Provider as StoreProvider } from 'react-redux';

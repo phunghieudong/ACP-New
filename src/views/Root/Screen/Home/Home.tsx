@@ -1,37 +1,49 @@
-
 //@ts-nocheck
-import React, { useEffect, useState, FC } from 'react';
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, TouchableWithoutFeedback, SafeAreaView, Button, Pressable, TextInput, FlatList, } from 'react-native';
+import React, { useEffect, useState, FC } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  SafeAreaView,
+  Button,
+  Pressable,
+  TextInput,
+  FlatList,
+} from "react-native";
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import Swiper from "react-native-swiper";
-import { BottomSheet } from 'react-native-btr';
-import { FontAwesome } from '@expo/vector-icons';
-import moment from 'moment';
+import { BottomSheet } from "react-native-btr";
+import { FontAwesome } from "@expo/vector-icons";
+import moment from "moment";
 import { getBiddingSession } from "../../../../api/BiddingSession/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
-import { useNavigation } from '@react-navigation/native';
-import { LocalStorage } from '../../../../utils/LocalStorage';
+import { useNavigation } from "@react-navigation/native";
+import { LocalStorage } from "../../../../utils/LocalStorage";
 import Empty from "../../../../components/Empty/index";
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused } from "@react-navigation/native";
 
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 export const useTogglePasswordVisibility = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye');
+  const [rightIcon, setRightIcon] = useState("eye");
   const handlePasswordVisibility = () => {
-    if (rightIcon === 'eye') {
-      setRightIcon('eye-off');
+    if (rightIcon === "eye") {
+      setRightIcon("eye-off");
       setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === 'eye-off') {
-      setRightIcon('eye');
+    } else if (rightIcon === "eye-off") {
+      setRightIcon("eye");
       setPasswordVisibility(!passwordVisibility);
     }
   };
   return {
     passwordVisibility,
     rightIcon,
-    handlePasswordVisibility
+    handlePasswordVisibility,
   };
 };
 const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
@@ -39,8 +51,8 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
 
   const _logout = () => {
     LocalStorage.logout();
-    navigation.navigate('SigninScreeen')
-  }
+    navigation.navigate("SigninScreeen");
+  };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -53,37 +65,37 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     useTogglePasswordVisibility();
   const handleConvertTime = (data) => {
     // console.log("dataaaaaaaaaaaaaaaaaaaaaaaaaaa", data);
-    let time = Math.round((data * 1000 - new Date().getDate()) / 1000)
+    let time = Math.round((data * 1000 - new Date().getDate()) / 1000);
 
     if (time < 0) {
-      time = time * -1
+      time = time * -1;
     }
-    let content = ''
-    let days = Math.floor(time / 86400)
-    time = time - days * 86400
-    let hours = Math.floor(time / 3600)
-    time = time - hours * 3600
-    let minutes = Math.floor(time / 60)
-    time = time - minutes * 60
-    let second = Math.floor(time / 60)
-    time = time - second * 60
-    if (days) content += days + ' ngày'
+    let content = "";
+    let days = Math.floor(time / 86400);
+    time = time - days * 86400;
+    let hours = Math.floor(time / 3600);
+    time = time - hours * 3600;
+    let minutes = Math.floor(time / 60);
+    time = time - minutes * 60;
+    let second = Math.floor(time / 60);
+    time = time - second * 60;
+    if (days) content += days + " ngày";
     if (hours || days) {
-      if (days) content += ', '
-      content += hours + ' giờ, '
+      if (days) content += ", ";
+      content += hours + " giờ, ";
     }
-    content += minutes + ' phút'
+    content += minutes + " phút";
     // content += minutes + ' giây'
     return (
       <>
         <Text>{content}</Text>
       </>
-    )
-  }
+    );
+  };
   // const [isModalVisible, setModalVisible] = useState(false);
   const [isFirst, setFirst] = useState(true);
   const [user, setUser] = useState({});
-  const [search, setSearch] = useState<any>('');
+  const [search, setSearch] = useState<any>("");
   const [data, setData] = useState<BiddingSessionData[]>([]);
   const [page, setPage] = useState({ current: 1, next: true });
   const [ready, setReady] = useState(false);
@@ -116,10 +128,15 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   const focused = useIsFocused();
   const SearchContent = async () => {
     const accessToken = await LocalStorage.getToken();
-    const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0])
+    const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0]);
     try {
       const { current, next } = page;
-      const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
+      const params = {
+        pageIndex: current,
+        pageSize: 20,
+        Status: 1,
+        Name: search,
+      };
       const res = await getBiddingSession(params);
       console.log("res ne ban oi", res);
       if (res.ResultCode == 200) {
@@ -127,35 +144,35 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         console.log("res ne ban oi", res);
       }
       if (!ready) setReady(true);
-
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
-    !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
-  }
+    !!accessToken &&
+      setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]));
+  };
   function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      Buffer.from(base64, "base64").toString()
+    );
     return JSON.parse(jsonPayload) || {};
   }
   useEffect(() => {
     (async () => {
       if (!focused) {
-        setFirst(true)
+        setFirst(true);
       } else {
-        SearchContent()
+        SearchContent();
       }
     })();
   }, [focused]);
   useEffect(() => {
     if (!isFirst) {
-      SearchContent()
+      SearchContent();
     } else {
-      setFirst(false)
+      setFirst(false);
     }
   }, [page.current]);
 
@@ -166,11 +183,21 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
   console.log("--- user", user);
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', backgroundColor: '#A5C63F', width: "100%", height: 92, justifyContent: "space-between", alignItems: 'center', }}>
-        <View style={{ backgroundColor: '#A5C63F', width: 30, height: 30 }}>
-        </View>
+      <View
+        style={{
+          flexDirection: "row",
+          backgroundColor: "#A5C63F",
+          width: "100%",
+          height: 92,
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{ backgroundColor: "#A5C63F", width: 30, height: 30 }}
+        ></View>
         <Image
-          source={require('../../../../assets/images/logo.png')}
+          source={require("../../../../assets/images/logo.png")}
           style={{ width: 110, height: 50 }}
         />
         {/* <TouchableOpacity onPress={toggleModal}>
@@ -179,13 +206,14 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             style={{ width: 24, height: 24, marginRight: 16 }}
           />
         </TouchableOpacity> */}
-        <View style={{ backgroundColor: '#A5C63F', height: 24, width: 24 }}>
-
-        </View>
+        <View
+          style={{ backgroundColor: "#A5C63F", height: 24, width: 24 }}
+        ></View>
       </View>
       <ScrollView>
         <Swiper
-          vertical={false} autoplay
+          vertical={false}
+          autoplay
           showsButtons={false}
           height={160}
           containerStyle={{ flex: 0 }}
@@ -196,85 +224,94 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
           }}
         >
           <Image
-            source={require('../../../../assets/images/home.png')}
+            source={require("../../../../assets/images/home.png")}
             style={{ width: "100%", height: 180 }}
           />
           <Image
-            source={require('../../../../assets/images/home.png')}
+            source={require("../../../../assets/images/home.png")}
             style={{ width: "100%", height: 180 }}
           />
           <Image
-            source={require('../../../../assets/images/home.png')}
+            source={require("../../../../assets/images/home.png")}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require("../../../../assets/images/home.png")}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require("../../../../assets/images/home.png")}
+            style={{ width: "100%", height: 180 }}
+          />
+          <Image
+            source={require("../../../../assets/images/home.png")}
             style={{ width: "100%", height: 180 }}
           />
         </Swiper>
-        <View style={{ flexDirection: 'column', marginTop: 15, marginHorizontal: 20, marginBottom: 20 }}>
-          <Text style={{ fontSize: 20, color: '#000000', fontWeight: "600", }}>Danh sách phiên đấu thầu</Text>
-          {/* <TextInput
-            style={{
-              height: 40,
-              borderWidth: 0.5,
-              borderRadius: 6,
-              paddingHorizontal: 16,
-              marginTop: 8,
-            }}
-            value={search}
-            placeholder='search'
-            onChangeText={(e: string) => setSearch(e)}
-            keyboardType={"ascii-capable"}
-            
-          />
-          
-          <TouchableOpacity onPress={SearchContent}>
-            <View style={{ backgroundColor: 'green', height: 50, width: 50 }}>
-              <Text>Nut</Text>
-            </View>
-          </TouchableOpacity> */}
-          {/* <Text style={{ fontSize: 14, color: '#999999', }}>Dưới đây là danh sách những phiên đấu thầu hiện đang diễn ra , anh chị có thể tham gia đấu các phiên thầu ngay bây giờ.</Text> */}
-          <View style={{ justifyContent: "center", alignItems: 'center', }}>
-            <View style={{
-              backgroundColor: 'white',
-              width: '90%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 10,
-              borderRadius: 6,
-              borderWidth: 1,
-              borderColor: '#666666'
+        <View
+          style={{
+            flexDirection: "column",
+            marginTop: 15,
+            marginHorizontal: 20,
+            marginBottom: 20,
+          }}
+        >
+          <Text style={{ fontSize: 20, color: "#000000", fontWeight: "600" }}>
+            Danh sách phiên đấu thầu
+          </Text>
 
-            }}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View
+              style={{
+                backgroundColor: "white",
+                width: "90%",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 10,
+                borderRadius: 6,
+                borderWidth: 1,
+                borderColor: "#666666",
+              }}
+            >
               <TextInput
                 value={search}
-                placeholder='Tên phiên đấu thầu'
+                placeholder="Tên phiên đấu thầu"
                 onChangeText={(e: string) => setSearch(e)}
                 keyboardType={"ascii-capable"}
                 style={{
-                  width: '90%',
+                  width: "90%",
                   height: 40,
                   borderRadius: 6,
                   paddingHorizontal: 16,
-
                 }}
-
               />
-              <TouchableOpacity style={{ marginRight: 10, }} onPress={SearchContent} >
-
-                <FontAwesome name='search' size={18} color="red" />
-
+              <TouchableOpacity
+                style={{ marginRight: 10 }}
+                onPress={SearchContent}
+              >
+                <FontAwesome name="search" size={18} color="red" />
               </TouchableOpacity>
             </View>
-
-
           </View>
         </View>
         {ready && !data.length && (
           // <Empty text="Không tìm thấy bất kì phiên đấu thấu nào" />
-          <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Image
-              source={require('../../../../assets/images/nodata2.gif')}
+              source={require("../../../../assets/images/nodata2.gif")}
               style={{ width: "50%", height: 200, marginRight: 5 }}
             />
-            <Text style={{ alignSelf: 'center', fontSize: 20, fontWeight: "600", marginTop: 20, borderRadius: 6 }}>Không tìm thấy bất kì phiên đấu thấu nào</Text>
+            <Text
+              style={{
+                alignSelf: "center",
+                fontSize: 20,
+                fontWeight: "600",
+                marginTop: 20,
+                borderRadius: 6,
+              }}
+            >
+              Không tìm thấy bất kì phiên đấu thấu nào
+            </Text>
           </View>
         )}
         {ready && (
@@ -286,31 +323,67 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             keyExtractor={(i) => i.Id.toString()}
             renderItem={({ item }) => (
               <TouchableWithoutFeedback
-                onPress={() => navigation.navigate('BiddingList', { IsBid: item.IsBid, Thumbnail: item.Thumbnail, Name: item.Name, ProductName: item.ProductName, StartDate: item.StartDate, EndDate: item.EndDate, MinimumQuantity: item.MinimumQuantity, MaximumQuantity: item.MaximumQuantity, Id: item.Id, ProductId: item.ProductId })}
+                onPress={() =>
+                  navigation.navigate("BiddingList", {
+                    IsBid: item.IsBid,
+                    Thumbnail: item.Thumbnail,
+                    Name: item.Name,
+                    ProductName: item.ProductName,
+                    StartDate: item.StartDate,
+                    EndDate: item.EndDate,
+                    MinimumQuantity: item.MinimumQuantity,
+                    MaximumQuantity: item.MaximumQuantity,
+                    Id: item.Id,
+                    ProductId: item.ProductId,
+                  })
+                }
               >
-                <View style={{ flexDirection: "row", width: "50%", justifyContent: "center", paddingTop: 15, paddingBottom: 5 }}>
-
-                  <View style={{ flexDirection: 'column', }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    width: "50%",
+                    justifyContent: "center",
+                    paddingTop: 15,
+                    paddingBottom: 5,
+                  }}
+                >
+                  <View style={{ flexDirection: "column" }}>
                     <Image
                       source={{ uri: item.Thumbnail }}
-                      style={{ alignSelf: "center", width: 150, height: 100, borderRadius: 6 }}
+                      style={{
+                        alignSelf: "center",
+                        width: 150,
+                        height: 100,
+                        borderRadius: 6,
+                      }}
                     />
-                    <Text numberOfLines={1} style={{ width: 150, fontSize: 16, fontWeight: "400" }}>{item.Name}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: "90%", }}>
+                    <Text
+                      numberOfLines={1}
+                      style={{ width: 150, fontSize: 16, fontWeight: "400" }}
+                    >
+                      {item.Name}
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        width: "90%",
+                      }}
+                    >
                       <Image
-                        source={require('../../../../assets/images/clock.png')}
+                        source={require("../../../../assets/images/clock.png")}
                         style={{ width: 14, height: 14, marginRight: 5 }}
                       />
                       {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                      <Text>{handleConvertTime(item.BiddingSessionTimeOut)}</Text>
+                      <Text>
+                        {handleConvertTime(item.BiddingSessionTimeOut)}
+                      </Text>
                     </View>
                   </View>
-
                 </View>
               </TouchableWithoutFeedback>
             )}
           />
-
         )}
       </ScrollView>
       <BottomSheet
@@ -318,69 +391,107 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         onBackButtonPress={toggleBottomNavigationView}
         onBackdropPress={toggleBottomNavigationView}
       >
-        <View style={{
-          backgroundColor: '#fff',
-          width: '100%',
-          height: 250,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-          flexDirection: 'column'
-        }}>
-          <View style={{
-            backgroundColor: "#9CBD44",
-            width: '100%',
-            height: 50,
+        <View
+          style={{
+            backgroundColor: "#fff",
+            width: "100%",
+            height: 250,
+            justifyContent: "center",
+            alignItems: "center",
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexDirection: "row",
-
-          }}>
-            <Text style={{ fontSize: 20, fontWeight: '600', marginLeft: 20, color: '#fff' }}>Bộ lọc</Text>
+            flexDirection: "column",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#9CBD44",
+              width: "100%",
+              height: 50,
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexDirection: "row",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "600",
+                marginLeft: 20,
+                color: "#fff",
+              }}
+            >
+              Bộ lọc
+            </Text>
             <TouchableOpacity onPress={toggleModal}>
-
-              <View style={{ height: 30, width: 30, marginRight: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ffffff' }}>
-                <Text style={{ fontSize: 20, fontWeight: '900', color: '#fff', }}>x</Text>
+              <View
+                style={{
+                  height: 30,
+                  width: 30,
+                  marginRight: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderColor: "#ffffff",
+                }}
+              >
+                <Text
+                  style={{ fontSize: 20, fontWeight: "900", color: "#fff" }}
+                >
+                  x
+                </Text>
               </View>
             </TouchableOpacity>
-
           </View>
-          <View style={{ backgroundColor: "#fff", width: '100%', height: 180, alignItems: 'center', marginVertical: 20 }}>
+          <View
+            style={{
+              backgroundColor: "#fff",
+              width: "100%",
+              height: 180,
+              alignItems: "center",
+              marginVertical: 20,
+            }}
+          >
             <View>
-              <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 80 }}>
-                <View style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  elevation: 10,
-                  marginTop: 16,
-                  borderRadius: 6,
-                  borderWidth: 1,
-                  borderColor: '#666666'
-
-                }}>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginBottom: 80,
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    width: "90%",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    elevation: 10,
+                    marginTop: 16,
+                    borderRadius: 6,
+                    borderWidth: 1,
+                    borderColor: "#666666",
+                  }}
+                >
                   <TextInput
-                    placeholder='Tên phiên đấu thầu'
+                    placeholder="Tên phiên đấu thầu"
                     autoCorrect={false}
                     secureTextEntry={false}
-                    textContentType='username'
+                    textContentType="username"
                     style={{
-                      width: '90%',
+                      width: "90%",
                       height: 40,
                       borderRadius: 6,
                       paddingHorizontal: 16,
-
                     }}
-                  // onChangeText={onChangeText1}
-                  // value={text1}
+                    // onChangeText={onChangeText1}
+                    // value={text1}
                   />
                   <TouchableOpacity style={{ marginRight: 10 }}>
                     <Pressable onPress={handlePasswordVisibility}>
-                      <FontAwesome name='search' size={18} color="#232323" />
+                      <FontAwesome name="search" size={18} color="#232323" />
                     </Pressable>
                   </TouchableOpacity>
                 </View>
@@ -388,52 +499,60 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                 {/* <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 20, flexDirection:"row", borderRadius:6 , alignItems:"flex-start"}}>
                 <Text>XÁC NHẬN</Text>
               </View> */}
-                <View style={{
-                  backgroundColor: '#9CBD44',
-                  width: '90%',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  elevation: 10,
-                  marginTop: 16,
-                  borderRadius: 6,
-                }}>
+                <View
+                  style={{
+                    backgroundColor: "#9CBD44",
+                    width: "90%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    elevation: 10,
+                    marginTop: 16,
+                    borderRadius: 6,
+                  }}
+                >
                   <TouchableOpacity onPress={toggleModal}>
-                    <View style={{ backgroundColor: "#9CBD44", width: "100%", height: 40, flexDirection: "row", borderRadius: 6, alignItems: "center", justifyContent: 'center' }}>
-                      <Text style={{ color: '#fff', fontWeight: '600', }}>ÁP DỤNG</Text>
+                    <View
+                      style={{
+                        backgroundColor: "#9CBD44",
+                        width: "100%",
+                        height: 40,
+                        flexDirection: "row",
+                        borderRadius: 6,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Text style={{ color: "#fff", fontWeight: "600" }}>
+                        ÁP DỤNG
+                      </Text>
                     </View>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           </View>
-
         </View>
       </BottomSheet>
     </View>
   );
 };
 
-
-
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-
+    backgroundColor: "#fff",
   },
   text: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     padding: 20,
-    color: '#fff',
+    color: "#fff",
     borderRadius: 12,
   },
   body: {
     paddingHorizontal: 20,
-    backgroundColor: '#fff'
-
+    backgroundColor: "#fff",
   },
   logo: {
     borderRadius: 100,
@@ -454,10 +573,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginTop: 5,
     flexDirection: "column",
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: "55%"
-
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "55%",
   },
   detail: {
     flex: 1,
@@ -477,7 +595,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 25,
     fontFamily: "SFProDisplay-Regular",
-
   },
   img: {
     width: 40,
@@ -487,15 +604,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 8,
     left: 8,
-
   },
   textInputStyle: {
     height: 40,
     borderWidth: 1,
     paddingLeft: 20,
     margin: 5,
-    borderColor: '#009688',
-    backgroundColor: '#FFFFFF',
+    borderColor: "#009688",
+    backgroundColor: "#FFFFFF",
   },
 });
-export default HomeScreen; 
+export default HomeScreen;

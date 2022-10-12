@@ -1,9 +1,8 @@
-
 //@ts-nocheck
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from "react";
+import { View, Text, Button } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../views/Root/Screen/Home/Home";
 import BiddingList from "../views/Root/Screen/Profile/BiddingList";
 import SignUpBiding from "../views/Root/Screen/Profile/SignUpBiding";
@@ -16,22 +15,26 @@ import SigninScreeen from "../views/Auth/Screen/Signin";
 const Stack = createNativeStackNavigator<Routers>();
 // const Tab = createNativeStackNavigator<Routers>();
 function AccountStackNavigator() {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-
-            }}
-        >
-            <Stack.Screen name="Account" component={Account} />
-            <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
-            <Stack.Screen name="ChangePassword" component={ChangePassword} />
-            {/* Account */}
-            <Stack.Screen options={{
-                tabBarStyle: { display: "none" },
-            }} name="SigninScreeen" component={SigninScreeen} />
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      {/* Account */}
+      <Stack.Screen
+        options={{
+          tabBarStyle: { display: "none" },
+        }}
+        pressColor={"transparent"}
+        name="SigninScreeen"
+        component={SigninScreeen}
+      />
+    </Stack.Navigator>
+  );
 }
 
-export default AccountStackNavigator; 
+export default AccountStackNavigator;

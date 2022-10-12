@@ -147,7 +147,7 @@ const InformationScreen = () => {
                 />
               </View> */}
               <View style={{ flexDirection: 'column', width: '100%', marginHorizontal: 8 }}>
-                <Text style={{ width: "80%" }}>{item.Title}</Text>
+                <Text style={{ width: "80%" , fontWeight:"600",}}>{item.Title}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Image
 
@@ -155,7 +155,7 @@ const InformationScreen = () => {
                     style={{ width: 14, height: 14, marginRight: 5 }}
                   />
 
-                  <Text>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
+                  <Text style={{fontStyle:'italic'}}>{moment(item.Created * 1000).format('DD/MM/YYYY')}</Text>
                 </View>
 
               </View>

@@ -21,7 +21,7 @@ import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 const ChangePasswordScreen = () => {
   function showToast() {
-    ToastAndroid.show("Request sent successfully!", ToastAndroid.SHORT);
+    ToastAndroid.show("Chức năng đang phát triển", ToastAndroid.SHORT);
   }
   const navigation = useNavigation();
   const [fullName, setfullName] = useState<string>("");
@@ -34,11 +34,20 @@ const ChangePasswordScreen = () => {
   const UpdateProvider = () => {
     // console.log("phunghieudong", username)
     setErrorText("");
+    if (!!!address) {
+      setErrorText("Vui lòng nhập địa chỉ mới !");
+    }
+    if (!!!taxCode) {
+      setErrorText("Vui lòng nhập số mã số thuế mới !");
+    }
+    if (!!!email) {
+      setErrorText("Vui lòng nhập gmail mới !");
+    }
     if (!!!phone) {
-      setErrorText("Vui lòng nhập số điện thoại ");
+      setErrorText("Vui lòng nhập số điện thoại mới !");
     }
     if (!!!fullName) {
-      setErrorText("Vui lòng nhập tên công ty ");
+      setErrorText("Vui lòng nhập tên công ty mới !");
     } else {
       UpdateProviderPutApi({
         fullName: fullName,
@@ -134,8 +143,8 @@ const ChangePasswordScreen = () => {
             <View style={{ flexDirection: "row" }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
                 Tên công ty
+                {/* {user.fullName} */}
               </Text>
-
               <Text
                 style={{
                   marginTop: 16,
@@ -180,7 +189,7 @@ const ChangePasswordScreen = () => {
             <TextInput
               value={phone}
               placeholder="Số điện thoại"
-              keyboardType={'numeric'}
+              keyboardType={"numeric"}
               onChangeText={(e: string) => setphone(e)}
               style={{
                 height: 40,
@@ -194,6 +203,17 @@ const ChangePasswordScreen = () => {
             <View style={{ flexDirection: "row" }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
                 Email
+              </Text>
+              <Text
+                style={{
+                  marginTop: 16,
+                  fontSize: 20,
+                  fontWeight: "600",
+                  color: "red",
+                }}
+              >
+                {" "}
+                *
               </Text>
               {/* <Text style={{ marginTop: 16, fontSize: 20, fontWeight: "600", color: "red" }}> *</Text> */}
             </View>
@@ -210,9 +230,22 @@ const ChangePasswordScreen = () => {
                 marginTop: 8,
               }}
             />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
-              Mã số thuế
-            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
+                Mã số thuế
+              </Text>
+              <Text
+                style={{
+                  marginTop: 16,
+                  fontSize: 20,
+                  fontWeight: "600",
+                  color: "red",
+                }}
+              >
+                {" "}
+                *
+              </Text>
+            </View>
             <TextInput
               value={taxCode}
               placeholder="Mã số thuế"
@@ -226,9 +259,22 @@ const ChangePasswordScreen = () => {
                 marginTop: 8,
               }}
             />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
-              Địa chỉ
-            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
+                Địa chỉ
+              </Text>
+              <Text
+                style={{
+                  marginTop: 16,
+                  fontSize: 20,
+                  fontWeight: "600",
+                  color: "red",
+                }}
+              >
+                {" "}
+                *
+              </Text>
+            </View>
             <TextInput
               value={address}
               placeholder="Địa chỉ"

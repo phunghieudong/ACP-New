@@ -19,8 +19,8 @@ function RootNavigator() {
       >
         {/* <Stack.Screen name="HomeScreeen" component={HomeScreen} />
         <Stack.Screen name="ExampleScreen" component={ExampleScreen} /> */}
-        <Stack.Screen name="Auth" component={RootStackNavigator} />
         <Stack.Screen name="Home" component={AuthNavigator} />
+        <Stack.Screen name="Auth" component={RootStackNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

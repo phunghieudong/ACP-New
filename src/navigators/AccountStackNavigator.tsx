@@ -25,14 +25,14 @@ function AccountStackNavigator() {
       <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       {/* Account */}
-      <Stack.Screen
+      {/* <Stack.Screen
         options={{
           tabBarStyle: { display: "none" },
         }}
         pressColor={"transparent"}
         name="SigninScreeen"
         component={SigninScreeen}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

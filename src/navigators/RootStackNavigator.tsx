@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 function RootStackNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="AllHome"
       screenOptions={{
 
         tabBarHideOnKeyboard: true,

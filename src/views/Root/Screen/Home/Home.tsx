@@ -308,6 +308,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                 fontWeight: "600",
                 marginTop: 20,
                 borderRadius: 6,
+                paddingVertical: 50,
               }}
             >
               Không tìm thấy bất kì phiên đấu thấu nào

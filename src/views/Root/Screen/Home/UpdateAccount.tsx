@@ -37,9 +37,7 @@ const ChangePasswordScreen = () => {
     if (!!!address) {
       setErrorText("Vui lòng nhập địa chỉ mới !");
     }
-    if (!!!taxCode) {
-      setErrorText("Vui lòng nhập số mã số thuế mới !");
-    }
+
     if (!!!email) {
       setErrorText("Vui lòng nhập gmail mới !");
     }
@@ -70,8 +68,11 @@ const ChangePasswordScreen = () => {
         console.log("hieudong2", res);
         console.log("hieudong3", res);
       }
-    } catch (error: any) {
-      console.log("hieudong4", res);
+    } catch (error) {
+      console.log("error", error.ResultMessage);
+      setErrorText(error.ResultMessage);
+      // setErrorText(error?.ResultMessage);
+      // console.log("ResultMessage", ResultMessage);
     }
   };
   useEffect(() => {
@@ -233,17 +234,6 @@ const ChangePasswordScreen = () => {
             <View style={{ flexDirection: "row" }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
                 Mã số thuế
-              </Text>
-              <Text
-                style={{
-                  marginTop: 16,
-                  fontSize: 20,
-                  fontWeight: "600",
-                  color: "red",
-                }}
-              >
-                {" "}
-                *
               </Text>
             </View>
             <TextInput

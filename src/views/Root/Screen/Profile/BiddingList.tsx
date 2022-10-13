@@ -135,11 +135,11 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({ navigation,
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                         <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối thiểu của nhà cung cấp</Text>
-                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MinimumQuantity}</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MinimumQuantity.toLocaleString()}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: "space-between", }}>
                         <Text style={{ fontSize: 14, color: "#999999" }}>Số lượng tối đa của nhà cung cấp </Text>
-                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MaximumQuantity}</Text>
+                        <Text style={{ fontSize: 14, color: '#000000', fontWeight: "600" }}>{MaximumQuantity.toLocaleString()}</Text>
                     </View>
                 </View>
 

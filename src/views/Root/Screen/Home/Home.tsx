@@ -351,15 +351,27 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                   }}
                 >
                   <View style={{ flexDirection: "column" }}>
-                    <Image
-                      source={{ uri: item.Thumbnail }}
-                      style={{
-                        alignSelf: "center",
-                        width: 150,
-                        height: 100,
-                        borderRadius: 6,
-                      }}
-                    />
+                    {item.Thumbnail !== "" ? (
+                      <Image
+                        source={{ uri: item.Thumbnail }}
+                        style={{
+                          alignSelf: "center",
+                          width: 150,
+                          height: 100,
+                          borderRadius: 6,
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        source={require("../../../../assets/images/null.jpg")}
+                        style={{
+                          alignSelf: "center",
+                          width: 150,
+                          height: 100,
+                          borderRadius: 6,
+                        }}
+                      />
+                    )}
                     <Text
                       numberOfLines={1}
                       style={{ width: 150, fontSize: 16, fontWeight: "400" }}

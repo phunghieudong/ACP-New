@@ -25,16 +25,16 @@ const InformationDetailScreen: FC<BiddingTicketProps> = ({ navigation,
         }}
       >
         <Image
-          source={require("../../../../assets/images/Information1.png")}
+          source={require("../../../../assets/images/thongbao.jpg")}
           // source={{ uri: Thumbnail }}
           style={{ width: "100%", height: 180 }}
         />
         <Image
-          source={require('../../../../assets/images/Information1.png')}
+           source={require("../../../../assets/images/thongbao.jpg")}
           style={{ width: "100%", height: 180 }}
         />
         <Image
-          source={require('../../../../assets/images/Information1.png')}
+          source={require("../../../../assets/images/thongbao.jpg")}
           style={{ width: "100%", height: 180 }}
         />
       </Swiper>

@@ -326,18 +326,18 @@ const AccountScreen = ({}) => {
               Bạn có chắc chắn muốn đăng xuất khỏi ứng dụng ?
             </Text>
             <View style={{ flexDirection: "row" }}>
-              <Pressable
+              <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.textStyle}>THOÁT</Text>
-              </Pressable>
-              <Pressable
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={[styles.button1, styles.buttonClose1]}
                 onPress={_logout}
               >
                 <Text style={styles.textStyle}>ĐĂNG XUẤT</Text>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -406,6 +406,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    fontSize:18,
+    fontWeight:"600"
   },
 });
 export default AccountScreen;

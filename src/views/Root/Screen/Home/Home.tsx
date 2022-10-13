@@ -256,9 +256,11 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             marginBottom: 20,
           }}
         >
-          <Text style={{ fontSize: 20, color: "#000000", fontWeight: "600" }}>
-            Danh sách phiên đấu thầu
-          </Text>
+          <TouchableOpacity onPress={_logout}>
+            <Text style={{ fontSize: 20, color: "#000000", fontWeight: "600" }}>
+              Danh sách phiên đấu thầu
+            </Text>
+          </TouchableOpacity>
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <View

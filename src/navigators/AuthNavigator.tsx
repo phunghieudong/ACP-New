@@ -8,6 +8,8 @@ import SigninScreeen from '../views/Auth/Screen/Signin';
 import ForgotPassword from '../views/Auth/Screen/ForgotPassword';
 import SplashScreen from '../views/Auth/Screen/SplashScreen';
 import OTPScreen from '../views/Auth/Screen/OTP';
+import RootStackNavigator from './RootStackNavigator';
+
 const Stack = createNativeStackNavigator<Routers>();
 
 function AuthNavigator() {
@@ -22,8 +24,9 @@ function AuthNavigator() {
         tabBarStyle: { display: "none" },
       }} name="SigninScreeen" component={SigninScreeen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
       <Stack.Screen name="OTP" component={OTPScreen} />
+      <Stack.Screen name="Auth" component={RootStackNavigator} />
     </Stack.Navigator>
   );
 }

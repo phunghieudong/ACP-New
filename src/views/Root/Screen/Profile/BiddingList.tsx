@@ -296,41 +296,44 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                 marginBottom: 20,
               }}
               renderItem={({ item }) => (
-                <View
-                  style={{
-                    flexDirection: "row",
-                    paddingHorizontal: 50,
-                    marginTop: 10,
-                    marginBottom: 20,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
+                <>
+                  <View
                     style={{
-                      width: "100%",
-                      fontSize: 16,
-                      fontWeight: "400",
-                      color: "#666666",
+                      flexDirection: "row",
+                      paddingHorizontal: 50,
+                      marginTop: 10,
+                      marginBottom: 20,
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
-                    {item.FileName}
-                  </Text>
-                  <OpenURLButton url={supportedURL}>
-                    <View
+                    <Text
                       style={{
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
+                        width: "100%",
+                        fontSize: 16,
+                        fontWeight: "400",
+                        color: "#666666",
                       }}
                     >
-                      <Image
-                        source={require("../../../../assets/images/kinhlup.png")}
-                        style={{ width: 30, height: 30 }}
-                      />
-                    </View>
-                  </OpenURLButton>
-                </View>
+                      {item.FileName}
+                    </Text>
+
+                    <OpenURLButton url={item.Link}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Image
+                          source={require("../../../../assets/images/kinhlup.png")}
+                          style={{ width: 30, height: 30 }}
+                        />
+                      </View>
+                    </OpenURLButton>
+                  </View>
+                </>
               )}
             />
           </>

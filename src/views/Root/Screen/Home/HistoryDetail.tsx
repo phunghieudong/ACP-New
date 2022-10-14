@@ -1,17 +1,11 @@
 //@ts-nocheck
-import React, { useEffect, useState, FC } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import HeaderRoot from "../../../../components/HeaderRoot/index";
+
+import React, { FC } from "react";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { BiddingTicketProps } from "../../../../navigators/types/Profile";
 import Swiper from "react-native-swiper";
 import moment from "moment";
+
 const HistoryDetailScreen: FC<BiddingTicketProps> = ({
   navigation,
   route: {
@@ -211,4 +205,5 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
 });
+
 export default HistoryDetailScreen;

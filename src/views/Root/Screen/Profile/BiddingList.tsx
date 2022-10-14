@@ -10,14 +10,10 @@ import {
   FlatList,
   Linking,
 } from "react-native";
-import HeaderRoot from "../../../../components/HeaderRoot/index";
-import { NavigationContainer } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
 import Swiper from "react-native-swiper";
 import { GetTechnicalProduct } from "../../../../api/TechnicalProduct/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { GetTechnicalProductdata } from "../../../../types/GetTechnicalProduct";
-import Modal from "react-native-modal";
 import moment from "moment";
 
 const BiddingListScreen: FC<BiddingSessionProps> = ({
@@ -60,7 +56,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
   const DemoButtom = () => {
     if (!IsBid) {
       setbuttom(buttom);
-     
+
       navigation.navigate("SignUpBiding", {
         ID: Id,
         MinimumQuantity: MinimumQuantity,

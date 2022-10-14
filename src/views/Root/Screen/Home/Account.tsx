@@ -9,10 +9,7 @@ import {
   TouchableOpacity,
   ToastAndroid,
   Modal,
-  Pressable,
-  Switch,
 } from "react-native";
-import ToggleSwitch from "toggle-switch-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
@@ -20,21 +17,22 @@ import { useIsFocused } from "@react-navigation/native";
 
 Buffer.from("anything", "base64");
 const AccountScreen = ({}) => {
-  const [isFirst, setFirst] = useState(true);
+  const focused = useIsFocused(true);
   const navigation = useNavigation<any>();
+
+  const [isFirst, setFirst] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState({});
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const focused = useIsFocused(true);
+
   function showToast() {
     ToastAndroid.show("Tính năng còn đang phát triển !", ToastAndroid.SHORT);
   }
+
   const _logout = () => {
     LocalStorage.logout();
     navigation.navigate("SigninScreeen");
-    // navigation.navigate('Confirm')
   };
+
   // useEffect(() => {
   //   (async () => {
   //     if (!focused) {
@@ -76,11 +74,13 @@ const AccountScreen = ({}) => {
 
   //   }
   // }
+
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
     !!accessToken &&
       setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]));
   };
+
   function parseJwt(token) {
     var base64Url = token.split(".")[1];
     var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -89,6 +89,7 @@ const AccountScreen = ({}) => {
     );
     return JSON.parse(jsonPayload) || {};
   }
+
   useEffect(() => {
     (async () => {
       if (!focused) {
@@ -98,6 +99,7 @@ const AccountScreen = ({}) => {
       }
     })();
   }, [focused]);
+
   useEffect(() => {
     if (!isFirst) {
       DemoToken();
@@ -105,8 +107,6 @@ const AccountScreen = ({}) => {
       setFirst(false);
     }
   }, []);
-
-  console.log("--- user", user);
 
   return (
     <View style={styles.container}>
@@ -134,7 +134,6 @@ const AccountScreen = ({}) => {
               }}
             >
               <Image
-                // source={require('../../../../assets/images/camera.png')}
                 source={{ uri: user.thumbnail }}
                 style={{ width: 90, height: 90, borderRadius: 100 }}
               />
@@ -208,7 +207,6 @@ const AccountScreen = ({}) => {
               {user.address}
             </Text>
           </View>
-          {/* <Text style={{ fontSize: 14, color: '#999999', fontWeight: "600" }}>{user.userId}</Text> */}
           <View
             style={{
               borderBottomWidth: 0.5,
@@ -406,8 +404,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    fontSize:18,
-    fontWeight:"600"
+    fontSize: 18,
+    fontWeight: "600",
   },
 });
 export default AccountScreen;

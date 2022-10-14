@@ -1,4 +1,5 @@
 //@ts-nocheck
+
 import React, { useEffect, useState, FC } from "react";
 import {
   Text,
@@ -8,23 +9,17 @@ import {
   ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  SafeAreaView,
-  Button,
   Pressable,
   TextInput,
   FlatList,
 } from "react-native";
-import HeaderRoot from "../../../../components/HeaderRoot/index";
 import Swiper from "react-native-swiper";
 import { BottomSheet } from "react-native-btr";
 import { FontAwesome } from "@expo/vector-icons";
-import moment from "moment";
 import { getBiddingSession } from "../../../../api/BiddingSession/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { BiddingSessionData } from "../../../../types/BiddingSession";
-import { useNavigation } from "@react-navigation/native";
 import { LocalStorage } from "../../../../utils/LocalStorage";
-import Empty from "../../../../components/Empty/index";
 import { useIsFocused } from "@react-navigation/native";
 
 import { Buffer } from "buffer";

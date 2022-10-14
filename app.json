@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.test.test",
       "supportsTablet": true
@@ -32,7 +30,15 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "onesignal-expo-plugin"
-    ]
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development"
+        }
+      ]
+    ],
+    "extra": {
+      "oneSignalAppId": "300d518d-1d40-4a06-8f46-eeb920a7bc52"
+    }
   }
 }

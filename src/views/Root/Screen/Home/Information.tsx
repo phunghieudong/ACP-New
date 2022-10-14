@@ -5,14 +5,9 @@ import {
   View,
   StyleSheet,
   Image,
-  ScrollView,
   TouchableOpacity,
   FlatList,
-  TouchableWithoutFeedback,
-  Button,
 } from "react-native";
-import HeaderRoot from "../../../../components/HeaderRoot/index";
-import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
@@ -20,21 +15,10 @@ import { Buffer } from "buffer";
 import { getNotification } from "../../../../api/Notification/Index";
 import { NotificationData } from "../../../../types/Notification";
 import moment from "moment";
-import Modal from "react-native-modal";
-import Swiper from "react-native-swiper";
+
 const InformationScreen = () => {
   const [user, setUser] = useState({});
   const [isFirst, setFirst] = useState(true);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
-  const [visible, setVisible] = useState(false);
-  const toggleBottomNavigationView = () => {
-    //Toggling the visibility state of the bottom sheet
-    setVisible(!visible);
-  };
 
   const focused = useIsFocused();
   const getdata = async () => {
@@ -52,7 +36,6 @@ const InformationScreen = () => {
       console.log("res ne ban oi1", res);
       if (res.ResultCode == 200) {
         setData(res.Data.Items);
-
       }
       if (!ready) setReady(true);
     } catch (error) {}
@@ -174,8 +157,7 @@ const InformationScreen = () => {
                 <Text style={{ width: "80%", fontWeight: "600" }}>
                   {item.Title}
                 </Text>
-             
-                
+
                 {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image

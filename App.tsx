@@ -19,7 +19,7 @@ const App = () => {
       <StoreProvider store={store}>
         <RootNavigator />
       </StoreProvider>
-      <Text>300d518d-1d40-4a06-8f46-eeb920a7bc52</Text>
+
     </>
   );
 };

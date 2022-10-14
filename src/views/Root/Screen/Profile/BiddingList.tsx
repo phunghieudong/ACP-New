@@ -22,7 +22,6 @@ import moment from "moment";
 
 const BiddingListScreen: FC<BiddingSessionProps> = ({
   navigation,
-
   route: {
     params: {
       IsBid,
@@ -44,7 +43,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
   const [ready, setReady] = useState(false);
   const [buttom, setbuttom] = useState(false);
   const supportedURL =
-    "http://api-acp.monamedia.net/3f12d7bd-ce43-414e-b40d-41be89e481b3-Ky thuat trong dua 2020.pdf";
+    "http://acp.monamedia.net/42514f33-1141-4c13-bd95-e768f772bd82-21_1686_PBHC_KHDT_BC_sơ_kết_9_tháng_đầu_năm,_kế_hoạch.pdf";
   //
   const OpenURLButton = ({ url, children }) => {
     const handlePress = () => {
@@ -61,8 +60,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
   const DemoButtom = () => {
     if (!IsBid) {
       setbuttom(buttom);
-      console.log("buttom", buttom);
-      console.log("IsBid", IsBid);
+     
       navigation.navigate("SignUpBiding", {
         ID: Id,
         MinimumQuantity: MinimumQuantity,
@@ -85,7 +83,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
 
           // ProductId:"c0239221-589e-42c2-f49b-08da9f9bf85a"
           const res = await GetTechnicalProduct(params);
-          console.log("Tren ne", res);
+          console.log("ProductId", ProductId);
           if (res.ResultCode == 200) {
             setData([...res.Data.Items[0].TechnicalValueList]);
             //    setData([...res.Data.Items.filter((item) => item.Status == 1)]);
@@ -306,19 +304,21 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                   style={{
                     flexDirection: "row",
                     paddingHorizontal: 50,
-                    marginTop: 20,
+                    marginTop: 10,
                     marginBottom: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
                   <Text
                     style={{
-                      width: "50%",
+                      width: "100%",
                       fontSize: 16,
                       fontWeight: "400",
                       color: "#666666",
                     }}
                   >
-                    {item.TechnicalOptionName}
+                    {item.FileName}
                   </Text>
                   <OpenURLButton url={supportedURL}>
                     <View
@@ -328,17 +328,10 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                         alignItems: "center",
                       }}
                     >
-                      <Text
-                        numberOfLines={1}
-                        style={{
-                          width: 150,
-                          fontSize: 16,
-                          fontWeight: "400",
-                          color: "#666666",
-                        }}
-                      >
-                        {item.TechnicalValue}
-                      </Text>
+                      <Image
+                        source={require("../../../../assets/images/kinhlup.png")}
+                        style={{ width: 30, height: 30 }}
+                      />
                     </View>
                   </OpenURLButton>
                 </View>

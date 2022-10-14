@@ -8,7 +8,7 @@ import { accountApi } from '../../../api/Auth';
 import ErrorText from '../../../components/More/error-text';
 import { PutPassword } from '../../../api/Demo';
 function ForgotPasswordScreen() {
-  const [username, setusername] = useState<any>('dongph');
+  const [username, setusername] = useState<any>('');
   const [errorText, setErrorText] = useState<string>('');
   const UserNamePut = () => {
     console.log("phunghieudong", username)

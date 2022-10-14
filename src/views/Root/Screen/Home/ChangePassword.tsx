@@ -19,9 +19,13 @@ import ErrorText from "../../../../components/More/error-text";
 import { ChangePassword } from "../../../../api/ChangePassword";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
+
 const UpdateAccountScreen = () => {
   const [oldPassword, setoldPassword] = useState<string>("");
   const [newPassword, setnewPassword] = useState<string>("");
+  const [hidePass, setHidePass] = useState(true);
+  const [hidePass1, setHidePass1] = useState(true);
+  const [hidePass2, setHidePass2] = useState(true);
   const [confirmNewPassword, setconfirmNewPassword] = useState<string>("");
   const [errorText, setErrorText] = useState<string>("");
   const [user, setUser] = useState({});
@@ -53,9 +57,8 @@ const UpdateAccountScreen = () => {
         console.log("2000");
         navigation.navigate("SigninScreeen");
       }
-  
     } catch (error) {
-      console.log("error",error.ResultMessage );
+      console.log("error", error.ResultMessage);
       setErrorText(error.ResultMessage);
       // setErrorText(error?.ResultMessage);
       // console.log("ResultMessage", ResultMessage);
@@ -141,6 +144,7 @@ const UpdateAccountScreen = () => {
             <TextInput
               value={oldPassword}
               placeholder="Mật khẩu cũ"
+              secureTextEntry={hidePass ? true : false}
               onChangeText={(e: string) => setoldPassword(e)}
               style={{
                 width: "90%",
@@ -148,6 +152,12 @@ const UpdateAccountScreen = () => {
                 borderRadius: 6,
                 paddingHorizontal: 16,
               }}
+            />
+            <Icon
+              name={hidePass ? "eye" : "eye-slash"}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass(!hidePass)}
             />
           </View>
           <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
@@ -167,6 +177,7 @@ const UpdateAccountScreen = () => {
           >
             <TextInput
               value={newPassword}
+              secureTextEntry={hidePass1 ? true : false}
               placeholder="Mật khẩu mới"
               onChangeText={(e: string) => setnewPassword(e)}
               style={{
@@ -175,6 +186,12 @@ const UpdateAccountScreen = () => {
                 borderRadius: 6,
                 paddingHorizontal: 16,
               }}
+            />
+            <Icon
+              name={hidePass1 ? "eye" : "eye-slash"}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass1(!hidePass1)}
             />
           </View>
 
@@ -195,6 +212,7 @@ const UpdateAccountScreen = () => {
             }}
           >
             <TextInput
+              secureTextEntry={hidePass2 ? true : false}
               value={confirmNewPassword}
               placeholder="Xác nhận mật khẩu"
               onChangeText={(e: string) => setconfirmNewPassword(e)}
@@ -204,6 +222,12 @@ const UpdateAccountScreen = () => {
                 borderRadius: 6,
                 paddingHorizontal: 16,
               }}
+            />
+            <Icon
+              name={hidePass2 ? "eye" : "eye-slash"}
+              size={15}
+              color="grey"
+              onPress={() => setHidePass2(!hidePass2)}
             />
           </View>
           <ErrorText content={errorText} />

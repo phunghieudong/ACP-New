@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import HeaderRoot from "../../../../components/HeaderRoot/index";
 import { useNavigation } from "@react-navigation/native";
-import { BottomSheet } from "react-native-btr";
 import { FontAwesome } from "@expo/vector-icons";
 import { PostBiddingTicket } from "../../../../api/CreateBiddingTick";
 import ErrorText from "../../../../components/More/error-text";

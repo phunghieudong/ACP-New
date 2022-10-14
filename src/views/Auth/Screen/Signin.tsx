@@ -29,7 +29,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { appConfig, height, width } from "../../../configs";
 import { accountApi } from "../../../api/Auth/index";
 import { ViewProps } from "../../../navigators/types/navigation";
-import { useKeyboard } from "green-native-ts";
 import ErrorText from "../../../components/More/error-text";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LocalStorage } from "../../../utils/LocalStorage/index";
@@ -40,7 +39,6 @@ import { Buffer } from "buffer";
 Buffer.from("anything", "base64");
 function SigninScreen() {
   const [hidePass, setHidePass] = useState(true);
-  const keyboard: boolean = useKeyboard(); // true, false
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();

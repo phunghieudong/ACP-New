@@ -17,7 +17,6 @@ import { Toast } from "native-base";
 import { getBiddingTicket } from "../../../../api/BiddingTick/index";
 import { BiddingTicketProps } from "../../../../navigators/types/Profile";
 import { BiddingTicketData } from "../../../../types/BiddingTicket";
-import { BottomSheet } from "react-native-btr";
 import { FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 import { useIsFocused } from "@react-navigation/native";

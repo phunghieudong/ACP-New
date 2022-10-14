@@ -10,19 +10,19 @@ import {
   TextInput,
   ToastAndroid,
   Modal,
-  Pressable,
 } from "react-native";
-import HeaderRoot from "../../../../components/HeaderRoot/index";
-import { Toast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { putProvider } from "../../../../api/Provider/index";
 import ErrorText from "../../../../components/More/error-text";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
+import { refreshTokenApi } from "../../../../api/refresh-token";
+
 const ChangePasswordScreen = () => {
   function showToast() {
     ToastAndroid.show("Chức năng đang phát triển", ToastAndroid.SHORT);
   }
+
   const navigation = useNavigation();
   const [fullName, setfullName] = useState<string>("");
   const [phone, setphone] = useState<string>("");
@@ -31,8 +31,8 @@ const ChangePasswordScreen = () => {
   const [address, setaddress] = useState<string>("");
   const [errorText, setErrorText] = useState<string>("");
   const [user, setUser] = useState({});
+
   const UpdateProvider = () => {
-    // console.log("phunghieudong", username)
     setErrorText("");
     if (!!!address) {
       setErrorText("Vui lòng nhập địa chỉ mới !");
@@ -57,32 +57,52 @@ const ChangePasswordScreen = () => {
       });
     }
   };
+
   const [modalVisible, setModalVisible] = useState(false);
+
   const UpdateProviderPutApi = async (data: any) => {
     try {
       const res = await putProvider.putapiprovider(data);
-      console.log("hieudong1", res);
-      if (res.data.ResultCode === 200) {
-        onPress = setModalVisible(!modalVisible);
+      if (res.data.ResultCode == 200) {
+        setModalVisible(!modalVisible);
+        refreshToken();
       } else {
         console.log("hieudong2", res);
-        console.log("hieudong3", res);
       }
     } catch (error) {
       console.log("error", error.ResultMessage);
       setErrorText(error.ResultMessage);
-      // setErrorText(error?.ResultMessage);
-      // console.log("ResultMessage", ResultMessage);
     }
   };
+
+  async function refreshToken() {
+    try {
+      const res = await refreshTokenApi.get();
+      console.log("new token: ", res.data.Data.token);
+      if (res.data?.ResultCode == 200) {
+        await LocalStorage.setToken(res.data.Data.token);
+      }
+    } catch (e) {}
+  }
+
   useEffect(() => {
     DemoToken();
   }, []);
+
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
+    const userInfo = JSON.parse(Object.values(parseJwt(accessToken))[0]);
+
+    setfullName(userInfo?.fullName || "");
+    setemail(userInfo?.email || "");
+    setphone(userInfo?.phone || "");
+    setphone(userInfo?.phone || "");
+    setaddress(userInfo?.address || "");
+
     !!accessToken &&
       setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]));
   };
+
   function parseJwt(token) {
     var base64Url = token.split(".")[1];
     var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -91,6 +111,7 @@ const ChangePasswordScreen = () => {
     );
     return JSON.parse(jsonPayload) || {};
   }
+
   return (
     <View style={styles.container}>
       <View
@@ -124,6 +145,7 @@ const ChangePasswordScreen = () => {
         </Text>
         <View style={{ height: 30, width: 30 }}></View>
       </View>
+
       <View style={styles.container}>
         <TouchableOpacity onPress={showToast}>
           <View
@@ -139,12 +161,12 @@ const ChangePasswordScreen = () => {
             />
           </View>
         </TouchableOpacity>
+
         <ScrollView>
           <View style={{ marginHorizontal: 20, marginTop: 15 }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={{ marginTop: 16, fontSize: 16, fontWeight: "600" }}>
                 Tên công ty
-                {/* {user.fullName} */}
               </Text>
               <Text
                 style={{
@@ -280,7 +302,6 @@ const ChangePasswordScreen = () => {
             />
             <ErrorText content={errorText} />
             <TouchableOpacity onPress={() => UpdateProvider()}>
-              {/* <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}> */}
               <View
                 style={{
                   marginTop: 32,
@@ -303,6 +324,7 @@ const ChangePasswordScreen = () => {
           </View>
         </ScrollView>
       </View>
+
       <Modal animationType="fade" transparent={false} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -322,7 +344,7 @@ const ChangePasswordScreen = () => {
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => UpdateProvider()}
+                onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.textStyle}>THOÁT</Text>
               </TouchableOpacity>

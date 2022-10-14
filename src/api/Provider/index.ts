@@ -5,6 +5,10 @@ const putProvider = {
   async putapiprovider(data: any) {
     return instance.put("/api/provider/", data);
   },
+
+  async updatetoken(data: any) {
+    return instance.put("/api/provider-update-onesignal-deviceid", data);
+  },
 };
 export { putProvider };
 

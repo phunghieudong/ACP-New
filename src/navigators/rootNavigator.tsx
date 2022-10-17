@@ -12,6 +12,37 @@ import AuthNavigator from "./AuthNavigator";
 const Stack = createNativeStackNavigator<Routers>();
 
 function RootNavigator() {
+  // const [login, setLogin] = useState(true);
+
+  // useEffect(() => {
+  //   if (!login) {
+  //     Alert.alert("Thông báo", "Phiên đăng nhập đã hết hạn", [
+  //       {
+  //         text: "Đồng ý",
+  //         onPress: async () => {
+  //           await dispatch(logout());
+  //           await dispatch(getPassword(""));
+  //         },
+  //       },
+  //     ]);
+  //     eventManager.unsubscribe();
+  //   }
+  // }, [login]);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       await Splash.preventAutoHideAsync();
+  //       await dispatch(fetchLocalUser());
+  //       await dispatch(fetchPassword());
+  //       await new Promise((resolve) => setTimeout(resolve, 2000));
+  //     } catch (e) {
+  //       console.warn(e);
+  //     } finally {
+  //       setAppIsReady(true);
+  //     }
+  //   })();
+  // }, [dispatch]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator

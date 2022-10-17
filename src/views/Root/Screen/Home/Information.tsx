@@ -88,7 +88,7 @@ const InformationScreen = () => {
     <View style={styles.container}>
       <View
         style={{
-          backgroundColor: "#9CBD44",
+          backgroundColor: "#A5C63F",
           width: "100%",
           height: 64,
           flexDirection: "row",
@@ -137,7 +137,7 @@ const InformationScreen = () => {
                 flexDirection: "row",
                 paddingVertical: 20,
                 borderBottomWidth: 1,
-                borderColor: "#9CBD44",
+                borderColor: "#A5C63F",
               }}
             >
               {/* <View>

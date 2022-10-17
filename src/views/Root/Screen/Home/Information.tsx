@@ -36,6 +36,7 @@ const InformationScreen = () => {
       console.log("res ne ban oi1", res);
       if (res.ResultCode == 200) {
         setData(res.Data.Items);
+        console.log("IsSeen", Items.IsSeen);
       }
       if (!ready) setReady(true);
     } catch (error) {}
@@ -65,6 +66,7 @@ const InformationScreen = () => {
 
   useEffect(() => {
     DemoToken();
+   
   }, []);
 
   const DemoToken = async () => {

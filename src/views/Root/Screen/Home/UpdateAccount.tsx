@@ -96,7 +96,7 @@ const ChangePasswordScreen = () => {
     setfullName(userInfo?.fullName || "");
     setemail(userInfo?.email || "");
     setphone(userInfo?.phone || "");
-    setphone(userInfo?.phone || "");
+    settaxCode(userInfo?.taxCode || "");
     setaddress(userInfo?.address || "");
 
     !!accessToken &&

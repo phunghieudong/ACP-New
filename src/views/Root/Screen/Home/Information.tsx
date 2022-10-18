@@ -118,7 +118,6 @@ const InformationScreen = () => {
       <FlatList
         data={data}
         style={{
-          
           paddingHorizontal: 30,
           backgroundColor: "#fff",
         }}
@@ -132,6 +131,7 @@ const InformationScreen = () => {
                 IsSeen: item.IsSeen,
                 content: item.content,
                 Created: item.Created,
+                Id: item.Id,
               })
             }
           >
@@ -156,7 +156,6 @@ const InformationScreen = () => {
                   flexDirection: "column",
                   width: "100%",
                   marginHorizontal: 8,
-                  
                 }}
               >
                 <Text
@@ -170,7 +169,7 @@ const InformationScreen = () => {
                 </Text>
 
                 {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
-                <View style={{ flexDirection: "row", alignItems: "center" ,}}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image
                     source={require("../../../../assets/images/clock.png")}
                     style={{ width: 14, height: 14, marginRight: 5 }}

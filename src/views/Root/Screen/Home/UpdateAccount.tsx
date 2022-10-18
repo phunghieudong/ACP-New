@@ -94,7 +94,9 @@ const ChangePasswordScreen = () => {
       setErrorText(error.ResultMessage);
     }
   };
-
+  useEffect(() => {
+    DemoToken();
+  }, []);
   async function refreshToken() {
     try {
       const res = await refreshTokenApi.get();
@@ -105,9 +107,7 @@ const ChangePasswordScreen = () => {
     } catch (e) {}
   }
 
-  useEffect(() => {
-    DemoToken();
-  }, []);
+ 
 
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();

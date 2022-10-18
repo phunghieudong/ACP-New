@@ -3,4 +3,5 @@ export type NotificationData = {
   content: string;
   Created: number;
   IsSeen: boolean;
+  Id: string;
 };

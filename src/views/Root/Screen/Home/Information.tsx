@@ -118,6 +118,7 @@ const InformationScreen = () => {
       <FlatList
         data={data}
         style={{
+          
           paddingHorizontal: 30,
           backgroundColor: "#fff",
         }}

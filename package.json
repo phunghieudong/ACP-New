@@ -17,6 +17,7 @@
     "buffer": "^6.0.3",
     "expo": "~46.0.9",
     "expo-custom-switch": "^1.0.2",
+    "expo-image-picker": "^13.3.1",
     "expo-secure-store": "^11.3.0",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",

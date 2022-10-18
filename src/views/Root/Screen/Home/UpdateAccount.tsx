@@ -17,7 +17,8 @@ import ErrorText from "../../../../components/More/error-text";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 import { refreshTokenApi } from "../../../../api/refresh-token";
-
+import * as ImagePicker from "expo-image-picker";
+import { onChange } from "react-native-reanimated";
 const ChangePasswordScreen = () => {
   function showToast() {
     ToastAndroid.show("Chức năng đang phát triển", ToastAndroid.SHORT);
@@ -30,7 +31,25 @@ const ChangePasswordScreen = () => {
   const [taxCode, settaxCode] = useState<string>("");
   const [address, setaddress] = useState<string>("");
   const [errorText, setErrorText] = useState<string>("");
+  const [thumbnail, setthumbnail] = useState<string>("");
   const [user, setUser] = useState({});
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+    console.log("uri-phunghieudong", result.uri);
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   const UpdateProvider = () => {
     setErrorText("");
@@ -53,6 +72,7 @@ const ChangePasswordScreen = () => {
         address: address,
         email: email,
         taxCode: taxCode,
+        thumbnail: thumbnail,
         id: user.userId,
       });
     }
@@ -98,7 +118,7 @@ const ChangePasswordScreen = () => {
     setphone(userInfo?.phone || "");
     settaxCode(userInfo?.taxCode || "");
     setaddress(userInfo?.address || "");
-
+    setthumbnail(userInfo?.thumbnail || "");
     !!accessToken &&
       setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]));
   };
@@ -147,18 +167,30 @@ const ChangePasswordScreen = () => {
       </View>
 
       <View style={styles.container}>
-        <TouchableOpacity onPress={showToast}>
+        <TouchableOpacity onPress={pickImage}>
+          {/* onPress={showToast} */}
           <View
             style={{
               justifyContent: "center",
               alignItems: "center",
               paddingTop: 15,
+              flexDirection: "row",
             }}
           >
-            <Image
-              source={require("../../../../assets/images/camera.png")}
-              style={{ width: 90, height: 90 }}
-            />
+            {!image && (
+              <Image
+                value={thumbnail}
+                source={{ uri: user.thumbnail }}
+                style={{ width: 90, height: 90, borderRadius: 100 }}
+              />
+            )}
+            {image && (
+              <Image
+                value={thumbnail}
+                source={{ uri: image }}
+                style={{ width: 90, height: 90, borderRadius: 100 }}
+              />
+            )}
           </View>
         </TouchableOpacity>
 

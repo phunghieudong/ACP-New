@@ -36,7 +36,8 @@ const InformationScreen = () => {
       console.log("res ne ban oi1", res);
       if (res.ResultCode == 200) {
         setData(res.Data.Items);
-        console.log("IsSeen", Items.IsSeen);
+        console.log("IsSeen", data);
+        // console.log(data[0].IsSeen);
       }
       if (!ready) setReady(true);
     } catch (error) {}
@@ -66,7 +67,6 @@ const InformationScreen = () => {
 
   useEffect(() => {
     DemoToken();
-   
   }, []);
 
   const DemoToken = async () => {
@@ -156,7 +156,13 @@ const InformationScreen = () => {
                   marginHorizontal: 8,
                 }}
               >
-                <Text style={{ width: "80%", fontWeight: "600" }}>
+                <Text
+                  style={{
+                    width: "80%",
+                    fontWeight: "600",
+                    color: !item.IsSeen ? "#007AFF" : "red",
+                  }}
+                >
                   {item.Title}
                 </Text>
 

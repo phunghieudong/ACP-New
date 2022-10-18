@@ -48,8 +48,8 @@ function SigninScreen() {
   const dispatch = useDispatch();
   const userData = useSelector((state: any) => state.user);
 
-  const [userName, setUserName] = useState<string>("dongph");
-  const [password, setPassword] = useState<string>("mona@123");
+  const [userName, setUserName] = useState<string>("ncc31010");
+  const [password, setPassword] = useState<string>("mona@1234");
   const [errorText, setErrorText] = useState<string>("");
   const [tokendemo, setTokenDemo] = useState<any>("");
 

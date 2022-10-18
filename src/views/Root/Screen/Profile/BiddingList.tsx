@@ -305,7 +305,6 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                       paddingHorizontal: 50,
                       marginTop: 10,
                       marginBottom: 20,
-                      backgroundColor:'red',
                       justifyContent:'center', 
                       alignItems:'center' 
                       

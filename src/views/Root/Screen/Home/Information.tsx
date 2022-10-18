@@ -141,6 +141,7 @@ const InformationScreen = () => {
                 paddingVertical: 20,
                 borderBottomWidth: 1,
                 borderColor: "#A5C63F",
+                // backgroundColor: !item.IsSeen ? "#EEEEEE" : "#fff",
               }}
             >
               {/* <View>
@@ -155,20 +156,21 @@ const InformationScreen = () => {
                   flexDirection: "column",
                   width: "100%",
                   marginHorizontal: 8,
+                  
                 }}
               >
                 <Text
                   style={{
                     width: "80%",
                     fontWeight: "600",
-                    color: !item.IsSeen ? "#007AFF" : "red",
+                    color: !item.IsSeen ? "#A5C63F" : "black",
                   }}
                 >
                   {item.Title}
                 </Text>
 
                 {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View style={{ flexDirection: "row", alignItems: "center" ,}}>
                   <Image
                     source={require("../../../../assets/images/clock.png")}
                     style={{ width: 14, height: 14, marginRight: 5 }}

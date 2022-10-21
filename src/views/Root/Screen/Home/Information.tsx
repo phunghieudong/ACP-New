@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  FlatList,
+  FlatList
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
@@ -30,7 +30,7 @@ const InformationScreen = () => {
         pageIndex: current,
         pageSize: 20,
         UserId: userx.userId,
-        OrderBy: 0,
+        OrderBy: 0
       };
       const res = await getNotification(params);
       console.log("res ne ban oi1", res);
@@ -96,7 +96,7 @@ const InformationScreen = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          paddingHorizontal: 25,
+          paddingHorizontal: 25
         }}
       >
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -119,7 +119,7 @@ const InformationScreen = () => {
         data={data}
         style={{
           paddingHorizontal: 30,
-          backgroundColor: "#fff",
+          backgroundColor: "#fff"
         }}
         onEndReachedThreshold={0.5}
         keyExtractor={(i) => i.Id.toString()}
@@ -129,9 +129,10 @@ const InformationScreen = () => {
               navigation.navigate("InformationDetail", {
                 Title: item.Title,
                 IsSeen: item.IsSeen,
+                IsType: item.IsType,
                 content: item.content,
                 Created: item.Created,
-                Id: item.Id,
+                Id: item.Id
               })
             }
           >
@@ -140,7 +141,7 @@ const InformationScreen = () => {
                 flexDirection: "row",
                 paddingVertical: 20,
                 borderBottomWidth: 1,
-                borderColor: "#A5C63F",
+                borderColor: "#A5C63F"
                 // backgroundColor: !item.IsSeen ? "#EEEEEE" : "#fff",
               }}
             >
@@ -151,33 +152,75 @@ const InformationScreen = () => {
                   style={{ width: 74, height: 59 }}
                 />
               </View> */}
-              <View
-                style={{
-                  flexDirection: "column",
-                  width: "100%",
-                  marginHorizontal: 8,
-                }}
-              >
-                <Text
+              <View style={{ flexDirection: "row" }}>
+                <View
                   style={{
-                    width: "80%",
-                    fontWeight: "600",
-                    color: !item.IsSeen ? "#A5C63F" : "black",
+                    flexDirection: "column",
+                    width: "85%",
+                    marginHorizontal: 8
                   }}
                 >
-                  {item.Title}
-                </Text>
-
-                {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Image
-                    source={require("../../../../assets/images/clock.png")}
-                    style={{ width: 14, height: 14, marginRight: 5 }}
-                  />
-                  <Text style={{ fontStyle: "italic" }}>
-                    {moment(item.Created * 1000).format("DD/MM/YYYY")}
+                  {/* 
+{item.IsType === 1 ? ( ) : ( ) } */}
+                  {/* {item.IsType === 1 ? (
+                    <Text style={{ fontWeight: "600", color: "#3399FF" }}>
+                      Phiên thầu bắt đầu
+                    </Text>
+                  ) : (
+                    <Text style={{ fontWeight: "600", color: "red" }}>
+                      Phiên thầu kết thúc
+                    </Text>
+                  )} */}
+                  <Text
+                    style={{
+                      fontWeight: "600",
+                      color:
+                        item.IsType === 1
+                          ? "#007AFF"
+                          : item.IsType === 2
+                          ? "red"
+                          : item.IsType === 3
+                          ? "#007AFF"
+                          : "red"
+                    }}
+                  >
+                    {item.IsType === 1
+                      ? "Phiên thầu bắt đầu"
+                      : item.IsType === 2
+                      ? "Phiên thầu kết thúc"
+                      : item.IsType === 3
+                      ? "Bạn đã trúng thầu"
+                      : "Bạn đã rớt thầu"}
                   </Text>
+                  <Text
+                    style={{
+                      width: "80%",
+                      fontWeight: "600"
+                      // color: item.IsType === 1 ? "#3399FF" : "red"
+                    }}
+                  >
+                    {item.Title}
+                  </Text>
+
+                  {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Image
+                      source={require("../../../../assets/images/clock.png")}
+                      style={{ width: 14, height: 14, marginRight: 5 }}
+                    />
+                    <Text style={{ fontStyle: "italic" }}>
+                      {moment(item.Created * 1000).format("DD/MM/YYYY")}
+                    </Text>
+                  </View>
                 </View>
+                <View
+                  style={{
+                    height: 15,
+                    width: 15,
+                    backgroundColor: !item.IsSeen ? "#3399FF" : "#fff",
+                    borderRadius: 100
+                  }}
+                ></View>
               </View>
             </View>
           </TouchableOpacity>
@@ -190,14 +233,14 @@ const InformationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
   },
   text: {
     fontSize: 22,
     fontWeight: "bold",
     padding: 20,
     color: "#fff",
-    borderRadius: 12,
-  },
+    borderRadius: 12
+  }
 });
 export default InformationScreen;

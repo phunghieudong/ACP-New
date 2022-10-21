@@ -4,4 +4,5 @@ export type NotificationData = {
   Created: number;
   IsSeen: boolean;
   Id: string;
+  IsType: number;
 };

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   TextInput,
   ToastAndroid,
-  Modal,
+  Modal
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { putProvider } from "../../../../api/Provider/index";
@@ -41,10 +41,9 @@ const ChangePasswordScreen = () => {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 1
     });
 
-    console.log(result);
     console.log("uri-phunghieudong", result.uri);
     if (!result.cancelled) {
       setImage(result.uri);
@@ -53,10 +52,12 @@ const ChangePasswordScreen = () => {
 
   const UpdateProvider = () => {
     setErrorText("");
+    if (address && email && phone && fullName) {
+      setModalVisible(!modalVisible);
+    }
     if (!!!address) {
       setErrorText("Vui lòng nhập địa chỉ mới !");
     }
-
     if (!!!email) {
       setErrorText("Vui lòng nhập gmail mới !");
     }
@@ -73,18 +74,16 @@ const ChangePasswordScreen = () => {
         email: email,
         taxCode: taxCode,
         thumbnail: thumbnail,
-        id: user.userId,
+        id: user.userId
       });
     }
   };
-
   const [modalVisible, setModalVisible] = useState(false);
 
   const UpdateProviderPutApi = async (data: any) => {
     try {
       const res = await putProvider.putapiprovider(data);
       if (res.data.ResultCode == 200) {
-        setModalVisible(!modalVisible);
         refreshToken();
       } else {
         console.log("hieudong2", res);
@@ -106,8 +105,6 @@ const ChangePasswordScreen = () => {
       }
     } catch (e) {}
   }
-
- 
 
   const DemoToken = async () => {
     const accessToken = await LocalStorage.getToken();
@@ -142,7 +139,7 @@ const ChangePasswordScreen = () => {
           height: 64,
           justifyContent: "space-between",
           alignItems: "center",
-          paddingHorizontal: 20,
+          paddingHorizontal: 20
         }}
       >
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -151,7 +148,7 @@ const ChangePasswordScreen = () => {
               justifyContent: "center",
               alignItems: "center",
               height: 30,
-              width: 30,
+              width: 30
             }}
           >
             <Image
@@ -174,7 +171,7 @@ const ChangePasswordScreen = () => {
               justifyContent: "center",
               alignItems: "center",
               paddingTop: 15,
-              flexDirection: "row",
+              flexDirection: "row"
             }}
           >
             {!image && (
@@ -205,7 +202,7 @@ const ChangePasswordScreen = () => {
                   marginTop: 16,
                   fontSize: 20,
                   fontWeight: "600",
-                  color: "red",
+                  color: "red"
                 }}
               >
                 {" "}
@@ -222,7 +219,7 @@ const ChangePasswordScreen = () => {
                 borderRadius: 6,
                 borderColor: "#666666",
                 paddingHorizontal: 16,
-                marginTop: 8,
+                marginTop: 8
               }}
             />
             <View style={{ flexDirection: "row" }}>
@@ -234,7 +231,7 @@ const ChangePasswordScreen = () => {
                   marginTop: 16,
                   fontSize: 20,
                   fontWeight: "600",
-                  color: "red",
+                  color: "red"
                 }}
               >
                 {" "}
@@ -252,7 +249,7 @@ const ChangePasswordScreen = () => {
                 borderRadius: 6,
                 borderColor: "#666666",
                 paddingHorizontal: 16,
-                marginTop: 8,
+                marginTop: 8
               }}
             />
             <View style={{ flexDirection: "row" }}>
@@ -264,7 +261,7 @@ const ChangePasswordScreen = () => {
                   marginTop: 16,
                   fontSize: 20,
                   fontWeight: "600",
-                  color: "red",
+                  color: "red"
                 }}
               >
                 {" "}
@@ -282,7 +279,7 @@ const ChangePasswordScreen = () => {
                 borderRadius: 6,
                 borderColor: "#666666",
                 paddingHorizontal: 16,
-                marginTop: 8,
+                marginTop: 8
               }}
             />
             <View style={{ flexDirection: "row" }}>
@@ -300,7 +297,7 @@ const ChangePasswordScreen = () => {
                 borderRadius: 6,
                 borderColor: "#666666",
                 paddingHorizontal: 16,
-                marginTop: 8,
+                marginTop: 8
               }}
             />
             <View style={{ flexDirection: "row" }}>
@@ -312,7 +309,7 @@ const ChangePasswordScreen = () => {
                   marginTop: 16,
                   fontSize: 20,
                   fontWeight: "600",
-                  color: "red",
+                  color: "red"
                 }}
               >
                 {" "}
@@ -329,7 +326,7 @@ const ChangePasswordScreen = () => {
                 borderRadius: 6,
                 borderColor: "#666666",
                 paddingHorizontal: 16,
-                marginTop: 8,
+                marginTop: 8
               }}
             />
             <ErrorText content={errorText} />
@@ -343,7 +340,7 @@ const ChangePasswordScreen = () => {
                   width: "100%",
                   borderRadius: 6,
                   justifyContent: "center",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <Text
@@ -365,7 +362,7 @@ const ChangePasswordScreen = () => {
                 fontSize: 20,
                 fontWeight: "600",
                 marginBottom: 15,
-                textAlign: "center",
+                textAlign: "center"
               }}
             >
               Xin chúc mừng{" "}
@@ -391,20 +388,20 @@ const ChangePasswordScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
   },
   text: {
     fontSize: 22,
     fontWeight: "bold",
     padding: 20,
     color: "#fff",
-    borderRadius: 12,
+    borderRadius: 12
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 22
   },
   modalView: {
     margin: 20,
@@ -415,41 +412,41 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 2
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5
   },
   button: {
     borderRadius: 20,
     padding: 20,
-    elevation: 2,
+    elevation: 2
   },
   button1: {
     borderRadius: 20,
     padding: 20,
     elevation: 2,
-    marginLeft: 5,
+    marginLeft: 5
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#F194FF"
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#2196F3"
   },
   buttonClose1: {
-    backgroundColor: "red",
+    backgroundColor: "red"
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "center"
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    color: "#666666",
-  },
+    color: "#666666"
+  }
 });
 export default ChangePasswordScreen;

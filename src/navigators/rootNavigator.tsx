@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator<Routers>();
 function RootNavigator() {
     const [checklogin, setChecklogin] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
-
+    //check
     React.useEffect(() => {
         getDataWelcome();
     }, []);

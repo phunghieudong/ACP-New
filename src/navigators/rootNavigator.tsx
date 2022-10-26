@@ -37,7 +37,7 @@ function RootNavigator() {
                     screenOptions={{ headerShown: false, gestureEnabled: true }}
                 >
                     {!checklogin && (
-                        <Stack.Screen name="Auth" component={AuthNavigator} />
+                        <Stack.Screen name="Home" component={AuthNavigator} />
                     )}
                     {checklogin && (
                         <>
@@ -46,12 +46,12 @@ function RootNavigator() {
                                 component={AuthNavigator}
                             /> */}
                             <Stack.Screen
-                                name="Home"
+                                name="Auth"
                                 component={RootStackNavigator}
                             />
                         </>
                     )}
-                    <Stack.Screen name="Auth" component={AuthNavigator} />
+                    <Stack.Screen name="Home" component={AuthNavigator} />
                 </Stack.Navigator>
             )}
         </NavigationContainer>

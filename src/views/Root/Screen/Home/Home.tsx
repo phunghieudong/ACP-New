@@ -141,7 +141,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             if (!ready) setReady(true);
         } catch (error) {
             console.log("phunghieuddonghome");
-            navigation.navigate("Auth");
+            navigation.navigate("Home");
         }
     };
     const DemoToken = async () => {

@@ -8,53 +8,53 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import HomeScreen from '../views/home';
 import RootStackNavigator from "./RootStackNavigator";
 import AuthNavigator from "./AuthNavigator";
-
+import { LocalStorage } from "../utils/LocalStorage";
+import { setWelcome } from "../store/reducers/globalState";
+import { useDispatch, useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createNativeStackNavigator<Routers>();
 
 function RootNavigator() {
-  // const [login, setLogin] = useState(true);
+    const [checklogin, setChecklogin] = React.useState(false);
+    const [loading, setLoading] = React.useState(true);
 
-  // useEffect(() => {
-  //   if (!login) {
-  //     Alert.alert("Thông báo", "Phiên đăng nhập đã hết hạn", [
-  //       {
-  //         text: "Đồng ý",
-  //         onPress: async () => {
-  //           await dispatch(logout());
-  //           await dispatch(getPassword(""));
-  //         },
-  //       },
-  //     ]);
-  //     eventManager.unsubscribe();
-  //   }
-  // }, [login]);
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       await Splash.preventAutoHideAsync();
-  //       await dispatch(fetchLocalUser());
-  //       await dispatch(fetchPassword());
-  //       await new Promise((resolve) => setTimeout(resolve, 2000));
-  //     } catch (e) {
-  //       console.warn(e);
-  //     } finally {
-  //       setAppIsReady(true);
-  //     }
-  //   })();
-  // }, [dispatch]);
+    React.useEffect(() => {
+        getDataWelcome();
+    }, []);
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false, gestureEnabled: true }}
-      >
-        {/* <Stack.Screen name="HomeScreeen" component={HomeScreen} />
-        <Stack.Screen name="ExampleScreen" component={ExampleScreen} /> */}
-        <Stack.Screen name="Home" component={AuthNavigator} />
-        <Stack.Screen name="Auth" component={RootStackNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    const getDataWelcome = async () => {
+        const res: any = await LocalStorage.getToken();
+        console.log(res);
+        // check xem token có oki không
+
+        !!res ? setChecklogin(true) : setChecklogin(false);
+        setLoading(false);
+    };
+    return (
+        <NavigationContainer>
+            {!loading && (
+                <Stack.Navigator
+                    screenOptions={{ headerShown: false, gestureEnabled: true }}
+                >
+                    {!checklogin && (
+                        <Stack.Screen name="Home" component={AuthNavigator} />
+                    )}
+                    {checklogin && (
+                        <>
+                            {/* <Stack.Screen
+                                name="Home"
+                                component={AuthNavigator}
+                            /> */}
+                            <Stack.Screen
+                                name="Auth"
+                                component={RootStackNavigator}
+                            />
+                        </>
+                    )}
+                </Stack.Navigator>
+            )}
+        </NavigationContainer>
+    );
 }
 
 export default RootNavigator;

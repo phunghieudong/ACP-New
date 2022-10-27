@@ -33,7 +33,7 @@ import ErrorText from "../../../components/More/error-text";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LocalStorage } from "../../../utils/LocalStorage/index";
 import Icon from "react-native-vector-icons/FontAwesome";
-// import OneSignal, { DeviceState } from "react-native-onesignal";
+import OneSignal, { DeviceState } from "react-native-onesignal";
 // import { LocalStorage, toast } from '~/utils';
 // import {setInformations, setLogin, setToken} from '~/store/reducers/user';
 import { Buffer } from "buffer";
@@ -72,18 +72,18 @@ function SigninScreen() {
         }
     };
 
-    // const updatetoken = async () => {
-    //   const device = await OneSignal.getDeviceState();
+    const updatetoken = async () => {
+        const device = await OneSignal.getDeviceState();
 
-    //   console.log("---- Device ID: ", device?.userId); // Gửi mã này cho BE
-    //   const param = { oneSignal_DeviceId: device?.userId };
+        console.log("---- Device ID: ", device?.userId); // Gửi mã này cho BE
+        const param = { oneSignal_DeviceId: device?.userId };
 
-    //   try {
-    //     const res: any = await putProvider.updatetoken(param);
-    //   } catch (error: any) {
-    //     setErrorText("Tên đăng nhập hoặc mật khẩu không chính xác !");
-    //   }
-    // };
+        try {
+            const res: any = await putProvider.updatetoken(param);
+        } catch (error: any) {
+            setErrorText("Tên đăng nhập hoặc mật khẩu không chính xác !");
+        }
+    };
 
     const FromData = async (data: any) => {
         try {
@@ -97,7 +97,7 @@ function SigninScreen() {
             // LocalStorage.getToken(res.Data.token);
 
             if (res.ResultCode === 200) {
-                // updatetoken();
+                updatetoken();
                 navigation.replace("Auth");
                 // handleLogged(res);
             } else {

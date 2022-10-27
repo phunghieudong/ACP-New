@@ -1,4 +1,4 @@
-package com.acpmona.ACPNew.newarchitecture;
+package com.acp.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,9 +20,9 @@ import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.acpmona.ACPNew.BuildConfig;
-import com.acpmona.ACPNew.newarchitecture.components.MainComponentsRegistry;
-import com.acpmona.ACPNew.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.acp.BuildConfig;
+import com.acp.newarchitecture.components.MainComponentsRegistry;
+import com.acp.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

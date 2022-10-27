@@ -25,57 +25,15 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({
     return (
         <View style={styles.container}>
             {Thumbnail !== "" ? (
-                <Swiper
-                    vertical={false}
-                    autoplay
-                    showsButtons={false}
-                    height={180}
-                    containerStyle={{ flex: 0 }}
-                    activeDotColor={"#E7312F"}
-                    dotColor="rgba(0, 0, 0, .2)"
-                    paginationStyle={{
-                        bottom: 8,
-                    }}
-                >
-                    <Image
-                        source={{ uri: Thumbnail }}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                    <Image
-                        source={{ uri: Thumbnail }}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                    <Image
-                        source={{ uri: Thumbnail }}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                </Swiper>
+                <Image
+                    source={{ uri: Thumbnail }}
+                    style={{ width: "100%", height: 180 }}
+                />
             ) : (
-                <Swiper
-                    vertical={false}
-                    autoplay
-                    showsButtons={false}
-                    height={180}
-                    containerStyle={{ flex: 0 }}
-                    activeDotColor={"#E7312F"}
-                    dotColor="rgba(0, 0, 0, .2)"
-                    paginationStyle={{
-                        bottom: 8,
-                    }}
-                >
-                    <Image
-                        source={require("../../../../assets/images/null.jpg")}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                    <Image
-                        source={require("../../../../assets/images/null.jpg")}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                    <Image
-                        source={require("../../../../assets/images/null.jpg")}
-                        style={{ width: "100%", height: 180 }}
-                    />
-                </Swiper>
+                <Image
+                    source={require("../../../../assets/images/null.jpg")}
+                    style={{ width: "100%", height: 180 }}
+                />
             )}
 
             <View

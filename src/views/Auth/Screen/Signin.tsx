@@ -246,6 +246,7 @@ function SigninScreen() {
                     marginTop: 16,
                     width: 343,
                     flexDirection: "row-reverse",
+                    paddingRight: 10,
                 }}
             >
                 <TouchableOpacity

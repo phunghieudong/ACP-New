@@ -13,6 +13,7 @@ import {
     TextInput,
     FlatList,
     SafeAreaView,
+    Alert,
 } from "react-native";
 import Swiper from "react-native-swiper";
 import { BottomSheet } from "react-native-btr";
@@ -144,6 +145,11 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
             if (!ready) setReady(true);
         } catch (error) {
             console.log("phunghieuddonghome");
+            Alert.alert(
+                "Thông báo",
+                "Phiên đăng nhập đã hết hạn , bạn vui lòng đăng nhập lại",
+                [{ text: "OK" }]
+            );
             navigation.navigate("Home");
         }
     };

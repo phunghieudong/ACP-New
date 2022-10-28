@@ -12,6 +12,7 @@ import {
     Pressable,
     TextInput,
     FlatList,
+    SafeAreaView,
 } from "react-native";
 import Swiper from "react-native-swiper";
 import { BottomSheet } from "react-native-btr";
@@ -23,6 +24,8 @@ import { LocalStorage } from "../../../../utils/LocalStorage";
 import { useIsFocused } from "@react-navigation/native";
 
 import { Buffer } from "buffer";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 export const useTogglePasswordVisibility = () => {
     const [passwordVisibility, setPasswordVisibility] = useState(true);
     const [rightIcon, setRightIcon] = useState("eye");
@@ -177,18 +180,26 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     useEffect(() => {
         DemoToken();
     }, []);
-
+    const insets = useSafeAreaInsets();
     console.log("--- user", user);
     return (
         <View style={styles.container}>
             <View
                 style={{
+                    backgroundColor: "#A5C63F",
+                    width: "100%",
+                    height: insets.top,
+                }}
+            ></View>
+            <View
+                style={{
                     flexDirection: "row",
                     backgroundColor: "#A5C63F",
                     width: "100%",
-                    height: 92,
+                    // paddingTop: insets.top,
                     justifyContent: "space-between",
                     alignItems: "center",
+                    height: "10%",
                 }}
             >
                 <View

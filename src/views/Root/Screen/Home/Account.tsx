@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 import { useIsFocused } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 Buffer.from("anything", "base64");
 const AccountScreen = ({}) => {
@@ -110,27 +111,58 @@ const AccountScreen = ({}) => {
             setFirst(false);
         }
     }, []);
-
+    const insets = useSafeAreaInsets();
     return (
         <View style={styles.container}>
             <View
                 style={{
                     backgroundColor: "#A5C63F",
                     width: "100%",
-                    height: 64,
-                    justifyContent: "center",
+                    height: insets.top,
+                }}
+            ></View>
+            <View
+                style={{
+                    flexDirection: "row",
+                    backgroundColor: "#A5C63F",
+                    width: "100%",
+                    // paddingTop: insets.top,
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    height: "10%",
                 }}
             >
-                <Text
+                <View
                     style={{
-                        color: "#ffffff",
-                        fontSize: 20,
-                        fontWeight: "600",
+                        backgroundColor: "#A5C63F",
+                        width: 30,
+                        height: 30,
                     }}
-                >
-                    Tài khoản
-                </Text>
+                ></View>
+                <View>
+                    <Text
+                        style={{
+                            fontSize: 20,
+                            fontWeight: "600",
+                            color: "white",
+                        }}
+                    >
+                        Tài khoản
+                    </Text>
+                </View>
+                {/* <TouchableOpacity onPress={toggleModal}>
+          <Image
+            source={require('../../../../assets/images/find.png')}
+            style={{ width: 24, height: 24, marginRight: 16 }}
+          />
+        </TouchableOpacity> */}
+                <View
+                    style={{
+                        backgroundColor: "#A5C63F",
+                        height: 24,
+                        width: 24,
+                    }}
+                ></View>
             </View>
             <View style={styles.container}>
                 <ScrollView style={{ height: 1000 }}>

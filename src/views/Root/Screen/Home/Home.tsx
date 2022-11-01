@@ -50,7 +50,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
 
     const _logout = () => {
         LocalStorage.logout();
-        navigation.navigate("SigninScreeen");
+        navigation.navigate("SigninScreen");
     };
     const toggleModal = () => {
         setModalVisible(!isModalVisible);

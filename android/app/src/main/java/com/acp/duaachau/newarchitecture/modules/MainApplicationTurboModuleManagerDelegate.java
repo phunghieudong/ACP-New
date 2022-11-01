@@ -1,4 +1,4 @@
-package com.acp.newarchitecture.modules;
+package com.acp.duaachau.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

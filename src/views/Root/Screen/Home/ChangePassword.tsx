@@ -56,7 +56,7 @@ const UpdateAccountScreen = () => {
             const res = await ChangePassword.Password(params, data);
             if (res.data.ResultCode === 200) {
                 console.log("2000");
-                navigation.navigate("SigninScreeen");
+                navigation.navigate("SigninScreen");
             }
         } catch (error) {
             console.log("error", error.ResultMessage);

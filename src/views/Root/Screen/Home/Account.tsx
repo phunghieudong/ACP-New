@@ -166,14 +166,21 @@ const AccountScreen = ({}) => {
             </View>
             <View style={styles.container}>
                 <ScrollView style={{ height: 1000 }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
                         <View
                             style={{
                                 justifyContent: "center",
                                 alignItems: "center",
                                 paddingTop: 12,
                             }}
-                        >
+                        ></View>
+
+                        {user.thumbnail !== "" ? (
                             <Image
                                 source={{ uri: user.thumbnail }}
                                 style={{
@@ -182,7 +189,16 @@ const AccountScreen = ({}) => {
                                     borderRadius: 100,
                                 }}
                             />
-                        </View>
+                        ) : (
+                            <Image
+                                source={require("../../../../assets/images/camera.png")}
+                                style={{
+                                    width: 90,
+                                    height: 90,
+                                    borderRadius: 100,
+                                }}
+                            />
+                        )}
                     </TouchableOpacity>
                     <View style={{ marginHorizontal: 32, marginTop: 18 }}>
                         <Text

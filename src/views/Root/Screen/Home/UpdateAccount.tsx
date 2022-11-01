@@ -74,7 +74,7 @@ const ChangePasswordScreen = () => {
                 address: address,
                 email: email,
                 taxCode: taxCode,
-                thumbnail: thumbnail,
+                thumbnail: image,
                 id: user.userId,
             });
         }
@@ -193,7 +193,7 @@ const ChangePasswordScreen = () => {
             </View>
 
             <View style={styles.container}>
-                <TouchableOpacity onPress={pickImage}>
+                <TouchableOpacity>
                     {/* onPress={showToast} */}
                     <View
                         style={{
@@ -203,10 +203,20 @@ const ChangePasswordScreen = () => {
                             flexDirection: "row",
                         }}
                     >
-                        {!image && (
+                        {user.thumbnail !== "" || image ? (
                             <Image
-                                value={thumbnail}
-                                source={{ uri: user.thumbnail }}
+                                source={{
+                                    uri: !!image ? image : user.thumbnail,
+                                }}
+                                style={{
+                                    width: 90,
+                                    height: 90,
+                                    borderRadius: 100,
+                                }}
+                            />
+                        ) : (
+                            <Image
+                                source={require("../../../../assets/images/camera.png")}
                                 style={{
                                     width: 90,
                                     height: 90,
@@ -214,17 +224,24 @@ const ChangePasswordScreen = () => {
                                 }}
                             />
                         )}
-                        {image && (
-                            <Image
-                                value={thumbnail}
-                                source={{ uri: image }}
-                                style={{
-                                    width: 90,
-                                    height: 90,
-                                    borderRadius: 100,
-                                }}
-                            />
-                        )}
+                    </View>
+
+                    <View
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            paddingTop: 5,
+                        }}
+                    >
+                        <Text
+                            onPress={pickImage}
+                            style={{
+                                justifyContent: "center",
+                                alignContent: "center",
+                            }}
+                        >
+                            Cập nhật ảnh đại diện
+                        </Text>
                     </View>
                 </TouchableOpacity>
 

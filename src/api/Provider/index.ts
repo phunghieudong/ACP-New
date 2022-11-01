@@ -2,13 +2,16 @@ import { appConfig } from "../../configs";
 import { instance } from "../instance";
 
 const putProvider = {
-  async putapiprovider(data: any) {
-    return instance.put("/api/provider/", data);
-  },
+    async putapiprovider(data: any) {
+        return instance.put("/api/provider/", data);
+    },
 
-  async updatetoken(data: any) {
-    return instance.put("/api/provider-update-onesignal-deviceid", data);
-  },
+    async updatetoken(params: any) {
+        return instance.put(
+            "api/provider/provider-update-onesignal-deviceid?oneSignal_DeviceId=" +
+                params.oneSignal_DeviceId
+        );
+    },
 };
 export { putProvider };
 

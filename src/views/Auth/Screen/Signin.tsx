@@ -81,6 +81,8 @@ function SigninScreen() {
         try {
             const res: any = await putProvider.updatetoken(param);
         } catch (error: any) {
+            console.log("error", error);
+
             setErrorText("Tên đăng nhập hoặc mật khẩu không chính xác !");
         }
     };

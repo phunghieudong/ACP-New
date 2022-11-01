@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { ViewProps } from "../../../navigators/types/navigation";
 import { FontAwesome } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // import { useTogglePasswordVisibility } from './hooks/useTogglePasswordVisibility';
 
@@ -44,7 +45,7 @@ function OTPScreen() {
     const { passwordVisibility, rightIcon, handlePasswordVisibility } =
         useTogglePasswordVisibility();
     const [password, setPassword] = useState("");
-
+    const insets = useSafeAreaInsets();
     return (
         // <View style={{
         //   flex: 1,
@@ -105,31 +106,52 @@ function OTPScreen() {
         <View style={styles.container}>
             <View
                 style={{
-                    backgroundColor: "#9CBD44",
+                    backgroundColor: "#A5C63F",
                     width: "100%",
-                    height: 64,
+                    height: insets.top,
+                }}
+            ></View>
+            <View
+                style={{
                     flexDirection: "row",
+                    backgroundColor: "#A5C63F",
+                    width: "100%",
+                    // paddingTop: insets.top,
                     justifyContent: "space-between",
-                    paddingHorizontal: 25,
-                    paddingTop: 25,
+                    alignItems: "center",
+                    height: "10%",
                 }}
             >
-                <View style={{ flexDirection: "row", width: 50 }}></View>
-
+                <View
+                    style={{
+                        backgroundColor: "#A5C63F",
+                        width: 30,
+                        height: 30,
+                    }}
+                ></View>
                 <View>
                     <Text
                         style={{
                             fontSize: 20,
-                            color: "#ffffff",
                             fontWeight: "600",
+                            color: "white",
                         }}
                     >
                         Quên mật khẩu
                     </Text>
                 </View>
-
+                {/* <TouchableOpacity onPress={toggleModal}>
+          <Image
+            source={require('../../../../assets/images/find.png')}
+            style={{ width: 24, height: 24, marginRight: 16 }}
+          />
+        </TouchableOpacity> */}
                 <View
-                    style={{ flexDirection: "row", height: 10, width: 50 }}
+                    style={{
+                        backgroundColor: "#A5C63F",
+                        height: 24,
+                        width: 24,
+                    }}
                 ></View>
             </View>
             <View

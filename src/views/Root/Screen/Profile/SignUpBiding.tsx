@@ -19,6 +19,7 @@ import { ToastAndroid } from "react-native";
 import CurrencyInput from "react-native-currency-input";
 import NumberFormat from "react-number-format";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const SignUpBidingScreen = (props: any) => {
     const ID = props.route.params.ID;
     const MinimumQuantity = props.route.params.MinimumQuantity;
@@ -26,6 +27,7 @@ const SignUpBidingScreen = (props: any) => {
     const [quantity, setQuantity] = useState<any>("");
     const [price, setPrice] = useState<any>("");
     const [errorText, setErrorText] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
     const BiddingTicket = () => {
         setErrorText("");
         if (!!!quantity) {
@@ -45,27 +47,24 @@ const SignUpBidingScreen = (props: any) => {
         }
     };
     const PostBidding = async (data: any) => {
+        setLoading(true);
         try {
             const res = await PostBiddingTicket.Ticket(data);
-            if (res.data.ResultCode === 200) {
+            if (res.ResultCode === 200) {
                 navigation.navigate("Confirm");
             } else {
-                console.log("ressssssssssssssssssssssss", res);
                 // setErrorText(res.ResultMessage);
-                // navigation.navigate('ConfirmFail')
+                // console.log("Phunghieudong");
+                // navigation.navigate("ConfirmFail");
             }
         } catch (error: any) {
             navigation.navigate("ConfirmFail");
+            setLoading(false);
+        } finally {
+            setLoading(false);
         }
     };
-    const currencyFormat = (num) => {
-        console.log("num", num);
-        console.log(!!num ? num.replace(/(\d)(?=(\d{3})+(?!\d))/g, "") : "");
 
-        return !!num ? num.replace(/(\d)(?=(\d{3})+(?!\d))/g, "") : "";
-    };
-    // console.log(currencyFormat(2665)); // $2,665.00
-    console.log("quantity", quantity);
     const insets = useSafeAreaInsets();
     const navigation = useNavigation();
     return (
@@ -155,7 +154,7 @@ const SignUpBidingScreen = (props: any) => {
                     separator="."
                     precision={0}
                     onChangeText={(formattedValue) => {
-                        console.log(formattedValue); // $2,310.46
+                        // console.log(formattedValue); // $2,310.46
                     }}
                     style={{
                         height: 40,
@@ -190,7 +189,7 @@ const SignUpBidingScreen = (props: any) => {
                     separator="."
                     precision={0}
                     onChangeText={(formattedValue) => {
-                        console.log(formattedValue); // $2,310.46
+                        // console.log(formattedValue); // $2,310.46
                     }}
                     style={{
                         height: 40,
@@ -243,6 +242,18 @@ const SignUpBidingScreen = (props: any) => {
                     </View>
                 </TouchableOpacity>
             </View>
+
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#000",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

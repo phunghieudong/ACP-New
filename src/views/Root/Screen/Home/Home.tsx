@@ -98,32 +98,6 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     const [data, setData] = useState<BiddingSessionData[]>([]);
     const [page, setPage] = useState({ current: 1, next: true });
     const [ready, setReady] = useState(false);
-
-    // useEffect(() => {
-    //   SearchContent();
-    // }, []);
-    // console.log("search", search);
-
-    // const SearchContent = async () => {
-    //   try {
-    //     const { current, next } = page;
-    //     if (next) {
-    //       const params = { pageIndex: current, pageSize: 20, Status: 1, Name: search };
-    //       const res = await getBiddingSession(params);
-    //       console.log("res ne ban oi", res);
-    //       if (res.ResultCode == 200) {
-    //         setData([...res.Data.Items]);
-    //         // .filter((item) => item.Status == 1)
-
-    //       }
-    //       if (!ready) setReady(true);
-    //     }
-    //   } catch (error) {
-
-    //   }
-
-    // }
-
     const focused = useIsFocused();
     const SearchContent = async () => {
         const accessToken = await LocalStorage.getToken();

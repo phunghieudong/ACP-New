@@ -19,6 +19,7 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({
             Id,
             //hieudongtesst
             Created,
+            StatusName,
         },
     },
 }) => {
@@ -198,6 +199,25 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({
                         }}
                     >
                         {Price.toLocaleString()} VNĐ
+                    </Text>
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Text style={{ fontSize: 14, color: "#999999" }}>
+                        Kết quả{" "}
+                    </Text>
+                    <Text
+                        style={{
+                            fontSize: 14,
+                            color: "#000000",
+                            fontWeight: "600",
+                        }}
+                    >
+                        {StatusName}
                     </Text>
                 </View>
             </View>

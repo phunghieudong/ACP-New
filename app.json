@@ -1,44 +1,44 @@
 {
-  "expo": {
-    "name": "ACP-New",
-    "slug": "ACP-New",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./src/assets/images/logone.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#9CBD44"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "bundleIdentifier": "com.test.test",
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.acpmona.ACPNew"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "onesignal-expo-plugin",
-        {
-          "mode": "development"
+    "expo": {
+        "name": "ACP-New",
+        "slug": "ACP-New",
+        "version": "1.0.1",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./src/assets/images/logone.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#9CBD44"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "bundleIdentifier": "com.test.test",
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/icon.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "com.acpmona.ACPNew"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "plugins": [
+            [
+                "onesignal-expo-plugin",
+                {
+                    "mode": "development"
+                }
+            ]
+        ],
+        "extra": {
+            "oneSignalAppId": "300d518d-1d40-4a06-8f46-eeb920a7bc52"
         }
-      ]
-    ],
-    "extra": {
-      "oneSignalAppId": "300d518d-1d40-4a06-8f46-eeb920a7bc52"
     }
-  }
 }

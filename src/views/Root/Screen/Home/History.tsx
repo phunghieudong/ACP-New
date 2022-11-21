@@ -176,6 +176,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                                 Thumbnail: item.Thumbnail,
                                 Id: item.Id,
                                 Created: item.Created,
+                                StatusName: item.StatusName,
                             })
                         }
                     >

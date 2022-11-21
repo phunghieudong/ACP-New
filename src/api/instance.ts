@@ -74,11 +74,11 @@ const checkResponse = (error: any): void => {
             console.log(error.response.message);
             break;
         default:
-            console.log(
-                `%c ${error.response.status}  :`,
-                "color: red; font-weight: bold",
-                error.response.data
-            );
+            // console.log(
+            //     `%c ${error.response.status}  :`,
+            //     "color: red; font-weight: bold",
+            //     error.response.data
+            // );
             break;
     }
 };
@@ -95,7 +95,7 @@ instance.interceptors.response.use(
         return response;
     },
     function (error) {
-        console.log("error", error);
+        // console.log("error", error);
 
         if (error.response) {
             checkResponse(error);

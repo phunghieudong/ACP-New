@@ -24,10 +24,10 @@ import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 import { async } from "rxjs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
     const [user, setUser] = useState({});
-
+    const [loading, setLoading] = useState<boolean>(false);
     const [isModalVisible, setModalVisible] = useState(false);
 
     const [isFirst, setFirst] = useState(true);
@@ -46,7 +46,9 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
     const getdata = async () => {
         const accessToken = await LocalStorage.getToken();
         const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0]);
+
         try {
+            setLoading(true);
             const { current, next } = page;
             const params = {
                 pageIndex: current,
@@ -60,7 +62,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                 setData(res.Data.Items);
                 console.log("res ne ban oi", res);
             }
-            if (!ready) setReady(true);
+            if (!ready) setLoading(false);
         } catch (error) {}
     };
 
@@ -82,6 +84,7 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
         if (!isFirst) {
             getdata();
         } else {
+            // setLoading(false);
             setFirst(false);
         }
     }, [page.current]);
@@ -250,6 +253,17 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                     </TouchableWithoutFeedback>
                 )}
             />
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#000",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

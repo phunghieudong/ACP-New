@@ -15,12 +15,12 @@ import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 import { useIsFocused } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
 Buffer.from("anything", "base64");
 const AccountScreen = ({}) => {
     const focused = useIsFocused(true);
     const navigation = useNavigation<any>();
-
+    const [loading, setLoading] = useState<boolean>(false);
     const [isFirst, setFirst] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [user, setUser] = useState({});
@@ -492,6 +492,17 @@ const AccountScreen = ({}) => {
                     </View>
                 </View>
             </Modal>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#000",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

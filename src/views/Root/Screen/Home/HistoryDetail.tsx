@@ -1,11 +1,11 @@
 //@ts-nocheck
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { BiddingTicketProps } from "../../../../navigators/types/Profile";
 import Swiper from "react-native-swiper";
 import moment from "moment";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const HistoryDetailScreen: FC<BiddingTicketProps> = ({
     navigation,
     route: {
@@ -23,6 +23,7 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({
         },
     },
 }) => {
+    const [loading, setLoading] = useState<boolean>(false);
     return (
         <View style={styles.container}>
             {Thumbnail !== "" ? (
@@ -249,6 +250,17 @@ const HistoryDetailScreen: FC<BiddingTicketProps> = ({
                     </View>
                 </TouchableOpacity>
             </View>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#000",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

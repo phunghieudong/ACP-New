@@ -15,7 +15,7 @@ import { GetTechnicalProduct } from "../../../../api/TechnicalProduct/index";
 import { BiddingSessionProps } from "../../../../navigators/types/Profile";
 import { GetTechnicalProductdata } from "../../../../types/GetTechnicalProduct";
 import moment from "moment";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const BiddingListScreen: FC<BiddingSessionProps> = ({
     navigation,
     route: {
@@ -38,6 +38,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
     const [page, setPage] = useState({ current: 1, next: true });
     const [ready, setReady] = useState(false);
     const [buttom, setbuttom] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const supportedURL =
         "http://acp.monamedia.net/42514f33-1141-4c13-bd95-e768f772bd82-21_1686_PBHC_KHDT_BC_sơ_kết_9_tháng_đầu_năm,_kế_hoạch.pdf";
     //
@@ -69,6 +70,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
     useEffect(() => {
         (async () => {
             try {
+                setLoading(true);
                 const { current, next } = page;
                 if (next) {
                     const params = {
@@ -85,7 +87,7 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                         //    setData([...res.Data.Items.filter((item) => item.Status == 1)]);
                         console.log("Duoi ne", res.Data.Items[0]);
                     }
-                    if (!ready) setReady(true);
+                    if (!ready) setLoading(false);
                 }
             } catch (error) {}
         })();
@@ -400,6 +402,17 @@ const BiddingListScreen: FC<BiddingSessionProps> = ({
                     </View>
                 )}
             </ScrollView>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#000",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

@@ -58,8 +58,8 @@ const SignUpBidingScreen = (props: any) => {
                 // navigation.navigate("ConfirmFail");
             }
         } catch (error: any) {
-            navigation.navigate("ConfirmFail");
             setLoading(false);
+            navigation.navigate("ConfirmFail");
         } finally {
             setLoading(false);
         }

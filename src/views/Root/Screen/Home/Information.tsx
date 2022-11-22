@@ -16,7 +16,7 @@ import { getNotification } from "../../../../api/Notification/Index";
 import { NotificationData } from "../../../../types/Notification";
 import moment from "moment";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const InformationScreen = () => {
     const [user, setUser] = useState({});
     const [isFirst, setFirst] = useState(true);
@@ -26,6 +26,7 @@ const InformationScreen = () => {
         const accessToken = await LocalStorage.getToken();
         const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0]);
         try {
+            setLoading(true);
             const { current, next } = page;
             const params = {
                 pageIndex: current,
@@ -40,6 +41,7 @@ const InformationScreen = () => {
                 console.log("IsSeen", data);
                 // console.log(data[0].IsSeen);
             }
+            setLoading(false);
             if (!ready) setReady(true);
         } catch (error) {}
     };
@@ -57,7 +59,7 @@ const InformationScreen = () => {
     const [data, setData] = useState<NotificationData[]>([]);
     const [page, setPage] = useState({ current: 1, next: true });
     const [ready, setReady] = useState(false);
-
+    const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
         if (!isFirst) {
             getdata();
@@ -139,54 +141,77 @@ const InformationScreen = () => {
                     }}
                 ></View>
             </View>
-            <FlatList
-                data={data}
-                style={{
-                    paddingHorizontal: 30,
-                    backgroundColor: "#fff",
-                }}
-                onEndReachedThreshold={0.5}
-                keyExtractor={(i) => i.Id.toString()}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        onPress={() =>
-                            navigation.navigate("InformationDetail", {
-                                Title: item.Title,
-                                IsSeen: item.IsSeen,
-                                IsType: item.IsType,
-                                content: item.content,
-                                Created: item.Created,
-                                Id: item.Id,
-                            })
-                        }
+            {ready && !data.length && (
+                <View
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Image
+                        source={require("../../../../assets/images/nodata2.gif")}
+                        style={{
+                            width: "50%",
+                            height: 200,
+                            marginRight: 5,
+                        }}
+                    />
+                    <Text
+                        style={{
+                            alignSelf: "center",
+                            fontSize: 20,
+                            fontWeight: "600",
+                            marginTop: 20,
+                            borderRadius: 6,
+                            paddingVertical: 50,
+                        }}
                     >
-                        <View
-                            style={{
-                                flexDirection: "row",
-                                paddingVertical: 20,
-                                borderBottomWidth: 1,
-                                borderColor: "#A5C63F",
-                                // backgroundColor: !item.IsSeen ? "#EEEEEE" : "#fff",
-                            }}
+                        Bạn chưa có bất kì thông báo nào !
+                    </Text>
+                </View>
+            )}
+            {ready && (
+                <FlatList
+                    data={data}
+                    style={{
+                        paddingHorizontal: 30,
+                        backgroundColor: "#fff",
+                    }}
+                    onEndReachedThreshold={0.5}
+                    keyExtractor={(i) => i.Id.toString()}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            onPress={() =>
+                                navigation.navigate("InformationDetail", {
+                                    Title: item.Title,
+                                    IsSeen: item.IsSeen,
+                                    IsType: item.IsType,
+                                    content: item.content,
+                                    Created: item.Created,
+                                    Id: item.Id,
+                                })
+                            }
                         >
-                            {/* <View>
-                <Image
-
-                  source={require('../../../../assets/images/Information1.png')}
-                  style={{ width: 74, height: 59 }}
-                />
-              </View> */}
-                            <View style={{ flexDirection: "row" }}>
-                                <View
-                                    style={{
-                                        flexDirection: "column",
-                                        width: "85%",
-                                        marginHorizontal: 8,
-                                    }}
-                                >
-                                    {/* 
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    paddingVertical: 20,
+                                    borderBottomWidth: 1,
+                                    borderColor: "#A5C63F",
+                                    // backgroundColor: !item.IsSeen ? "#EEEEEE" : "#fff",
+                                }}
+                            >
+                                <View style={{ flexDirection: "row" }}>
+                                    <View
+                                        style={{
+                                            flexDirection: "column",
+                                            width: "85%",
+                                            marginHorizontal: 8,
+                                        }}
+                                    >
+                                        {/* 
 {item.IsType === 1 ? ( ) : ( ) } */}
-                                    {/* {item.IsType === 1 ? (
+                                        {/* {item.IsType === 1 ? (
                     <Text style={{ fontWeight: "600", color: "#3399FF" }}>
                       Phiên thầu bắt đầu
                     </Text>
@@ -195,74 +220,88 @@ const InformationScreen = () => {
                       Phiên thầu kết thúc
                     </Text>
                   )} */}
-                                    <Text
-                                        style={{
-                                            fontWeight: "600",
-                                            color:
-                                                item.IsType === 1
-                                                    ? "#007AFF"
-                                                    : item.IsType === 2
-                                                    ? "red"
-                                                    : item.IsType === 3
-                                                    ? "#007AFF"
-                                                    : "red",
-                                        }}
-                                    >
-                                        {item.IsType === 1
-                                            ? "Phiên thầu bắt đầu"
-                                            : item.IsType === 2
-                                            ? "Phiên thầu kết thúc"
-                                            : item.IsType === 3
-                                            ? "Bạn đã trúng thầu"
-                                            : "Bạn đã rớt thầu"}
-                                    </Text>
-                                    <Text
-                                        style={{
-                                            width: "80%",
-                                            fontWeight: "600",
-                                            // color: item.IsType === 1 ? "#3399FF" : "red"
-                                        }}
-                                    >
-                                        {item.Title}
-                                    </Text>
+                                        <Text
+                                            style={{
+                                                fontWeight: "600",
+                                                color:
+                                                    item.IsType === 1
+                                                        ? "#007AFF"
+                                                        : item.IsType === 2
+                                                        ? "red"
+                                                        : item.IsType === 3
+                                                        ? "#007AFF"
+                                                        : "red",
+                                            }}
+                                        >
+                                            {item.IsType === 1
+                                                ? "Phiên thầu bắt đầu"
+                                                : item.IsType === 2
+                                                ? "Phiên thầu kết thúc"
+                                                : item.IsType === 3
+                                                ? "Bạn đã trúng thầu"
+                                                : "Bạn đã rớt thầu"}
+                                        </Text>
+                                        <Text
+                                            style={{
+                                                width: "80%",
+                                                fontWeight: "600",
+                                                // color: item.IsType === 1 ? "#3399FF" : "red"
+                                            }}
+                                        >
+                                            {item.Title}
+                                        </Text>
 
-                                    {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
+                                        {/* <Text style={{ width: "80%" , fontWeight:"600",}}>{item.IsSeen}</Text> */}
+                                        <View
+                                            style={{
+                                                flexDirection: "row",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            <Image
+                                                source={require("../../../../assets/images/clock.png")}
+                                                style={{
+                                                    width: 14,
+                                                    height: 14,
+                                                    marginRight: 5,
+                                                }}
+                                            />
+                                            <Text
+                                                style={{ fontStyle: "italic" }}
+                                            >
+                                                {moment(
+                                                    item.Created * 1000
+                                                ).format("DD/MM/YYYY")}
+                                            </Text>
+                                        </View>
+                                    </View>
                                     <View
                                         style={{
-                                            flexDirection: "row",
-                                            alignItems: "center",
+                                            height: 15,
+                                            width: 15,
+                                            backgroundColor: !item.IsSeen
+                                                ? "#3399FF"
+                                                : "#fff",
+                                            borderRadius: 100,
                                         }}
-                                    >
-                                        <Image
-                                            source={require("../../../../assets/images/clock.png")}
-                                            style={{
-                                                width: 14,
-                                                height: 14,
-                                                marginRight: 5,
-                                            }}
-                                        />
-                                        <Text style={{ fontStyle: "italic" }}>
-                                            {moment(item.Created * 1000).format(
-                                                "DD/MM/YYYY"
-                                            )}
-                                        </Text>
-                                    </View>
+                                    ></View>
                                 </View>
-                                <View
-                                    style={{
-                                        height: 15,
-                                        width: 15,
-                                        backgroundColor: !item.IsSeen
-                                            ? "#3399FF"
-                                            : "#fff",
-                                        borderRadius: 100,
-                                    }}
-                                ></View>
                             </View>
-                        </View>
-                    </TouchableOpacity>
-                )}
-            />
+                        </TouchableOpacity>
+                    )}
+                />
+            )}
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#fff",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

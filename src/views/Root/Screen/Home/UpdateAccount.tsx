@@ -20,6 +20,7 @@ import { refreshTokenApi } from "../../../../api/refresh-token";
 import * as ImagePicker from "expo-image-picker";
 import { onChange } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 const ChangePasswordScreen = () => {
     function showToast() {
         ToastAndroid.show("Chức năng đang phát triển", ToastAndroid.SHORT);
@@ -35,7 +36,7 @@ const ChangePasswordScreen = () => {
     const [thumbnail, setthumbnail] = useState<string>("");
     const [user, setUser] = useState({});
     const [image, setImage] = useState(null);
-
+    const [loading, setLoading] = useState<boolean>(false);
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -83,12 +84,14 @@ const ChangePasswordScreen = () => {
 
     const UpdateProviderPutApi = async (data: any) => {
         try {
+            setLoading(true);
             const res = await putProvider.putapiprovider(data);
             if (res.data.ResultCode == 200) {
                 refreshToken();
             } else {
                 console.log("hieudong2", res);
             }
+            setLoading(false);
         } catch (error) {
             console.log("error", error.ResultMessage);
             setErrorText(error.ResultMessage);
@@ -473,6 +476,17 @@ const ChangePasswordScreen = () => {
                     </View>
                 </View>
             </Modal>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#fff",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

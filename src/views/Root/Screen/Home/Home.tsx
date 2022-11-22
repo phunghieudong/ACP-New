@@ -26,6 +26,7 @@ import { useIsFocused } from "@react-navigation/native";
 
 import { Buffer } from "buffer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 export const useTogglePasswordVisibility = () => {
     const [passwordVisibility, setPasswordVisibility] = useState(true);
@@ -48,6 +49,7 @@ export const useTogglePasswordVisibility = () => {
 const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
     const [isModalVisible, setModalVisible] = useState(false);
 
+    const [loading, setLoading] = useState<boolean>(false);
     const _logout = () => {
         LocalStorage.logout();
         navigation.navigate("SigninScreen");
@@ -103,6 +105,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
         const accessToken = await LocalStorage.getToken();
         const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0]);
         try {
+            setLoading(true);
             const { current, next } = page;
             const params = {
                 pageIndex: current,
@@ -116,6 +119,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                 setData(res.Data.Items);
                 console.log("res ne ban oi", res);
             }
+            setLoading(false);
             if (!ready) setReady(true);
         } catch (error) {
             console.log("phunghieuddonghome");
@@ -193,12 +197,7 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                     source={require("../../../../assets/images/logo.png")}
                     style={{ width: 110, height: 50 }}
                 />
-                {/* <TouchableOpacity onPress={toggleModal}>
-          <Image
-            source={require('../../../../assets/images/find.png')}
-            style={{ width: 24, height: 24, marginRight: 16 }}
-          />
-        </TouchableOpacity> */}
+
                 <View
                     style={{
                         backgroundColor: "#A5C63F",
@@ -597,6 +596,17 @@ const HomeScreen: FC<BiddingSessionProps> = ({ navigation }) => {
                     </View>
                 </View>
             </BottomSheet>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#fff",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

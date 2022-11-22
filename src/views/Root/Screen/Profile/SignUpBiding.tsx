@@ -57,8 +57,8 @@ const SignUpBidingScreen = (props: any) => {
                 // console.log("Phunghieudong");
                 // navigation.navigate("ConfirmFail");
             }
-        } catch (error: any) {
             setLoading(false);
+        } catch (error: any) {
             navigation.navigate("ConfirmFail");
         } finally {
             setLoading(false);
@@ -248,7 +248,7 @@ const SignUpBidingScreen = (props: any) => {
                     visible={true}
                     textContent={"Đang tải ...."}
                     textStyle={{
-                        color: "#000",
+                        color: "#fff",
                         fontSize: 16,
                         // fontFamily: appConfig.fonts.Bold,
                     }}

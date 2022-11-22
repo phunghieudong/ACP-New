@@ -21,6 +21,8 @@ import { LocalStorage } from "../../../../utils/LocalStorage/index";
 import { Buffer } from "buffer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import Spinner from "react-native-loading-spinner-overlay/lib";
+
 const UpdateAccountScreen = () => {
     const [oldPassword, setoldPassword] = useState<string>("");
     const [newPassword, setnewPassword] = useState<string>("");
@@ -29,6 +31,8 @@ const UpdateAccountScreen = () => {
     const [hidePass2, setHidePass2] = useState(true);
     const [confirmNewPassword, setconfirmNewPassword] = useState<string>("");
     const [errorText, setErrorText] = useState<string>("");
+
+    const [loading, setLoading] = useState<boolean>(false);
     const [user, setUser] = useState({});
     const ChangePasswordPut = () => {
         // console.log("phunghieudong", username)
@@ -52,12 +56,14 @@ const UpdateAccountScreen = () => {
         const accessToken = await LocalStorage.getToken();
         const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0]);
         try {
+            setLoading(true);
             const params = { providerId: userx.userId };
             const res = await ChangePassword.Password(params, data);
             if (res.data.ResultCode === 200) {
                 console.log("2000");
                 navigation.navigate("SigninScreen");
             }
+            setLoading(false);
         } catch (error) {
             console.log("error", error.ResultMessage);
             setErrorText(error.ResultMessage);
@@ -304,6 +310,17 @@ const UpdateAccountScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            {loading && (
+                <Spinner
+                    visible={true}
+                    textContent={"Đang tải ...."}
+                    textStyle={{
+                        color: "#fff",
+                        fontSize: 16,
+                        // fontFamily: appConfig.fonts.Bold,
+                    }}
+                />
+            )}
         </View>
     );
 };

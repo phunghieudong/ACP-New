@@ -62,10 +62,11 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                 setData(res.Data.Items);
                 console.log("res ne ban oi", res);
             }
-            if (!ready) setLoading(false);
+            setLoading(false);
+            if (!ready) setReady(true);
         } catch (error) {}
     };
-
+    // setLoading(false);
     useEffect(() => {
         (async () => {
             if (!focused) {
@@ -161,104 +162,136 @@ const HistoryScreen: FC<BiddingTicketProps> = ({ navigation }) => {
                     }}
                 ></View>
             </View>
-            <FlatList
-                data={data}
-                style={styles.body}
-                numColumns={2}
-                onEndReachedThreshold={0.5}
-                keyExtractor={(i) => i.Id.toString()}
-                renderItem={({ item }) => (
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            navigation.navigate("HistoryDetail", {
-                                FullName: item.FullName,
-                                Price: item.Price,
-                                Quantity: item.Quantity,
-                                BiddingName: item.BiddingName,
-                                BiddingSessionName: item.BiddingSessionName,
-                                Thumbnail: item.Thumbnail,
-                                Id: item.Id,
-                                Created: item.Created,
-                                StatusName: item.StatusName,
-                            })
-                        }
+            {ready && !data.length && (
+                <View
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Image
+                        source={require("../../../../assets/images/nodata2.gif")}
+                        style={{
+                            width: "50%",
+                            height: 200,
+                            marginRight: 5,
+                        }}
+                    />
+                    <Text
+                        style={{
+                            alignSelf: "center",
+                            fontSize: 20,
+                            fontWeight: "600",
+                            marginTop: 20,
+                            borderRadius: 6,
+                            paddingVertical: 50,
+                        }}
                     >
-                        <View
-                            style={{
-                                flexDirection: "row",
-                                width: "50%",
-                                justifyContent: "center",
-                                paddingTop: 20,
-                            }}
+                        Lịch sử đấu thầu trống !
+                    </Text>
+                </View>
+            )}
+            {ready && (
+                <FlatList
+                    data={data}
+                    style={styles.body}
+                    numColumns={2}
+                    onEndReachedThreshold={0.5}
+                    keyExtractor={(i) => i.Id.toString()}
+                    renderItem={({ item }) => (
+                        <TouchableWithoutFeedback
+                            onPress={() =>
+                                navigation.navigate("HistoryDetail", {
+                                    FullName: item.FullName,
+                                    Price: item.Price,
+                                    Quantity: item.Quantity,
+                                    BiddingName: item.BiddingName,
+                                    BiddingSessionName: item.BiddingSessionName,
+                                    Thumbnail: item.Thumbnail,
+                                    Id: item.Id,
+                                    Created: item.Created,
+                                    StatusName: item.StatusName,
+                                })
+                            }
                         >
-                            <View style={{ flexDirection: "row" }}>
-                                <View style={{ flexDirection: "column" }}>
-                                    {item.Thumbnail !== "" ? (
-                                        <Image
-                                            source={{ uri: item.Thumbnail }}
-                                            style={{
-                                                alignSelf: "center",
-                                                width: 150,
-                                                height: 100,
-                                                borderRadius: 6,
-                                            }}
-                                        />
-                                    ) : (
-                                        <Image
-                                            source={require("../../../../assets/images/null.jpg")}
-                                            style={{
-                                                alignSelf: "center",
-                                                width: 150,
-                                                height: 100,
-                                                borderRadius: 6,
-                                            }}
-                                        />
-                                    )}
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    width: "50%",
+                                    justifyContent: "center",
+                                    paddingTop: 20,
+                                }}
+                            >
+                                <View style={{ flexDirection: "row" }}>
+                                    <View style={{ flexDirection: "column" }}>
+                                        {item.Thumbnail !== "" ? (
+                                            <Image
+                                                source={{ uri: item.Thumbnail }}
+                                                style={{
+                                                    alignSelf: "center",
+                                                    width: 150,
+                                                    height: 100,
+                                                    borderRadius: 6,
+                                                }}
+                                            />
+                                        ) : (
+                                            <Image
+                                                source={require("../../../../assets/images/null.jpg")}
+                                                style={{
+                                                    alignSelf: "center",
+                                                    width: 150,
+                                                    height: 100,
+                                                    borderRadius: 6,
+                                                }}
+                                            />
+                                        )}
 
-                                    <Text
-                                        numberOfLines={1}
-                                        style={{
-                                            width: 150,
-                                            fontSize: 16,
-                                            fontWeight: "400",
-                                        }}
-                                    >
-                                        {item.BiddingSessionName}
-                                    </Text>
-                                    <View
-                                        style={{
-                                            flexDirection: "row",
-                                            alignItems: "center",
-                                            width: "80%",
-                                        }}
-                                    >
-                                        <Image
-                                            source={require("../../../../assets/images/clock.png")}
+                                        <Text
+                                            numberOfLines={1}
                                             style={{
-                                                width: 14,
-                                                height: 14,
-                                                marginRight: 5,
+                                                width: 150,
+                                                fontSize: 16,
+                                                fontWeight: "400",
                                             }}
-                                        />
-                                        {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
-                                        <Text>
-                                            {moment(item.Created * 1000).format(
-                                                "DD/MM/YYYY"
-                                            )}
+                                        >
+                                            {item.BiddingSessionName}
                                         </Text>
+                                        <View
+                                            style={{
+                                                flexDirection: "row",
+                                                alignItems: "center",
+                                                width: "80%",
+                                            }}
+                                        >
+                                            <Image
+                                                source={require("../../../../assets/images/clock.png")}
+                                                style={{
+                                                    width: 14,
+                                                    height: 14,
+                                                    marginRight: 5,
+                                                }}
+                                            />
+                                            {/* <Text>{item.BiddingSessionTimeOut}</Text> */}
+                                            <Text>
+                                                {moment(
+                                                    item.Created * 1000
+                                                ).format("DD/MM/YYYY")}
+                                            </Text>
+                                        </View>
                                     </View>
                                 </View>
                             </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
-            />
+                        </TouchableWithoutFeedback>
+                    )}
+                />
+            )}
+
             {loading && (
                 <Spinner
                     visible={true}
                     textContent={"Đang tải ...."}
                     textStyle={{
-                        color: "#000",
+                        color: "#fff",
                         fontSize: 16,
                         // fontFamily: appConfig.fonts.Bold,
                     }}

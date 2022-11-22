@@ -3,10 +3,11 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const appConfig = {
+    // hostURL: "https://duaachau.acp.com.vn",
     hostURL: "https://acp.monamedia.net",
     // https://acp.monamedia.net
     oneSignalID: "35e269e5-b9d5-4402-bdf2-1b4b4d320d06",
-    appVersion: "1.0.0",
+    appVersion: "1.0.3",
     showBottomSheet: false,
 
     sizes: {

@@ -37,48 +37,6 @@ const AccountScreen = ({}) => {
         navigation.navigate("SigninScreen");
     };
 
-    // useEffect(() => {
-    //   (async () => {
-    //     if (!focused) {
-    //       console.log("focused1", focused);
-
-    //     } else {
-    //       DemoToken()
-    //       console.log("focused2", focused);
-    //     }
-    //   })();
-    // }, [focused]);
-    // const DemoToken = async () => {
-    //   const accessToken = await LocalStorage.getToken();
-    //   !!accessToken && setUser(JSON.parse(Object.values(parseJwt(accessToken))[0]))
-    // }
-    // function parseJwt(token) {
-    //   var base64Url = token.split('.')[1];
-    //   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    //   var jsonPayload = decodeURIComponent(Buffer.from(base64, 'base64').toString());
-    //   return JSON.parse(jsonPayload) || {};
-    // }
-    // console.log("--- user", user);
-
-    // const getdata = async () => {
-    //   const accessToken = await LocalStorage.getToken();
-    //   const userx = await JSON.parse(Object.values(parseJwt(accessToken))[0])
-    //   try {
-    //     const { current, next } = page;
-    //     const params = { pageIndex: current, pageSize: 20, CreatedBy: userx.userId, OrderBy: 0 };
-    //     const res = await getBiddingTicket(params);
-    //     console.log("res ne ban oi", res);
-    //     if (res.ResultCode == 200) {
-    //       setData(res.Data.Items);
-    //       console.log("res ne ban oi", res);
-    //     }
-    //     if (!ready) setReady(true);
-
-    //   } catch (error) {
-
-    //   }
-    // }
-
     const DemoToken = async () => {
         const accessToken = await LocalStorage.getToken();
         !!accessToken &&
@@ -101,6 +59,7 @@ const AccountScreen = ({}) => {
             } else {
                 DemoToken();
             }
+            setLoading(false);
         })();
     }, [focused]);
 

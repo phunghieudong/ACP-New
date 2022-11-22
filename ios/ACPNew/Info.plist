@@ -20,10 +20,6 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
- <string>${PRODUCT_NAME} wants to have access to Location</string>
- <key>NSPhotoLibraryUsageDescription</key>
- <string>${PRODUCT_NAME} wants to have access to Photo Library</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -50,6 +46,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>${PRODUCT_NAME} wants to have access to Location</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>${PRODUCT_NAME} wants to have access to Photo Library</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -61,7 +61,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string></string>
 	<key>UISupportedInterfaceOrientations</key>
